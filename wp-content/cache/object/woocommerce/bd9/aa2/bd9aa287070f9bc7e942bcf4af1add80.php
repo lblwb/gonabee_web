@@ -1,1 +1,0 @@
-DSh<?php exit; ?>a:2:{s:7:"content";s:57:"{{WP_PLUGIN_DIR}}/woocommerce/templates/loop/loop-end.php";s:15:"key_version_all";i:8;}

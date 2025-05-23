@@ -1,1 +1,0 @@
-êﬂ-h<?php exit; ?>a:2:{s:7:"content";a:2:{s:7:"version";s:10:"1745199740";s:5:"value";O:8:"stdClass":5:{s:3:"ids";a:1:{i:0;i:16;}s:5:"total";i:1;s:11:"total_pages";i:0;s:8:"per_page";i:-1;s:12:"current_page";i:1;}}s:15:"key_version_all";i:8;}

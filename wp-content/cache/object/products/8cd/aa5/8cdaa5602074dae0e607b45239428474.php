@@ -1,1 +1,0 @@
-ž_h<?php exit; ?>a:2:{s:7:"content";s:6:"simple";s:15:"key_version_all";i:13;}

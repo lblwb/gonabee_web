@@ -1,1 +1,0 @@
-�Xh<?php exit; ?>a:2:{s:7:"content";a:3:{s:5:"sizes";s:12:"Размер";s:21:"yookassa_payment_mode";s:44:"Признак способа расчёта";s:24:"yookassa_payment_subject";s:46:"Признак предмета расчета";}s:15:"key_version_all";i:12;}

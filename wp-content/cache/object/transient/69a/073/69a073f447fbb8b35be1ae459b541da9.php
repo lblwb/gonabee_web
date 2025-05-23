@@ -1,1 +1,0 @@
-4f0h<?php exit; ?>a:2:{s:7:"content";a:6:{s:3:"url";s:21:"http://localhost:8002";s:9:"blog_lang";s:5:"ru_RU";s:7:"blog_id";b:0;s:8:"store_id";s:36:"3e017bd7-a6a7-4ff4-b17f-80af08608167";s:14:"products_count";s:1:"6";s:10:"wc_version";s:5:"9.8.1";}s:15:"key_version_all";i:13;}

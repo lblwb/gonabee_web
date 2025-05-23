@@ -1,1 +1,0 @@
-Ú@0h<?php exit; ?>a:2:{s:7:"content";s:247:"a:2:{s:39:"filter-everything/filter-everything.php";a:2:{i:0;s:30:"FilterEverything\Filter\Plugin";i:1;s:9:"uninstall";}s:59:"e-commerce-data-interchange/e-commerce-data-interchange.php";a:2:{i:0;s:27:"BytePerfect\EDI\Uninstaller";i:1;s:3:"run";}}";s:15:"key_version_all";i:13;}

@@ -1,1 +1,0 @@
-Âkh<?php exit; ?>a:2:{s:7:"content";s:21:"0.81534200 1745644302";s:15:"key_version_all";i:8;}

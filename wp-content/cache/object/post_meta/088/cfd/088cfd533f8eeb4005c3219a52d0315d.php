@@ -1,1 +1,0 @@
-Y;0h<?php exit; ?>a:2:{s:7:"content";a:3:{s:10:"_edit_lock";a:1:{i:0;s:12:"1745642095:1";}s:10:"_edit_last";a:1:{i:0;s:1:"1";}s:17:"_wp_page_template";a:1:{i:0;s:9:"page-prom";}}s:15:"key_version_all";i:13;}

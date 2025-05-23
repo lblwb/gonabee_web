@@ -1,1 +1,0 @@
-½4h<?php exit; ?>a:2:{s:7:"content";a:4:{s:7:"version";s:10:"1745694740";s:6:"legacy";i:1;s:7:"enabled";i:2;s:8:"disabled";i:0;}s:15:"key_version_all";i:10;}
