@@ -1,0 +1,1 @@
+ڻh<?php exit; ?>a:2:{s:7:"content";s:282:"a:9:{s:10:"updated_at";i:1745926950;s:12:"usage_hourly";i:5;s:13:"usage_monthly";i:16;s:12:"limit_hourly";i:10;s:13:"limit_monthly";i:100;s:23:"limit_hourly_unlicensed";i:10;s:24:"limit_monthly_unlicensed";i:100;s:21:"limit_hourly_licensed";i:10000;s:22:"limit_monthly_licensed";N;}";s:15:"key_version_all";i:10;}

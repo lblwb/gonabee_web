@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.7/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "custom": {
+      "meta": {
+        "viewport": "width=device-width, initial-scale=1"
+      }
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|base",
+      "text": "var:preset|color|contrast"
+    },
+    "spacing": {
+      "blockGap": "0",
+      "padding": {
+        "left": "0",
+        "right": "0"
+      }
+    },
+    "elements": {
+    }
+  },
+  "templateParts": [
+    {
+      "area": "header",
+      "name": "header",
+      "title": "Header"
+    },
+    {
+      "area": "header",
+      "name": "vertical-header",
+      "title": "Vertical site header"
+    },
+    {
+      "area": "header",
+      "name": "header-large-title",
+      "title": "Header with large title"
+    },
+    {
+      "area": "footer",
+      "name": "footer",
+      "title": "Footer"
+    },
+    {
+      "area": "footer",
+      "name": "footer-columns",
+      "title": "Footer Columns"
+    },
+    {
+      "area": "footer",
+      "name": "footer-newsletter",
+      "title": "Footer Newsletter"
+    },
+    {
+      "area": "uncategorized",
+      "name": "sidebar",
+      "title": "Sidebar"
+    }
+  ],
+  "customTemplates": [
+    {
+      "name": "page-no-title",
+      "postTypes": [
+        "page"
+      ],
+      "title": "Page No Title"
+    }
+  ]
+}

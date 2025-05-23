@@ -1,0 +1,1 @@
+¸c,h<?php exit; ?>a:2:{s:7:"content";a:6:{i:0;i:20;i:1;i:48;i:2;i:49;i:3;i:18;i:4;i:22;i:5;i:50;}s:15:"key_version_all";i:13;}

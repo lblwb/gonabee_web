@@ -1,0 +1,41 @@
+php_value upload_max_filesize 128M
+php_value post_max_size 128M
+php_value memory_limit 128M
+
+# Дополнительные параметры
+php_value max_execution_time 300
+php_value max_input_time 300
+
+
+# BEGIN W3TC WEBP
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME} (.+)\.(jpe?g|png|gif)$
+    RewriteCond %1\.webp -f
+    RewriteCond %{QUERY_STRING} !type=original
+    RewriteRule (.+)\.(jpe?g|png|gif)$ $1.webp [NC,T=image/webp,E=webp,L]
+</IfModule>
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpe?g|png|gif)$">
+        Header append Vary Accept
+    </FilesMatch>
+</IfModule>
+AddType image/webp .webp
+# END W3TC WEBP
+
+# BEGIN WordPress
+# Директивы (строки) между `BEGIN WordPress` и `END WordPress`
+# созданы автоматически и подлежат изменению только через фильтры WordPress.
+# Сделанные вручную изменения между этими маркерами будут перезаписаны.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

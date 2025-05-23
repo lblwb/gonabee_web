@@ -1,0 +1,1 @@
+�@0h<?php exit; ?>a:2:{s:7:"content";O:8:"stdClass":9:{s:7:"term_id";s:2:"22";s:4:"name";s:16:"Футболки";s:4:"slug";s:48:"%d1%84%d1%83%d1%82%d0%b1%d0%be%d0%bb%d0%ba%d0%b8";s:10:"term_group";s:1:"0";s:16:"term_taxonomy_id";s:2:"22";s:8:"taxonomy";s:11:"product_cat";s:11:"description";s:0:"";s:6:"parent";s:2:"17";s:5:"count";s:1:"1";}s:15:"key_version_all";i:13;}

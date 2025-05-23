@@ -1,0 +1,1 @@
+Ð h<?php exit; ?>a:2:{s:7:"content";a:1:{s:5:"ru_RU";a:1:{s:21:"woocommerce-analytics";O:8:"stdClass":2:{s:2:"id";s:21:"woocommerce-analytics";s:38:"order_attribution_promotion_percentage";a:3:{i:0;a:2:{i:0;s:3:"9.7";i:1;i:10;}i:1;a:2:{i:0;s:3:"9.6";i:1;i:10;}i:2;a:2:{i:0;s:3:"9.5";i:1;i:1;}}}}}s:15:"key_version_all";i:13;}

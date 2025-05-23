@@ -1,0 +1,877 @@
+# Translation of Plugins - Yandex Delivery - Development (trunk) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Yandex Delivery - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-04-11 12:37+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Loco https://localise.biz/\n"
+"Language: es_ES\n"
+"Project-Id-Version: Plugins - Yandex Delivery - Development (trunk)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-03 12:22+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish (Spain)\n"
+"X-Loco-Version: 2.5.8; wp-5.9.2"
+
+#: includes/WC_Yandex_Taxi_Delivery_Order_Meta_Box.php:115
+msgid "%1$s (заявка по мультиточкам, заказы: %2$s)"
+msgstr "%1$s (reclamación con múltiples puntos, pedidos: %2$s)"
+
+#: lib/ClaimMetaHelper.php:44
+msgid "%1$s, добавочный %2$s"
+msgstr "%1$s, ext. %2$s"
+
+#: yandex-go-delivery.php:50
+msgid ""
+"<b>Yandex Go Delivery</b>: Плагин остановлен, так как не установлен или не "
+"активирован плагин Woocommerce"
+msgstr ""
+"<b>Yango Delivery</b>: El plugin se ha detenido porque el Woocommerce plugin "
+"no está instalado ni activado\n"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:185
+msgid "API токен из личного кабинета Яндекс Доставки"
+msgstr "Token API del perfil de cuenta Yango Delivery"
+
+#: includes/views/claims/_route_point.php:144
+msgid "Email"
+msgstr "E-mail"
+
+#. URI of the plugin
+msgid "https://taxi.yandex.ru/action/business/delivery/"
+msgstr "https://taxi.yandex.ru/action/business/delivery/"
+
+#: lib/Constants.php:29
+msgid "Id заказа в Доставке Яндекс Go"
+msgstr "ID de pedido en Yango Delivery"
+
+#: core/src/YandexApi/Client.php:77
+msgid "The post-payment is not enabled for your account"
+msgstr "El pospago no está habilitado para su cuenta"
+
+#. Name of the plugin
+msgid "Yandex Delivery"
+msgstr "Yango Delivery"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:221
+msgid "Автоматически изменять статус на \"Выполнен\", когда заказ доставлен"
+msgstr ""
+"Cambiar automáticamente el estado a \"Completado\" cuando se entrega el "
+"pedido"
+
+#: includes/views/claims/create.php:88
+#: includes/views/claims/create_bulk.php:102
+#: includes/views/claims/_route_point.php:50
+#: includes/views/warehouses/edit.php:65 includes/views/warehouses/index.php:29
+msgid "Адрес"
+msgstr "Dirección"
+
+#: includes/views/partial/_translations.php:15
+msgid "Адрес не найден"
+msgstr "Dirección no encontrada"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:298
+msgid "Бесплатная доставка от:"
+msgstr "Entrega gratuita desde:"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:224
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:280
+msgid "Ближайшее"
+msgstr "Lo antes posible"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:267
+msgid ""
+"В корзине рассчитывается стоимость для срочной доставки на ближайшее время. "
+"Если между расчетом стоимости и отправкой заказа в доставку пройдет много "
+"времени, стоимость может существенно измениться."
+msgstr ""
+"El precio de la entrega urgente (lo antes posible) se calculará en el "
+"carrito. Si pasa mucho tiempo entre el cálculo del precio y el envío del "
+"pedido para entrega, el precio puede cambiar significativamente."
+
+#: includes/views/partial/_bad_token.php:12
+msgid "Ваш Токен API Яндекс Доставки не работает."
+msgstr "No puede aplicar tu Token de API Yango Delivery."
+
+#: includes/WC_Yandex_Taxi_Delivery_Base_Controller.php:16
+msgid ""
+"Ваш Токен API Яндекс Доставки не работает. Возможно, у вас на счете "
+"недостаточно средств или не подключена доставка Яндекс Go."
+msgstr ""
+"No puede aplicar tu Token de API Yango Delivery. Puede que no tengas "
+"suficientes fondos en tu cuenta. o Yango Delivery no está conectado."
+
+#: includes/views/partial/_translations.php:16
+msgid ""
+"Ваш Токен API Яндекс.Геосервисы не работает.\\nПроверьте правильность токена "
+"в настройках..Вы будете перенаправлены на страницу настроек."
+msgstr ""
+"No se puede aplicar tu token API de Yandex.Geoservices.\\nVerifica tu token "
+"en la configuración. Serás redirigido a la página de configuración."
+
+#: includes/views/partial/_translations.php:5
+msgid "Введите номер заказа для добавления в маршрут"
+msgstr "Introduce el número de pedido para agregarlo a la ruta"
+
+#: includes/views/claims/ask-creation.php:42
+msgid "Вернуться к списку заказов"
+msgstr "Volver a la lista de pedidos"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:235
+msgid "Вес товара в кг, минимальное значение 0.1 кг"
+msgstr "Peso del artículo en kg, valor mínimo 0,1 kg"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:233
+msgid "Вес товара по умолчанию"
+msgstr "Peso del artículo por defecto"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:324
+msgid "Включена ли скидка на Яндекс Доставку"
+msgstr "Si el descuento Yango Delivery está habilitado"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:303
+msgid "Включена ли фиксированная стоимость Яндекс Доставки"
+msgstr "Si el costo fijo de Yango Delivery está habilitado"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:265
+msgid "Включено в корзине"
+msgstr "Habilitado en la cesta"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:295
+msgid "Включить \"Бесплатную доставку от\""
+msgstr "Habilitar \"Entrega gratuita desde\""
+
+#: includes/views/claims/create.php:240
+#: includes/views/claims/create_bulk.php:260
+#: includes/views/claims/_route_point.php:162
+msgid "Включить SMS подтверждение"
+msgstr "Habilitar confirmación por SMS"
+
+#: includes/views/partial/_bad_token.php:13
+msgid ""
+"Возможно, у вас на счете недостаточно средств или не подключена доставка "
+"Яндекс Go."
+msgstr ""
+"Es posible que no tengas suficientes fondos en tu cuenta o que Yango "
+"Delivery no esté conectado."
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:229
+msgid ""
+"Время от момента оформления заказа пользователем до момента подачи машины на "
+"склад"
+msgstr ""
+"Tiempo que transcurre desde que el usuario realiza el pedido hasta que el "
+"vehículo llega al depósito"
+
+#: includes/views/claims/create.php:200
+#: includes/views/claims/create_bulk.php:218
+msgid "Время подачи машины на склад"
+msgstr "Hora estimada de llegada del vehículo al depósito"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:235
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:291
+msgid "Время подачи машины: %1$s"
+msgstr "Hora estimada de llegada del vehículo:"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:226
+msgid "Время сборки заказа"
+msgstr "Tiempo de montaje del pedido"
+
+#: includes/views/claims/ask-creation.php:31
+msgid "Вы выбрали заказы"
+msgstr "Seleccionaste pedidos"
+
+#: includes/views/claims/create.php:334
+#: includes/views/claims/create_bulk.php:342
+msgid "Вы уверены, что хотите продолжить?"
+msgstr "¿Estás seguro de que quieres continuar?"
+
+#: includes/views/partial/_translations.php:23
+msgid "Вы уверены, что хотите удалить склад №%1$s?"
+msgstr "¿Estás seguro de que deseas eliminar el depósito nº %1$s?"
+
+#: includes/views/partial/_translations.php:7
+msgid "Вы уверены, что хотите удалить точку доставки?"
+msgstr "¿Estás seguro de que deseas eliminar el punto de entrega?"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:31
+msgid "Выбeрите хотя бы один заказ для отправки в доставку"
+msgstr "Selecciona al menos un pedido para enviar a la entrega"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:283
+msgid "Выберите название Яндекс Доставки в корзине"
+msgstr "Selecciona el nombre Yango Delivery en el carrito"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:277
+msgid "Выберите способы оплаты, возможные при выборе Яндекс Доставки"
+msgstr "Selecciona los métodos de pago disponibles al elegir Yango Delivery"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:172
+msgid "Выберите страну"
+msgstr "Selecciona un país"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:259
+msgid "Высота товара в см, минимальное значение 1 см"
+msgstr "Altura del artículo en cm, valor mínimo 1 cm"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:257
+msgid "Высота товара по умолчанию"
+msgstr "Altura del artículo por defecto"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:188
+msgid "Геосервис"
+msgstr "Geocodificador"
+
+#: includes/views/partial/_translations.php:18
+msgid "Город"
+msgstr "Ciudad"
+
+#: includes/views/warehouses/index.php:59
+msgid "Да"
+msgstr "Sí"
+
+#: lib/AdminPackageService.php:149
+msgid "Данные по заказу %1$s не найдены"
+msgstr "No se encontraron datos para el pedido %1$s"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:416
+msgid "Данный заказ уже невозможно отменить"
+msgstr "Ya no puedes cancelar este pedido"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:251
+msgid "Длина товара в см, минимальное значение 1 см"
+msgstr "Longitud del artículo en cm, valor mínimo 1 cm"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:249
+msgid "Длина товара по умолчанию"
+msgstr "Longitud de artículo por defecto"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:429
+msgid "Для заказа №%1$s доступна: "
+msgstr "Disponible para el pedido № %1$s:"
+
+#: includes/views/partial/_translations.php:3
+#: includes/views/partial/_translations.php:9
+msgid "Для расчета стоимости заявки исправьте ошибки формы"
+msgstr ""
+"Para calcular el costo de la reclamación, corrige los errores en el "
+"formulario"
+
+#: includes/views/claims/create.php:282
+msgid "Добавить без заказа"
+msgstr "Agregar sin pedido"
+
+#: includes/views/claims/create.php:278
+msgid "Добавить заказ"
+msgstr "Agregar pedido"
+
+#: includes/views/claims/create.php:275
+msgid "Добавить заказ №"
+msgstr "Agregar nº de pedido"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:120
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:131
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:472
+#: lib/Wrappers/OrderWrapper.php:69
+msgid "Домофон: "
+msgstr "Intercom:"
+
+#: core/src/YandexApi/Resources/Claims.php:318
+msgid "Доставка"
+msgstr "Entrega"
+
+#. Author of the plugin
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:286
+#: includes/WC_Yandex_Taxi_Delivery_Shipping_Method.php:151
+#: lib/Constants.php:19
+msgid "Яндекс Доставка"
+msgstr "Yango Delivery"
+
+#: includes/views/partial/_no_tariffs.php:15
+msgid "Яндекс Доставка не подключена."
+msgstr "Yango Delivery no está conectado."
+
+#: lib/Constants.php:24
+msgid "Яндекс Доставку"
+msgstr "Yango Delivery"
+
+#: includes/views/settings/edit.php:153
+msgid ""
+"Если у вас уже есть договор, повторное заключение не требуется, укажите в "
+"поле выше токен из текущего договора."
+msgstr ""
+"Si ya tienes un contrato no necesitas volver a concluirlo, especifica el "
+"token del contrato actual en el campo de arriba."
+
+#: lib/Constants.php:44
+msgid "Желаемое время доставки"
+msgstr "Hora de entrega deseada"
+
+#: includes/views/claims/create.php:196
+#: includes/views/claims/create_bulk.php:215
+msgid "Забрать заказ в конкретное время"
+msgstr "Recoger el pedido a una hora determinada"
+
+#: includes/WC_Yandex_Taxi_Delivery_Shipping_Controller.php:70
+msgid "Закажите еще на %1$s для бесплатной доставки"
+msgstr "Pedir otro %1$s para entrega gratuita"
+
+#: includes/views/claims/ask-creation.php:19
+msgid "Заказ"
+msgstr "Pedido"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:452
+msgid "Заказ был отменен"
+msgstr "El pedido fue cancelado"
+
+#: includes/WC_Yandex_Taxi_Delivery_Order_Meta_Box.php:27
+msgid "Заказ не был отправлен в "
+msgstr "Pedido no enviado a"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:481
+msgid "Заказ не найден"
+msgstr "Pedido no encontrado"
+
+#: includes/views/partial/_translations.php:6
+msgid "Заказ №%1$s уже есть в заявке"
+msgstr "El pedido nº %1$s ya está en la reclamación"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:485
+msgid "Заказ №%1$s уже отправлен в доставку"
+msgstr "El pedido nº %1$s ya fue enviado para entrega"
+
+#: includes/views/claims/ask-creation.php:32
+msgid "Заказы"
+msgstr "Pedidos"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:97
+msgid "Заказы не найдены"
+msgstr "Pedidos no encontrados"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:204
+msgid "ИНН интернет-магазина (10 или 12 цифр)"
+msgstr "RFC de la tienda (10 o 12 dígitos)"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:202
+msgid "ИНН магазина"
+msgstr "RFC del comercio"
+
+#: includes/views/partial/_no_tariffs.php:13
+msgid ""
+"Из данной точки доставка невозможна. Удалите заказ из списка и продолжите "
+"отправку."
+msgstr ""
+"Desde este punto, la entrega no es posible. Elimine el pedido de la lista y "
+"continúe con el envío."
+
+#: includes/views/claims/create.php:157
+#: includes/views/claims/create_bulk.php:172
+#: includes/views/claims/_route_point.php:119
+#: includes/views/warehouses/edit.php:143
+#: includes/views/warehouses/index.php:31
+msgid "Имя"
+msgstr "Nombre"
+
+#: lib/Constants.php:34
+msgid "Исполнитель заказа"
+msgstr "Ejecutante del pedido"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:292
+msgid "Использовать настройку \"Бесплатная доставка от\""
+msgstr "Utiliza la configuración \"Entrega gratuita desde\""
+
+#: includes/views/warehouses/edit.php:174
+msgid "Использовать по умолчанию"
+msgstr "Usar por defecto"
+
+#: includes/views/claims/_warehouses_list.php:13
+msgid "Использовать склад:"
+msgstr "Usar depósito:"
+
+#: includes/views/settings/edit.php:171
+msgid "Как получить токен"
+msgstr "Cómo obtengo un token"
+
+#: includes/views/claims/create.php:107
+#: includes/views/claims/create_bulk.php:122
+#: includes/views/claims/_route_point.php:67
+#: includes/views/warehouses/edit.php:82
+msgid "Квартира"
+msgstr "Departamento"
+
+#: includes/views/claims/create.php:135
+#: includes/views/claims/create_bulk.php:150
+#: includes/views/claims/_route_point.php:95
+#: includes/views/warehouses/edit.php:101
+msgid "Комментарий"
+msgstr "Comentarios"
+
+#: lib/Wrappers/OrderWrapper.php:78
+msgid "Комментарий к заказу: "
+msgstr "Comentarios de pedidos:"
+
+#: includes/views/claims/_route_point.php:116
+msgid "Контакт клиента"
+msgstr "Contacto del cliente"
+
+#: includes/views/claims/create.php:154
+#: includes/views/claims/create_bulk.php:169
+msgid "Контакт отправителя"
+msgstr "Contacto del remitente"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:345
+msgid "Массовая отправка заказов"
+msgstr "Envío masivo de pedidos uno a uno"
+
+#. Description of the plugin
+msgid ""
+"Модуль Яндекс Доставки позволяет заказать доставку прямо из списка "
+"заказов в WooCommerce"
+msgstr ""
+"El módulo Yango Delivery te permite ordenar la entrega directamente desde la "
+"lista de pedidos en WooCommerce"
+
+#: includes/views/claims/create.php:330
+#: includes/views/claims/create_bulk.php:338
+msgid ""
+"Мы доставляем товары со стоимостью в валюте %1$s. Поменяйте валюту ваших "
+"заказов или стоимость товаров не будет учтена при доставке.\\n"
+msgstr ""
+"Nuestro servicio de entrega utiliza %1$s como moneda para los artículos. "
+"Cambiar la moneda de tus pedidos, o el precio de los artículos no se "
+"incluirán en entrega.\\n"
+
+#: includes/views/partial/_support_contact.php:10
+msgid "Напишите на почту"
+msgstr "Escribe un e-mail"
+
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:38
+#: includes/WC_Yandex_Taxi_Delivery_Base_Controller.php:54
+msgid "Настройки"
+msgstr "Configuración"
+
+#: includes/views/settings/edit.php:69
+msgid "Настройки плагина"
+msgstr "Configuración del plugin"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:76
+msgid "Настройки плагина не заполнены."
+msgstr "La configuración del plugin no está completa."
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:316
+msgid "Наценка на доставку, %"
+msgstr "Recargo por entrega, %"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:230
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:286
+msgid "Не определен"
+msgstr "No definido"
+
+#: includes/views/claims/_tariffs.php:39
+msgid "Не требуется"
+msgstr "No requerido"
+
+#: includes/views/partial/_translations.php:11
+msgid "Не удалось рассчитать стоимость доставки. Попробуйте позже."
+msgstr ""
+"No se pudo calcular el costo de envío. Por favor, inténtalo de nuevo más "
+"tarde."
+
+#: includes/views/partial/_translations.php:22
+msgid "Неверный номер телефона"
+msgstr "Número de teléfono incorrecto"
+
+#: includes/views/partial/_translations.php:13
+msgid "Неполный адрес, уточните номер дома"
+msgstr "Dirección incompleta, indica el número de la casa"
+
+#: includes/views/warehouses/index.php:59
+msgid "Нет"
+msgstr "No"
+
+#: includes/views/partial/_translations.php:14
+msgid "Неточный адрес, требуется уточнение"
+msgstr "Dirección inexacta, por favor corrígela"
+
+#: includes/views/claims/create.php:273
+msgid "Новая точка в маршруте"
+msgstr "Nuevo punto en la ruta"
+
+#: includes/views/partial/_translations.php:20
+msgid "Номер дома"
+msgstr "Número de casa"
+
+#: includes/views/claims/create.php:169
+#: includes/views/claims/create_bulk.php:185
+#: includes/views/claims/_route_point.php:132
+#: includes/views/warehouses/edit.php:152
+msgid "Номер телефона"
+msgstr "Número de teléfono"
+
+#: lib/Constants.php:39
+msgid "Номер телефона исполнителя"
+msgstr "Número de teléfono del ejecutante"
+
+#: includes/views/partial/_translations.php:8
+msgid "Обновление..."
+msgstr "Actualizando..."
+
+#: includes/WC_Yandex_Taxi_Delivery_Payment_Method_Card.php:25
+msgid "Оплата картой при получении (Яндекс Доставка)"
+msgstr "Pago con tarjeta a recepción (Yango Delivery)"
+
+#: includes/WC_Yandex_Taxi_Delivery_Payment_Method_Card.php:24
+msgid "Оплата картой при получении (Яндекс Go)"
+msgstr "Pago con tarjeta a recepción (Yango)"
+
+#: includes/WC_Yandex_Taxi_Delivery_Payment_Method_Cash.php:24
+#: includes/WC_Yandex_Taxi_Delivery_Payment_Method_Cash.php:25
+#, fuzzy
+#| msgid "Оплата наличными при получении (Яндекс.Доставка)"
+msgid "Оплата наличными при получении (Яндекс Доставка)"
+msgstr "Pago en efectivo a recepción (Yango)"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:271
+msgid "Оплата при получении"
+msgstr "Pago a recepción"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:273
+msgid ""
+"Оплата при получении разрешает покупателям выбирать способы оплаты при "
+"получении на странице оформления заказа. <br><u>Для вашего аккаунта <b>"
+"Яндекс Go</b> должна быть подключена эта услуга! Обратитесь к менеджеру.</u>"
+msgstr ""
+"El pago en el momento de la recepción permite a los clientes elegir métodos "
+"de pago en el momento de la recepción en la página de pago. <br><u>¡Para tu "
+"cuenta <b>Yango</b> este servicio debe estar habilitado! Ponte en contacto "
+"con tu gerente.</u>"
+
+#: includes/views/partial/_support_contact.php:9
+msgid "Остались вопросы?"
+msgstr "¿Dudas? ¿Preguntas?"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:427
+msgid "Отмена доставки данного заказа, приведет к отмене заказов: "
+msgstr ""
+"i cancelas la entrega de este pedido, se cancelarán los siguientes pedidos:"
+
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:76
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:77
+#: includes/WC_Yandex_Taxi_Delivery_Action_Buttons.php:59
+msgid "Отмена заказа "
+msgstr "Cancelar pedido"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:30
+msgid "Отправить в Яндекс Go"
+msgstr "Enviar a Yango"
+
+#: includes/views/claims/ask-creation.php:37
+msgid "Отправить все в"
+msgstr "Enviar todo a"
+
+#: includes/views/claims/ask-creation.php:40
+msgid "Отправить заказ в"
+msgstr "Enviar pedido a"
+
+#: includes/views/claims/ask-creation.php:38
+msgid "Отправить только новые в"
+msgstr "Enviar solo nuevo(s) a"
+
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:58
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:59
+msgid "Отправка в "
+msgstr "Enviar a"
+
+#: includes/WC_Yandex_Taxi_Delivery_Action_Buttons.php:39
+msgid "Отправка заказа в "
+msgstr "Enviar el pedido a"
+
+#: includes/views/claims/create.php:56 includes/views/claims/create_bulk.php:53
+msgid "Отправка заказов в"
+msgstr "Enviar los pedidos a"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:347
+msgid ""
+"Отправлять каждый заказ по отдельности при массовом выделении в списке "
+"заказов"
+msgstr ""
+"Optimización del envío. Al seleccionar una opción, puede seleccionar varios "
+"pedidos y enviarlos a Tango con un solo botón"
+
+#: includes/views/settings/edit.php:176
+msgid "Перейти в личный кабинет Геосервиса"
+msgstr "Ir a la cuenta personal de Geoservicios"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:76
+msgid "Перейти к странице настроек"
+msgstr "Ir a la página de configuración"
+
+#: includes/views/claims/_tariffs.php:17 includes/views/warehouses/index.php:33
+msgid "По умолчанию"
+msgstr "Predeterminado"
+
+#: includes/views/partial/_no_tariffs.php:18
+msgid "Подключить"
+msgstr "Conectar"
+
+#: includes/views/settings/edit.php:150
+msgid "Подключить Яндекс Доставку"
+msgstr "Conectar Yango Delivery"
+
+#: includes/views/claims/create.php:305
+#: includes/views/claims/create_bulk.php:313
+msgid "Подтвердить заявку"
+msgstr "Confirmar reclamación"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:432
+msgid "Подтвердить отмену?"
+msgstr "¿Confirmar cancelación?"
+
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:67
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:68
+msgid "Подтвердить отправку в "
+msgstr "Confirmar envío a"
+
+#: includes/views/claims/create.php:116
+#: includes/views/claims/create_bulk.php:131
+#: includes/views/claims/_route_point.php:76
+#: includes/views/warehouses/edit.php:88
+msgid "Подъезд"
+msgstr "Entrada"
+
+#: includes/views/warehouses/index.php:39
+msgid "Пока нет ни одного склада"
+msgstr "Aún no tienes depósitos"
+
+#: includes/views/settings/edit.php:145
+msgid "Получить токен"
+msgstr "Obtener token"
+
+#: includes/views/partial/_translations.php:10
+msgid "Продолжить?"
+msgstr "¿Continuar?"
+
+#: includes/views/partial/_translations.php:12
+msgid "Произошла ошибка во время запроса на сервер"
+msgstr "Se ha producido un error durante una solicitud al servidor"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:318
+msgid "Процент наценки на стоимость Яндекс Доставки"
+msgstr "Recargo sobre el costo de envío en Yango, porcentaje"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:331
+msgid "Процент скидки на стоимость Яндекс Доставки"
+msgstr "Descuento del costo de envío en Yango, porcentaje"
+
+#: includes/views/claims/create.php:303
+#: includes/views/claims/create_bulk.php:311
+msgid "Рассчитать"
+msgstr "Calcular"
+
+#: includes/views/warehouses/edit.php:50
+msgid "Редактирование склада №"
+msgstr "Edit nº de depósito"
+
+#: includes/views/warehouses/index.php:50
+msgid "Редактировать"
+msgstr "Editar"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:329
+msgid "Скидка на доставку, %"
+msgstr "Descuento del envío, %"
+
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:46
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:47
+#: includes/WC_Yandex_Taxi_Delivery_Base_Controller.php:55
+msgid "Склады"
+msgstr "Depósitos"
+
+#: includes/views/warehouses/edit.php:48
+msgid "Создание склада"
+msgstr "Crear depósito"
+
+#: includes/views/warehouses/index.php:66
+msgid "Создать склад"
+msgstr "Crear depósito"
+
+#: includes/views/warehouses/edit.php:180
+msgid "Сохранить"
+msgstr "Guardar"
+
+#: includes/views/settings/edit.php:186
+msgid "Сохранить настройки"
+msgstr "Guardar configuración"
+
+#: core/src/YandexApi/Resources/Tariffs.php:54
+msgid "Срочная доставка"
+msgstr "Entrega urgente"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:211
+msgid "Ставка НДС"
+msgstr "Tasa de IVA"
+
+#: lib/Constants.php:49
+msgid "Статус заказа в Доставке Яндекс Go"
+msgstr "Estado del pedido en Yango Delivery"
+
+#: lib/Constants.php:54
+msgid "Статус посещения точки в Доставке Яндекс Go"
+msgstr "Punto de estado de visita en Yango Delivery"
+
+#: lib/Constants.php:69
+msgid "Стоимость Яндекс Доставки"
+msgstr "Costo de Yango Delivery"
+
+#: lib/Constants.php:64
+msgid "Стоимость Яндекс Доставки в корзине"
+msgstr "Costo de Yango Delivery en la cesta"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:234
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:290
+msgid "Стоимость доставки: %1$s"
+msgstr "Gastos de envío: %1$s"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:337
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:339
+msgid "Стоимость заказа, от которого применять скидку"
+msgstr "Importe del pedido sujeto a descuento"
+
+#: includes/views/partial/_translations.php:17
+msgid "Страна"
+msgstr "País"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:300
+msgid ""
+"Сумма заказа, от которой Доставка Яндекс&nbsp;Go будет для пользователя "
+"бесплатной"
+msgstr "Importe mínimo para envío gratuito para el usuario de Yango Delivery"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:308
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:310
+msgid "Сумма фиксированной стоимости Яндекс Доставки"
+msgstr "Costo fijo para la Yango Delivery"
+
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:236
+#: includes/WC_Yandex_Taxi_Delivery_Claim_Controller.php:292
+#: includes/views/claims/create.php:291
+#: includes/views/claims/create_bulk.php:299
+#: includes/views/claims/_tariffs.php:12
+msgid "Тариф"
+msgstr "Clase de servicio"
+
+#: lib/Constants.php:59
+msgid "Тариф доставки в Доставке Яндекс Go"
+msgstr "Clase de servicio de entrega en Yango Delivery"
+
+#: includes/views/warehouses/index.php:32
+msgid "Телефон"
+msgstr "Teléfono"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:55
+msgid "Токен API Геосервиса введён не верно. Проверьте токен."
+msgstr ""
+"El token API de Geoservicio no se introdujo correctamente. Compruebe el "
+"token."
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:51
+#: includes/views/settings/edit.php:16
+msgid "Токен API Геосервиса не введён."
+msgstr "No se ha introducido ningún token API de Geoservicio."
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:183
+msgid "Токен API Яндекс Доставки"
+msgstr "Token API de Yango Delivery"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:47
+msgid "Токен API Доставки не введён."
+msgstr "No se ha introducido ningún token API de Entrega."
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:197
+msgid "Токен API выбранного геосервиса"
+msgstr "Token API del geoservicio seleccionado"
+
+#: includes/views/claims/_route_point.php:26
+msgid "Точка"
+msgstr "Punto"
+
+#: includes/views/claims/create.php:73 includes/views/claims/create_bulk.php:84
+msgid "Точка 1 (Склад)"
+msgstr "Punto 1 (Depósito)"
+
+#: includes/views/claims/_route_point.php:32
+msgid "Точка без заказа"
+msgstr "Punto sin pedido"
+
+#: includes/views/warehouses/index.php:53
+msgid "Удалить"
+msgstr "Eliminar"
+
+#: includes/views/partial/_translations.php:19
+msgid "Улица"
+msgstr "Calle"
+
+#: includes/views/warehouses/index.php:22
+msgid "Управление складами"
+msgstr "Gestión de depósitos"
+
+#: includes/views/settings/edit.php:167
+msgid "Формат: API_key::Secret_Key"
+msgstr "Formato: API_key::Secret_Key"
+
+#: includes/views/partial/_translations.php:4
+msgid "Цена доставки изменилась с %1$s на %2$s. Подтвердить заказ?"
+msgstr "El precio de entrega ha cambiado de %1$s a %2$s. ¿Confirmar pedido?"
+
+#: includes/views/warehouses/edit.php:109
+msgid "Часы работы"
+msgstr "Horario de atención"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:243
+msgid "Ширина товара в см, минимальное значение 1 см"
+msgstr "Ancho del artículo en cm, valor mínimo 1 cm"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:241
+msgid "Ширина товара по умолчанию"
+msgstr "Ancho del artículo por defecto"
+
+#: includes/WC_Yandex_Taxi_Delivery_Setting_Controller.php:287
+#: includes/WC_Yandex_Taxi_Delivery_Shipping_Method.php:152
+msgid "Экспресс Яндекс Доставка"
+msgstr "Yango Delivery urgente"
+
+#: includes/views/claims/create.php:125
+#: includes/views/claims/create_bulk.php:140
+#: includes/views/claims/_route_point.php:85
+#: includes/views/warehouses/edit.php:94
+msgid "Этаж"
+msgstr "Piso"
+
+#: includes/views/partial/_translations.php:21
+msgid "Это поле обязательно для расчета доставки"
+msgstr "Este campo es necesario para calcular el envío"
+
+#: includes/WC_Yandex_Taxi_Admin_Menu.php:39
+#, fuzzy
+#| msgid "Яндекс. Доставка"
+msgid "Яндекс Доставка"
+msgstr "Yango Envío"
+
+#: includes/views/claims/ask-creation.php:31
+msgid "для отправки в"
+msgstr "para enviar a"
+
+#: includes/views/claims/create_bulk.php:73
+#: includes/views/claims/_route_point.php:30
+msgid "заказ №"
+msgstr "nº de pedido"
+
+#: includes/views/claims/ask-creation.php:32
+msgid "уже были отправлены в"
+msgstr "ya fueron enviados a"
+
+#: includes/views/claims/ask-creation.php:20
+msgid "уже отправлен в "
+msgstr "ya fue enviado a"

@@ -1,0 +1,1 @@
+†h<?php exit; ?>a:2:{s:7:"content";s:77:"{{WP_PLUGIN_DIR}}/woocommerce/templates/single-product/add-to-cart/simple.php";s:15:"key_version_all";i:13;}

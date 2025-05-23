@@ -1,0 +1,1 @@
++V*h<?php exit; ?>a:2:{s:7:"content";a:4:{i:0;O:8:"stdClass":2:{s:7:"term_id";i:56;s:9:"object_id";i:100;}i:1;O:8:"stdClass":2:{s:7:"term_id";i:56;s:9:"object_id";i:101;}i:2;O:8:"stdClass":2:{s:7:"term_id";i:56;s:9:"object_id";i:102;}i:3;O:8:"stdClass":2:{s:7:"term_id";i:56;s:9:"object_id";i:103;}}s:15:"key_version_all";i:13;}

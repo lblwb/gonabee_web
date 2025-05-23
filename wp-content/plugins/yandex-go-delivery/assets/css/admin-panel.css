@@ -1,0 +1,569 @@
+@font-face {
+    font-family: YSText;
+    src: url(../fonts/YS-Text-Regular.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: YSText;
+    src: url(../fonts/YS-Text-Bold.ttf);
+    font-weight: bold;
+}
+
+body.woocommerce_page_yandex-go-delivery_settings #wpbody-content{
+    font-family: YSText;
+}
+
+.error.yandex-taxi-delivery_error,
+.yandex-taxi-delivery-support_contact,
+.yandex-taxi-delivery_setting_form__param .description {
+    font-weight:normal;
+}
+
+.yandex-taxi-delivery_form__row
+{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.yandex-taxi-delivery_form__column_left
+{
+    /*width: 38%;*/
+    flex-grow: 0;
+}
+
+.yandex-taxi-delivery_form__column_right
+{
+    /*width: 60%;*/
+    flex-grow: 1;
+}
+
+.yandex-taxi-delivery_form__group
+{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 30px;
+}
+
+.yandex-taxi-delivery_form__group.checkbox
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.yandex-taxi-delivery_form__group.row
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.yandex-taxi-delivery_form__group.row.start
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 10px 0;
+    gap: 0;
+}
+
+.yandex-taxi-delivery_form__group.row.start * + *
+{
+    margin-left: 10px;
+}
+
+.yandex-taxi-delivery_form__group.row .yandex-taxi-delivery_form__group_small
+{
+    width: auto;
+}
+
+.yandex-taxi-delivery_form__group.row .yandex-taxi-delivery_form__group_small input
+{
+    width: 100%;
+}
+
+.yandex-taxi-delivery_form__route_point, .yandex-taxi-delivery_form__container_actions
+{
+    padding: 0 15px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #7e899326;
+    width: 1000px;
+}
+
+.yandex-taxi-delivery_form__group select
+{
+    width: 100%;
+    margin-top: 0;
+}
+
+.yandex-taxi-delivery_form__container_tariff
+{
+    padding-left: 15px;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #7e899326;
+    width: 1000px;
+}
+
+.yandex-taxi-delivery_form__group_small
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.yandex-taxi-delivery_form__route_point .divider
+{
+    border-top: 1px solid #bbb;
+    width: 98%;
+    margin: 15px 0;
+}
+
+.yandex-taxi-delivery_form__group .tariff
+{
+    font-weight: bold;
+}
+
+.yandex-taxi-delivery_form__route_heading
+{
+    margin-top: 10px;
+    display: flex;
+}
+
+.yandex-taxi-delivery_form__title
+{
+    width: 400px;
+    display: inline;
+    margin-top: 10px;
+}
+
+.yandex-taxi-delivery_form__controls
+{
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.js_yandex-taxi-delivery_form__move-up-route-point, .js_yandex-taxi-delivery_form__move-down-route-point, .js_yandex-taxi-delivery_form__delete-route-point
+{
+    cursor: pointer;
+}
+
+.yandex-taxi-delivery_form__route_point_container .yandex-taxi-delivery_settings_grid:first-of-type .js_yandex-taxi-delivery_form__move-up-route-point
+{
+    display: none;
+}
+
+.yandex-taxi-delivery_form__route_point_container .yandex-taxi-delivery_settings_grid:last-of-type .js_yandex-taxi-delivery_form__move-down-route-point
+{
+    display: none;
+}
+
+.yandex-taxi-delivery_form__group .error-message
+{
+    color: red;
+}
+
+.yandex-taxi-delivery_setting_form__param .error-message
+{
+    color: red;
+    display: block;
+}
+
+.yandex-taxi-delivery_form__group__input.error
+{
+    border-color: red;
+}
+
+.yandex-taxi-delivery_setting_form__param .error, .yandex-taxi-delivery_setting_form__param .error:focus
+{
+    border-color: red;
+    box-shadow: none;
+}
+
+.yandex-taxi-delivery_form__group label, .yandex-taxi-delivery_address-details
+{
+    display: block;
+    margin: 5px 0;
+}
+
+.yandex-taxi-delivery_form__group input[type="checkbox"]
+{
+    margin: 5px;
+}
+
+.yandex-taxi-delivery_form__group__input, .yandex-taxi-delivery_form__group__input__textarea
+{
+    width: 100%;
+}
+
+.yandex-taxi-delivery_form__group__input__textarea
+{
+    min-height: 100px;
+}
+
+.yandex-taxi-delivery_form__cost_sum
+{
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px;
+}
+
+.yandex-taxi-delivery_form__contact_heading
+{
+    margin: 20px 0 0;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.yandex-taxi-delivery_form__datetime
+{
+    display: inline-block;
+}
+
+.yandex-taxi-delivery_form__datetime .date-picker
+{
+    width: 150px;
+}
+
+.yandex-taxi-delivery_form__datetime .hour
+{
+    width: 50px;
+}
+
+.yandex-taxi-delivery_form__datetime .minute
+{
+    width: 50px;
+}
+
+.yandex-taxi-delivery_map
+{
+    display: none;
+    height: 275px;
+    width: 65%;
+}
+
+.yandex-taxi-delivery_address-details
+{
+    width: 30%;
+}
+
+.yandex-taxi-delivery_address-details .label
+{
+    font-weight: bold;
+}
+
+.wc-action-button-send_to_yandex-go-delivery::after
+{
+    font-family: woocommerce !important;
+    content: "\e029" !important;
+}
+
+.wc-action-button-cancel_yandex-go-delivery::after
+{
+    font-family: woocommerce !important;
+    content: "✕";
+}
+
+.loader_yandex-go-delivery::after
+{
+    font-family: dashicons !important;
+    content: "\f463" !important;
+}
+
+.yandex-taxi-delivery_setting_form__group
+{
+    width: auto;
+    max-width: 984px;
+    margin: 15px 10px 5px 0;
+    padding: 5px 15px 15px 15px;
+    border-radius: 5px 5px 2px 2px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ffdd33;
+    box-shadow: 1px 0 5px -2px;
+}
+
+.yandex-taxi-delivery_setting_form__param
+{
+    padding: 16px 0;
+}
+
+.yandex-taxi-delivery_setting_form__param label
+{
+    display: block;
+    height: 19px;
+    font-size: 16px;
+    color: #000;
+    font-weight:bold;
+}
+
+.yandex-taxi-delivery_setting_form__param + .yandex-taxi-delivery_setting_form__param
+{
+    border-top: solid 1px #979797;
+}
+
+.yandex-taxi-delivery_setting_form__param label.checkbox-label
+{
+    display: inline;
+}
+
+.yandex-taxi-delivery_setting_form__param input:not([type="checkbox"]), .yandex-taxi-delivery_setting_form__param select
+{
+    width: 100%;
+    max-width: 400px;
+    height: 26px;
+    margin: 16px 0 0 0;
+    font-weight: 300;
+}
+
+.yandex-taxi-delivery_setting_form__param input[type="checkbox"]
+{
+    margin: 3px 0 0 8px;
+}
+
+.yandex-taxi-delivery_setting_form__param .description
+{
+    font-style: italic;
+    color: #a4a4a4;
+    margin: 8px 0 0 0;
+}
+
+.yandex-taxi-delivery_setting_form__param .description + .description
+{
+    margin: 16px 0 0 0;
+}
+
+.yandex-taxi-delivery_setting_form__param .button
+{
+    display: block;
+    margin: 16px 0 4px 0;
+    width: fit-content;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.yandex-taxi-delivery__edit-warehouse_form select
+{
+    width: 100px;
+}
+
+.yandex-taxi-delivery_form__group .divider
+{
+    margin: 0 5px;
+}
+
+table.yandex-taxi-delivery_meta-box
+{
+    border-spacing: 0;
+}
+
+.yandex-taxi-delivery_meta-box td
+{
+    padding: 7px 15px 7px 0;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.yandex-taxi-delivery_meta-box tr:last-child td
+{
+    border-bottom: none;
+    padding: 7px 15px 0 0;
+}
+
+.yandex-taxi-delivery_meta-box tr td:first-child
+{
+    font-weight: 500;
+}
+
+.tariff-info
+{
+    color: #838383;
+    margin: 0 23px 0;
+    font-size: 11px;
+}
+
+.tariff-option
+{
+    /*float: left;
+    padding-right: 20px;*/
+}
+
+.tariff-requirement
+{
+    margin-left: 23px;
+    margin-top: -7px;
+    flex-direction: column;
+}
+
+.tariff-requirement .tariff-option
+{
+    margin-left: 23px;
+}
+
+.tariff-requirement .checkbox
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.tariff-requirement .checkbox input[type="checkbox"]
+{
+    margin: 0 5px;
+}
+
+.button.yandex-taxi-delivery_send-button,
+.button.yandex-taxi-delivery_send-button:hover,
+.button.yandex-taxi-delivery_send-button:focus,
+.button.yandex-taxi-delivery_send-button:active
+{
+    color: #000;
+    background: #ffde40;
+    border: #ffde40;
+    height: 32px;
+    box-shadow: none;
+}
+
+.error.yandex-taxi-delivery_error
+{
+    display: inline-block;
+    padding: 11px 15px;
+    margin: 0;
+}
+
+.ygo_menu_tabs
+{
+    padding: 5px 0;
+}
+
+.ygo_menu_tabs .nav-tab
+{
+    font-weight:normal;
+    border-radius: 5px 5px 0 0;
+    border-top: 2px solid #c3c4c7;
+    min-width: 120px;
+    text-align: center;
+}
+
+.ygo_menu_tabs .nav-tab-active
+{
+    border-top: 2px solid #ffdd33;
+}
+
+.ygo_menu_tabs .dashicons-before:before
+{
+    padding: 0 5px 0 0;
+    vertical-align: middle;
+}
+
+.ygo_icon_tab
+{
+    display:block;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1.71428571;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    margin: 20px 10px 10px 10px;
+}
+
+.yandex-taxi-delivery_setting_form input[name='inn']:invalid
+{
+    border: 2px solid red;
+    outline: 0;
+}
+
+.yandex-taxi-delivery_settings_grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 5px;
+}
+
+.yandex-taxi-delivery_setting_form__group:first-of-type
+{
+    grid-column: 1 / 3;
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1000px)
+{
+    .yandex-taxi-delivery_settings_grid
+    {
+        grid-template-columns: 100%;
+        grid-gap: 0 5px;
+    }
+
+    .yandex-taxi-delivery_setting_form__group:first-of-type
+    {
+        grid-column: 1;
+        max-width: 100%;
+    }
+
+    .yandex-taxi-delivery_setting_form__group
+    {
+        border-top: 0;
+        border-left: 3px solid #ffdd33;
+        border-radius: 5px 2px 2px 5px;
+    }
+
+    /*WAREHOUSES PAGE*/
+    .yandex-taxi-delivery_warehouse-list th, .yandex-taxi-delivery_warehouse-list td
+    {
+        display: none;
+    }
+
+    .yandex-taxi-delivery_warehouse-list .ygo_delivery_warehouses_item_mobile
+    {
+        display: block;
+    }
+}
+
+/*WAREHOUSES PAGE*/
+.yandex-taxi-delivery_warehouse-list
+{
+    max-width: 1000px;
+    margin: 20px 0;
+}
+
+.ygo_delivery_warehouses_item_actions
+{
+    display: block;
+    margin: 5px 0;
+}
+
+.ygo_delivery_warehouses_item_actions .delete
+{
+    color: #b32d2e;
+}
+
+.ygo_delivery_warehouses_item_address
+{
+    font-weight: bold;
+}
+
+.ygo_delivery_warehouses_table
+{
+    margin-right: 10px;
+}
+
+.yandex-taxi-delivery_bulk_order_id
+{
+    text-transform: uppercase;
+    margin: 20px 0 0 0;
+}
+
+.js_yandex-taxi-delivery_form__delete-claim-order span.dashicons-trash
+{
+    cursor: pointer;
+    margin: 0 10px 0 10px;
+}

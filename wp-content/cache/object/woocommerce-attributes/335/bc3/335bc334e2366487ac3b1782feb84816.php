@@ -1,0 +1,1 @@
+Á;,h<?php exit; ?>a:2:{s:7:"content";a:3:{s:5:"sizes";i:6;s:21:"yookassa_payment_mode";i:2;s:24:"yookassa_payment_subject";i:5;}s:15:"key_version_all";i:13;}

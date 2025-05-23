@@ -1,0 +1,1 @@
+œ,h<?php exit; ?>a:2:{s:7:"content";a:2:{s:4:"hash";s:32:"465469cae5a25c1e176c1b27dedd588e";s:6:"blocks";a:5:{s:11:"core/button";s:0:"";s:14:"core/site-logo";s:0:"";s:18:"core/post-template";s:0:"";s:12:"core/columns";s:0:"";s:14:"core/pullquote";s:69:":root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}";}}s:15:"key_version_all";i:13;}
