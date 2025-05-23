@@ -76,6 +76,7 @@
             <!-- /wp:group -->
         </div>
         <!-- wp:group -->
+
         <div class="headerMainNavRt" style="display: flex; align-items: center; gap: 20px;">
             <div class="headerMainNavItem searchBox navItemHideMb wp-block" @click="toggleSearch">
                 <div class="headerMainNavItemWrap">
@@ -159,6 +160,8 @@
         </div>
         <!-- /wp:group -->
     </div>
+    <div class="headerMainNavWrapBottom" style="width:100%;height:0px"></div>
+
     <!-- /wp:group -->
 </div>
 <!-- /wp:group -->

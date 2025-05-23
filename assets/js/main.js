@@ -1,6 +1,30 @@
 const registerNotifyCustom = () => {
 	jQuery.notify.addStyle('cartStyle', {
 		html:
+			"<div class='notifyWrapper'>" +
+			"<div class='notifyImageWrapper' data-notify-html='image'></div>" +
+			"<span class='notifyText' data-notify-text='title'></span>" +
+			'</div>',
+		classes: {
+			base: {
+				// все ваши CSS‑правила для .notifyjs-custom-base мы назовём классом base
+				'min-height': '60px',
+				padding: '10px 15px',
+				display: 'flex',
+				'align-items': 'center',
+				'justify-content': 'center',
+				gap: '8px',
+				'background-color': '#1e1e1e',
+				color: '#ffffff',
+				'font-family': "'Montserrat', sans-serif",
+				'font-weight': 500,
+				'font-size': '14px',
+				'box-shadow': '0 2px 8px rgba(0,0,0,0.3)',
+			},
+		},
+	});
+	jQuery.notify.addStyle('cartStyleTwo', {
+		html:
 			'<div style="display: flex; align-items: center;">' +
 			'<div class="NotifyWrapper" style="display: flex; align-items: center; gap: 8px;">' +
 			'<div class="NotifyIcon" style="display: flex; align-items: center;">' +
@@ -719,47 +743,49 @@ const uiShopAppVibe = () => {
 								if (action === 'added') {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
+										jQuery('.headerMainNavWrapBottom'),
 										// 2.1) содержимое: просто передаём текст
-										'Модель добавлена в корзину!',
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель добавлена в корзину!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								} else {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
+										jQuery('.headerMainNavWrapBottom'),
 										// 2.1) содержимое: просто передаём текст
-										'Модель удалена из корзины!',
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель удалена из корзины!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								}
@@ -802,45 +828,45 @@ const uiShopAppVibe = () => {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
 										// 2.1) содержимое: просто передаём текст
-										'Модель добавлена в избранное!',
+										jQuery('.headerMainNavWrapBottom'),
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель добавлена в избранное!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								} else {
 									jQuery.notify(
-										// 2.1) содержимое: просто передаём текст
-										'Модель удалена из избранного!',
+										jQuery('.headerMainNavWrapBottom'),
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель удалена из избранного!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								}
@@ -862,7 +888,7 @@ const uiShopAppVibe = () => {
 						// appShop.cart.value.push(productId)
 						appShop.value.cart.btnAddActive = true;
 						// Показ уведомления
-						showAddToCartNotification(productId);
+						showAddToCartNotification(productItem);
 						// console.log(event.target);
 						if (event.target.querySelector('.addToCardBtnHeadingTitle')) {
 							event.target.querySelector(
@@ -876,6 +902,7 @@ const uiShopAppVibe = () => {
 				};
 
 				const addToWhtListMob = (itemCard) => {
+					console.log('test');
 					showAddFavoriteNotification(itemCard);
 				};
 
@@ -1050,79 +1077,14 @@ const uiShopAppVibe = () => {
 				const getSelectedWhtLst = (productId) =>
 					Vue.computed(() => !getFavorites().includes(productId)).value;
 
-				function showAddFavoriteNotification(cardItem) {
-					let imageUrl = cardItem.imageUrl ? cardItem.imageUrl : '';
-
-					axios
-						.post(
-							ajaxUrl,
-							{
-								nonce: nonce,
-							},
-							{
-								params: {
-									action: 'toggle_favorite',
-									product_id: productId,
-								},
-							}
-						)
-						.then(function (response) {
-							if (response.data.success) {
-								const action = response.data.data.action;
-								if (action === 'added') {
-									addToFavorites(productId);
-
-									jQuery.notify('Модель добавлена в избранное!', {
-										style: 'cartStyle',
-										className: 'base',
-										showAnimation: 'slideDown',
-										showDuration: 300,
-										hideAnimation: 'slideUp',
-										hideDuration: 200,
-										autoHide: true,
-										autoHideDelay: 2000,
-										globalPosition: 'top center',
-										icon: imageUrl,
-									});
-
-									console.log('Товар добавлен в избранное');
-								} else {
-									removeFromFavorites(productId);
-
-									jQuery.notify('Модель удалена из избранное!', {
-										style: 'cartStyle',
-										className: 'base',
-										showAnimation: 'slideDown',
-										showDuration: 300,
-										hideAnimation: 'slideUp',
-										hideDuration: 200,
-										autoHide: true,
-										autoHideDelay: 2000,
-										globalPosition: 'top center',
-										icon: imageUrl,
-									});
-
-									console.log('Товар удален из избранного');
-								}
-							} else {
-								console.log('Произошла ошибка');
-							}
-
-							window.states.headMainNav.fetchFavorites();
-						})
-						.catch(function (error) {
-							console.error(error);
-							console.log('Ошибка запроса');
-						});
-				}
-
 				const addToWhtListMob = (itemCard) => {
+					console.log('test');
+
 					showAddFavoriteNotification(itemCard);
 				};
 
 				function showAddToCartNotification(cardItem) {
 					let imageUrl = cardItem.imageUrl ? cardItem.imageUrl : '';
-
 					// Отправляем AJAX-запрос через axios
 					axios
 						.post(
@@ -1143,47 +1105,47 @@ const uiShopAppVibe = () => {
 								if (action === 'added') {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										// 2.1) содержимое: просто передаём текст
-										'Модель добавлена в корзину!',
+										jQuery('.headerMainNavWrapBottom'),
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель добавлена в корзину!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								} else {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										// 2.1) содержимое: просто передаём текст
-										'Модель удалена из корзины!',
+										jQuery('.headerMainNavWrapBottom'),
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель удалена из корзины!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								}
@@ -1203,9 +1165,6 @@ const uiShopAppVibe = () => {
 
 				function showAddFavoriteNotification(cardItem) {
 					let imageUrl = cardItem.imageUrl ? cardItem.imageUrl : '';
-
-					console.log(cardItem);
-
 					// Отправляем AJAX-запрос через axios
 					axios
 						.post(
@@ -1225,51 +1184,50 @@ const uiShopAppVibe = () => {
 								const action = response.data.data.action;
 								if (action === 'added') {
 									jQuery.notify(
-										// 2.1) содержимое: просто передаём текст
-										'Модель добавлена в избранное!',
+										jQuery('.headerMainNavWrapBottom'),
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель добавлена в избранное!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
+											arrowShow: false,
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								} else {
 									// state.buttonText = 'Добавить в избранное';
-									// state.message = 'Товар удален из избранного';
+									// state.message = 'Модель удалена из избранного';
 									// state.isFavorited = false;
-									console.log('Товар удален из избранного');
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										// 2.1) содержимое: просто передаём текст
-										'Модель удалена из избранное!',
+										jQuery('.headerMainNavWrapBottom'),
 										{
-											// 2.2) указываем наш стиль и класс base
+											title: 'Модель удалена из избранного!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+										{
 											style: 'cartStyle',
 											className: 'base',
-											// 2.3) появление/скрытие
 											showAnimation: 'slideDown',
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											// 2.4) автоскрытие через 2 секунды
 											autoHide: true,
 											autoHideDelay: 2000,
-											// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
-											globalPosition: 'top center',
-											// 2.6) передаём URL картинки, чтобы плагин подставил её в <img>
-											icon: imageUrl,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
 										}
 									);
 								}
@@ -1291,7 +1249,7 @@ const uiShopAppVibe = () => {
 						// appShop.cart.value.push(productId)
 						appMobShop.value.cart.btnAddActive = true;
 						// Показ уведомления
-						showAddToCartNotification(productId);
+						showAddToCartNotification(productItem);
 						console.log(event.target);
 						if (
 							document.querySelector(
@@ -1341,6 +1299,7 @@ const uiShopAppVibe = () => {
 	// Компонент для карточки товара (мобильная версия)
 	const favBtnPrd = () => {
 		const favBtnPrds = document.querySelectorAll('#favBtnPrd');
+		console.log(favBtnPrds);
 
 		const FAVORITES_KEY = 'favorite_products';
 
@@ -1438,18 +1397,27 @@ const uiShopAppVibe = () => {
 
 											appFavoriteBtn.value.status.active = true;
 
-											jQuery.notify('Модель добавлена в избранное!', {
-												style: 'cartStyle',
-												className: 'base',
-												showAnimation: 'slideDown',
-												showDuration: 300,
-												hideAnimation: 'slideUp',
-												hideDuration: 200,
-												autoHide: true,
-												autoHideDelay: 2000,
-												globalPosition: 'top center',
-												icon: imageUrl,
-											});
+											jQuery.notify(
+												jQuery('.headerMainNavWrapBottom'),
+												{
+													title: 'Модель добавлена в избранное!',
+													image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+												},
+
+												{
+													style: 'cartStyle',
+													className: 'base',
+													showAnimation: 'slideDown',
+													showDuration: 300,
+													hideAnimation: 'slideUp',
+													hideDuration: 200,
+													autoHide: true,
+													autoHideDelay: 2000,
+													gap: 0,
+													position: 'bottom left',
+													arrowShow: false,
+												}
+											);
 
 											console.log('Товар добавлен в избранное');
 										} else {
@@ -1457,20 +1425,28 @@ const uiShopAppVibe = () => {
 
 											appFavoriteBtn.value.status.active = false;
 
-											jQuery.notify('Модель удалена из избранное!', {
-												style: 'cartStyle',
-												className: 'base',
-												showAnimation: 'slideDown',
-												showDuration: 300,
-												hideAnimation: 'slideUp',
-												hideDuration: 200,
-												autoHide: true,
-												autoHideDelay: 2000,
-												globalPosition: 'top center',
-												icon: imageUrl,
-											});
+											jQuery.notify(
+												jQuery('.headerMainNavWrapBottom'),
+												{
+													title: 'Модель удалена из избранного!',
+													image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+												},
+												{
+													style: 'cartStyle',
+													className: 'base',
+													showAnimation: 'slideDown',
+													showDuration: 300,
+													hideAnimation: 'slideUp',
+													hideDuration: 200,
+													autoHide: true,
+													autoHideDelay: 2000,
+													gap: 0,
+													position: 'bottom left',
+													arrowShow: false,
+												}
+											);
 
-											console.log('Товар удален из избранного');
+											console.log('Модель удалена из избранного');
 										}
 									} else {
 										console.log('Произошла ошибка');
@@ -1492,7 +1468,6 @@ const uiShopAppVibe = () => {
 
 						Vue.onMounted(() => {
 							// console.log("Fav btn", favBtn);
-
 							console.log(productId, getFavorites().includes(productId));
 
 							if (getFavorites().includes(productId)) {
@@ -1752,37 +1727,54 @@ const uiShopAppVibe = () => {
 								if (action === 'added') {
 									addToFavorites(productId);
 
-									jQuery.notify('Модель добавлена в избранное!', {
-										style: 'cartStyle',
-										className: 'base',
-										showAnimation: 'slideDown',
-										showDuration: 300,
-										hideAnimation: 'slideUp',
-										hideDuration: 200,
-										autoHide: true,
-										autoHideDelay: 2000,
-										globalPosition: 'top center',
-										icon: imageUrl,
-									});
+									jQuery.notify(
+										jQuery('.headerMainNavWrapBottom'),
+										{
+											title: 'Модель добавлена в избранное!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+
+										{
+											style: 'cartStyle',
+											className: 'base',
+											showAnimation: 'slideDown',
+											showDuration: 300,
+											hideAnimation: 'slideUp',
+											hideDuration: 200,
+											autoHide: true,
+											autoHideDelay: 2000,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
+										}
+									);
 
 									console.log('Товар добавлен в избранное');
 								} else {
 									removeFromFavorites(productId);
 
-									jQuery.notify('Модель удалена из избранное!', {
-										style: 'cartStyle',
-										className: 'base',
-										showAnimation: 'slideDown',
-										showDuration: 300,
-										hideAnimation: 'slideUp',
-										hideDuration: 200,
-										autoHide: true,
-										autoHideDelay: 2000,
-										globalPosition: 'top center',
-										icon: imageUrl,
-									});
+									jQuery.notify(
+										jQuery('.headerMainNavWrapBottom'),
+										{
+											title: 'Модель удалена из избранного!',
+											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
+										},
+										{
+											style: 'cartStyle',
+											className: 'base',
+											showAnimation: 'slideDown',
+											showDuration: 300,
+											hideAnimation: 'slideUp',
+											hideDuration: 200,
+											autoHide: true,
+											autoHideDelay: 2000,
+											gap: 0,
+											position: 'bottom left',
+											arrowShow: false,
+										}
+									);
 
-									console.log('Товар удален из избранного');
+									console.log('Модель удалена из избранного');
 								}
 							} else {
 								console.log('Произошла ошибка');
@@ -2102,6 +2094,8 @@ const uiShopAppVibe = () => {
 					Vue.computed(() => !getFavorites().includes(productId)).value;
 
 				const addToWhtListMob = (itemCard) => {
+					console.log('test');
+
 					appFavoriteBtn.value.status.active =
 						!getFavorites().includes(productId);
 					window.states.headMainNav.addToWhtListMob({
@@ -2199,7 +2193,7 @@ const uiShopAppVibe = () => {
 								appPromocodeStates.message,
 								{
 									// 2.2) указываем наш стиль и класс base
-									style: 'cartStyle',
+									style: 'cartStyleTwo',
 									className: 'base',
 									// 2.3) появление/скрытие
 									showAnimation: 'slideDown',
@@ -2225,7 +2219,7 @@ const uiShopAppVibe = () => {
 								appPromocodeStates.message,
 								{
 									// 2.2) указываем наш стиль и класс base
-									style: 'cartStyle',
+									style: 'cartStyleTwo',
 									className: 'base',
 									// 2.3) появление/скрытие
 									showAnimation: 'slideDown',
@@ -2610,7 +2604,7 @@ const uiShopAppVibe = () => {
 							appPromocodeStates.promocode = '';
 
 							jQuery.notify(appPromocodeStates.message, {
-								style: 'cartStyle',
+								style: 'cartStyleTwo',
 								className: 'base',
 								showAnimation: 'slideDown',
 								showDuration: 300,
@@ -2627,7 +2621,7 @@ const uiShopAppVibe = () => {
 							appPromocodeStates.isError = true;
 
 							jQuery.notify(appPromocodeStates.message, {
-								style: 'cartStyle',
+								style: 'cartStyleTwo',
 								className: 'base',
 								showAnimation: 'slideDown',
 								showDuration: 300,
@@ -3158,6 +3152,17 @@ const selAccountGender = () => {
 		});
 	});
 };
+
+function setCssVariables() {
+	const scrollbarWidth =
+		window.innerWidth - document.documentElement.clientWidth;
+	document.documentElement.style.setProperty(
+		'--scrollbar-width',
+		`${scrollbarWidth}px`
+	);
+}
+
+setCssVariables();
 
 document.addEventListener('DOMContentLoaded', function () {
 	//
