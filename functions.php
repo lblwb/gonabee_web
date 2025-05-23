@@ -27,13 +27,13 @@ function kts_setup()
         wp_enqueue_script("notify", get_stylesheet_directory_uri() . '/assets/js/notify.js', array(), null, true);
         wp_enqueue_script("axios", get_stylesheet_directory_uri() . '/assets/js/axios.js', array(), null, true);
         //        wp_enqueue_script("state", get_stylesheet_directory_uri() . '/assets/js/alpine.js',  array(), null true);
-//        wp_enqueue_script("spark-vibe", get_stylesheet_directory_uri() . '/assets/js/spark_vibe.js', array(), null, false);
+        //        wp_enqueue_script("spark-vibe", get_stylesheet_directory_uri() . '/assets/js/spark_vibe.js', array(), null, false);
         wp_enqueue_script("vue", get_stylesheet_directory_uri() . '/assets/js/vue.global.js', array(), null, false);
         wp_enqueue_style("swpr-sldr-bnd-sty", get_stylesheet_directory_uri() . '/assets/css/slider/swiper-bundle.min.css');
         wp_enqueue_script("swpr-sldr-bnd-scr", get_stylesheet_directory_uri() . '/assets/js/slider/swiper-bundle.min.js');
 
         wp_enqueue_style("style-main", get_stylesheet_directory_uri() . '/assets/css/main.css', array(), time());
-//        wp_enqueue_script("script-main", get_stylesheet_directory_uri() . '/assets/js/main.js', '', '', true);
+        //        wp_enqueue_script("script-main", get_stylesheet_directory_uri() . '/assets/js/main.js', '', '', true);
         wp_enqueue_script('script-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0', true);
 
         wp_enqueue_script('nouislider-js', 'https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.1/nouislider.min.js', array(), null, true);
@@ -78,9 +78,9 @@ function optimize_pressed_steel_theme(): void
     add_filter('xmlrpc_enabled', '__return_false');
 
     // 🚫 Отключаем wp-embed
-//    add_action('wp_footer', function () {
-//        wp_deregister_script('wp-embed');
-//    });
+    //    add_action('wp_footer', function () {
+    //        wp_deregister_script('wp-embed');
+    //    });
 
     // 🚫 Удаляем jQuery Migrate (если не нужен)
     add_action('wp_default_scripts', function ($scripts) {
@@ -93,15 +93,15 @@ function optimize_pressed_steel_theme(): void
     });
 
     // 🛍 WooCommerce: убираем стили, если используем кастомные
-//    add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+    //    add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
     // 🛒 WooCommerce: отключаем скрипты на лишних страницах
-//    add_action('wp_enqueue_scripts', function () {
-//        if (!is_woocommerce() && !is_cart() && !is_checkout()) {
-//            wp_dequeue_style('woocommerce-general');
-//            wp_dequeue_script('wc-cart-fragments');
-//        }
-//    }, 99);
+    //    add_action('wp_enqueue_scripts', function () {
+    //        if (!is_woocommerce() && !is_cart() && !is_checkout()) {
+    //            wp_dequeue_style('woocommerce-general');
+    //            wp_dequeue_script('wc-cart-fragments');
+    //        }
+    //    }, 99);
 
     // ✅ Подключаем поддержку WooCommerce и галерей
     add_theme_support('woocommerce');
@@ -146,7 +146,7 @@ function render_filter_main_pc_shortcode($atts)
             'show_count' => '1', // Показывать количество постов (1 = включено, 0 = выключено)
             'chips' => '1', // Показывать chips (1 = включено, 0 = выключено)
             'horizontal' => '0', // Горизонтальная раскладка (1 = включено, 0 = выключено)
-//            'cols_count'  => '3', // Количество столбцов
+            //            'cols_count'  => '3', // Количество столбцов
         ),
         $atts,
         'filter_everything'
@@ -187,14 +187,14 @@ function render_category_products_shortcode($atts)
         $atts['term_id'] = $term->term_id ?? 0;
     }
 
-// Получаем глобальный запрос WordPress
+    // Получаем глобальный запрос WordPress
     global $wp_query;
 
-// Инициализируем meta_query и tax_query из глобального запроса, если они есть
+    // Инициализируем meta_query и tax_query из глобального запроса, если они есть
     $meta_query = $wp_query->query_vars['meta_query'] ?? [];
     $tax_query = $wp_query->query_vars['tax_query'] ?? [];
 
-// Добавляем фильтр по категории, если term_id передан, но аккуратно — чтобы не дублировать фильтр по product_cat
+    // Добавляем фильтр по категории, если term_id передан, но аккуратно — чтобы не дублировать фильтр по product_cat
     if ($atts['term_id']) {
         // Проверим, есть ли уже фильтр по product_cat в tax_query
         $has_product_cat_filter = false;
@@ -221,7 +221,7 @@ function render_category_products_shortcode($atts)
         'posts_per_page' => 12,
     );
 
-// Передаём meta_query и tax_query из глобального запроса
+    // Передаём meta_query и tax_query из глобального запроса
     if (!empty($meta_query)) {
         $args['meta_query'] = $meta_query;
     }
@@ -232,11 +232,11 @@ function render_category_products_shortcode($atts)
 
     $products = new WP_Query($args);
 
-//    var_dump($products->request);
+    //    var_dump($products->request);
 
     ob_start();
 
-//    var_dump($products);
+    //    var_dump($products);
 
     if ($products->have_posts()) {
         while ($products->have_posts()) {
@@ -271,31 +271,31 @@ function ajax_load_more_category_products()
 
 function render_load_more_products_shortcode($atts)
 {
-//    $atts = shortcode_atts(array(
-//        'paged' => 1,
-//        'term_id' => null,
-//    ), $atts);
-//    if (!$atts['term_id']) {
-//        $term = get_queried_object();
-//        $atts['term_id'] = $term->term_id ?? 0;
-//    }
+    //    $atts = shortcode_atts(array(
+    //        'paged' => 1,
+    //        'term_id' => null,
+    //    ), $atts);
+    //    if (!$atts['term_id']) {
+    //        $term = get_queried_object();
+    //        $atts['term_id'] = $term->term_id ?? 0;
+    //    }
 
-//    $args = array(
-//        'post_type' => 'product',
-//        'post_status' => 'publish',
-//        'paged' => intval($atts['paged']),
-//        'posts_per_page' => 12,
-//    );
-// //
-//    if ($atts['term_id']) {
-//        $args['tax_query'] = array(
-//            array(
-//                'taxonomy' => 'product_cat',
-//                'field' => 'term_id',
-//                'terms' => $atts['term_id'],
-//            ),
-//        );
-//    }
+    //    $args = array(
+    //        'post_type' => 'product',
+    //        'post_status' => 'publish',
+    //        'paged' => intval($atts['paged']),
+    //        'posts_per_page' => 12,
+    //    );
+    // //
+    //    if ($atts['term_id']) {
+    //        $args['tax_query'] = array(
+    //            array(
+    //                'taxonomy' => 'product_cat',
+    //                'field' => 'term_id',
+    //                'terms' => $atts['term_id'],
+    //            ),
+    //        );
+    //    }
     get_template_part('shortcodes/load-more-template', null, null);
     // wp_reset_postdata();
 
@@ -394,8 +394,8 @@ add_filter('woocommerce_checkout_fields', function ($fields) {
     );
 
     $fields['billing']['billing_email']['label'] = 'Адрес электронной почты';
-//
-//    echo var_dump($fields);
+    //
+    //    echo var_dump($fields);
 
     return $fields;
 });
@@ -608,7 +608,7 @@ function mytheme_add_sale_to_navigation(string $block_content, array $block): st
             $block_content
         );
 
-//        var_dump($block_content);
+        //        var_dump($block_content);
 
         //
     }
@@ -677,7 +677,8 @@ add_action('wp', 'remove_checkout_login_form');
 
 //
 add_filter('widget_title', 'make_product_category_title_clickable', 10, 3);
-function make_product_category_title_clickable($title, $instance, $id_base) {
+function make_product_category_title_clickable($title, $instance, $id_base)
+{
     if ($id_base === 'product_categories' && $title === 'Мужская одежда') {
         $url = get_term_link('мужская-одежда', 'product_cat');
         return '<a href="' . esc_url($url) . '" class="quadmenu-title">' . esc_html($title) . '</a>';

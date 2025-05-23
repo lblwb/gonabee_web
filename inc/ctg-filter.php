@@ -15,15 +15,15 @@ function woocommerce_filter_shortcode()
         'orderby' => 'name',
     ]);
 
-//    $subcategories = [];
-//
-//    foreach ($subcategories_terms as $subcategory) {
-//        $subcategories[] = $subcategory;
-//    }
+    //    $subcategories = [];
+    //
+    //    foreach ($subcategories_terms as $subcategory) {
+    //        $subcategories[] = $subcategory;
+    //    }
 
-//    var_dump($subcategories);
+    //    var_dump($subcategories);
 
-//    delete_transient('unique_product_colors');
+    //    delete_transient('unique_product_colors');
 
     // Лучше кэшировать!
     $colors = get_transient('unique_product_colors');
@@ -70,11 +70,11 @@ function woocommerce_filter_shortcode()
         set_transient('unique_product_colors', $colors, HOUR_IN_SECONDS);
     }
 
-//    $collections = get_terms([
-//        'taxonomy' => 'prd_collection',
-//        'hide_empty' => true,
-//        'orderby' => 'name',
-//    ]);
+    //    $collections = get_terms([
+    //        'taxonomy' => 'prd_collection',
+    //        'hide_empty' => true,
+    //        'orderby' => 'name',
+    //    ]);
 
     $collections = get_terms([
         'taxonomy' => 'prd_collection',
@@ -107,7 +107,7 @@ function woocommerce_filter_shortcode()
         'sizes' => $sizes,
     ));
 
-//    var_dump($sizes);
+    //    var_dump($sizes);
 
     return ob_get_clean();
 }
@@ -208,10 +208,10 @@ function custom_woocommerce_filter_query($query)
                     'operator' => 'AND', // означает: товар должен иметь ВСЕ указанные размеры
                 ];
 
-//                var_dump($tax_query);
+                //                var_dump($tax_query);
             }
 
-//            var_dump($sizes);
+            //            var_dump($sizes);
         }
 
         // Фильтр по цвету
@@ -278,7 +278,7 @@ function custom_woocommerce_filter_query($query)
             }
         }
 
-//        var_dump($meta_query);
+        //        var_dump($meta_query);
 
         // Обновляем параметры
         if ($tax_query) {

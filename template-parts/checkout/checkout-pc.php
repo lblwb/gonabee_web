@@ -6,8 +6,8 @@
     </div>
     <div class="cartPageBody">
         <form name="checkout" method="post" class="checkout woocommerce-checkout"
-              action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data"
-              aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
+            action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data"
+            aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
             <div class="cartPageBodyWrapper">
                 <div class="cartPageBodyList">
                     <!--   WC()->cart->get_cart()-->
@@ -27,8 +27,10 @@
 
                     <?php do_action('woocommerce_checkout_billing'); ?>
 
-                    <?php //echo var_dump(WC()->payment_gateways->get_available_payment_gateways()); ?>
-                    <?php //echo var_dump(WC()->shipping()); ?>
+                    <?php //echo var_dump(WC()->payment_gateways->get_available_payment_gateways()); 
+                    ?>
+                    <?php //echo var_dump(WC()->shipping()); 
+                    ?>
 
                     <!---->
                     <!--                        <div class="cartPageHeadingTitle">-->
@@ -36,10 +38,12 @@
                     <!--                        </div>-->
                     <!---->
                     <!--                        <div class="cartCheckoutDelivery">-->
-                    <!--                            --><?php //woocommerce_checkout_shipping(); ?>
+                    <!--                            --><?php //woocommerce_checkout_shipping(); 
+                                                        ?>
                     <!--                        </div>-->
                     <!---->
-                    <!--                        --><?php //do_action('woocommerce_checkout_shipping'); ?>
+                    <!--                        --><?php //do_action('woocommerce_checkout_shipping'); 
+                                                    ?>
                     <!---->
                     <!--                      -->
 
@@ -52,6 +56,10 @@
                     $available_gateways = WC()->payment_gateways->get_available_payment_gateways();
                     ?>
 
+                    <div class="separate" style="margin: 30px 0">
+                        <hr>
+                    </div>
+
                     <!-- Блок: Способ получения -->
                     <div class="shipping-methods-block">
                         <div class="cartPageHeadingTitle" style="margin-bottom: 24px">
@@ -61,17 +69,17 @@
                             <?php foreach ($shipping_methods as $ship_method_id => $ship_method) : ?>
                                 <?php if ($ship_method->is_available($shipping_methods) && !empty($ship_method->get_title())) { ?>
                                     <div class="shipMethodItem"
-                                         data-shipping_method="<?php echo esc_attr($ship_method_id); ?>">
+                                        data-shipping_method="<?php echo esc_attr($ship_method_id); ?>">
                                         <div class="shipMethodWrapper"
-                                             style="display: flex; align-items: center; gap: 16px;">
+                                            style="display: flex; align-items: center; gap: 16px;">
                                             <div class="paymentMethodIBox"
-                                                 style="border-radius: 100px; border:solid 1px #ECECEC; min-width: 60px; min-height: 60px; max-width: 60px; max-height: 60px;">
+                                                style="border-radius: 100px; border:solid 1px #ECECEC; min-width: 60px; min-height: 60px; max-width: 60px; max-height: 60px;">
                                                 <div class="paymentMethodIBoxWrapper"
-                                                     style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;  min-height: 60px;">
+                                                    style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;  min-height: 60px;">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M7.00781 7.99975V5.99975C7.00781 3.23833 9.24639 0.999756 12.0078 0.999756C14.7692 0.999756 17.0078 3.23833 17.0078 5.99975V7.99975H20.0078C20.5601 7.99975 21.0078 8.44747 21.0078 8.99975V20.9998C21.0078 21.552 20.5601 21.9998 20.0078 21.9998H4.00781C3.45553 21.9998 3.00781 21.552 3.00781 20.9998V8.99975C3.00781 8.44747 3.45553 7.99975 4.00781 7.99975H7.00781ZM7.00781 9.99975H5.00781V19.9998H19.0078V9.99975H17.0078V11.9998H15.0078V9.99975H9.00781V11.9998H7.00781V9.99975ZM9.00781 7.99975H15.0078V5.99975C15.0078 4.3429 13.6646 2.99975 12.0078 2.99975C10.3509 2.99975 9.00781 4.3429 9.00781 5.99975V7.99975Z"
-                                                              fill="#F0C224"/>
+                                                            fill="#F0C224" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -106,18 +114,18 @@
                         <div class="payment-methods-grid">
                             <?php foreach ($available_gateways as $gateway_id => $gateway) : ?>
                                 <div class="paymentMethodItem"
-                                     data-shipping_method="<?php echo esc_attr($gateway_id); ?>">
+                                    data-shipping_method="<?php echo esc_attr($gateway_id); ?>">
                                     <div class="paymentMethodWrapper"
-                                         style="display: flex; align-items: center; gap: 16px;">
+                                        style="display: flex; align-items: center; gap: 16px;">
                                         <div class="paymentMethodLogo">
                                             <div class="paymentMethodIBox"
-                                                 style="border-radius: 100px; border:solid 1px #ECECEC; min-width: 60px; min-height: 60px; max-width: 60px; max-height: 60px;">
+                                                style="border-radius: 100px; border:solid 1px #ECECEC; min-width: 60px; min-height: 60px; max-width: 60px; max-height: 60px;">
                                                 <div class="paymentMethodIBoxWrapper"
-                                                     style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;  min-height: 60px;">
+                                                    style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;  min-height: 60px;">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M7.00781 7.99975V5.99975C7.00781 3.23833 9.24639 0.999756 12.0078 0.999756C14.7692 0.999756 17.0078 3.23833 17.0078 5.99975V7.99975H20.0078C20.5601 7.99975 21.0078 8.44747 21.0078 8.99975V20.9998C21.0078 21.552 20.5601 21.9998 20.0078 21.9998H4.00781C3.45553 21.9998 3.00781 21.552 3.00781 20.9998V8.99975C3.00781 8.44747 3.45553 7.99975 4.00781 7.99975H7.00781ZM7.00781 9.99975H5.00781V19.9998H19.0078V9.99975H17.0078V11.9998H15.0078V9.99975H9.00781V11.9998H7.00781V9.99975ZM9.00781 7.99975H15.0078V5.99975C15.0078 4.3429 13.6646 2.99975 12.0078 2.99975C10.3509 2.99975 9.00781 4.3429 9.00781 5.99975V7.99975Z"
-                                                              fill="#F0C224"/>
+                                                            fill="#F0C224" />
                                                     </svg>
                                                 </div>
                                             </div>
@@ -138,7 +146,8 @@
                             <?php endforeach; ?>
                         </div>
                     </div>
-                    <?php //do_action('woocommerce_checkout_order_review'); ?>
+                    <?php //do_action('woocommerce_checkout_order_review'); 
+                    ?>
                     <?php do_action('woocommerce_checkout_after_order_review'); ?>
                     <?php do_action('woocommerce_checkout_after_customer_details'); ?>
                 </div>
@@ -184,8 +193,8 @@
 
                     <div class="checkoutBlockFooter">
                         <button type="submit" class="checkout-button button alt wp-element-button"
-                                name="woocommerce_checkout_place_order" id="place_order" value="Подтвердить заказ"
-                                data-value="Подтвердить заказ" style="width: 100%">Подтвердить заказ
+                            name="woocommerce_checkout_place_order" id="place_order" value="К оформлению"
+                            data-value="К оформлению" style="width: 100%">К оформлению
                         </button>
                         <p class="delivery-note">Доставку и способ оплаты можно выбрать при оформлении заказа</p>
                     </div>
@@ -209,7 +218,8 @@
         gap: 20px;
     }
 
-    .shipMethodItem, .paymentMethodItem {
+    .shipMethodItem,
+    .paymentMethodItem {
         border: 1px solid #ECECEC;
         padding: 20px;
         border-radius: 12px;
@@ -217,14 +227,15 @@
         transition: all 0.3s;
     }
 
-    .shipMethodItem:hover, .paymentMethodItem:hover {
+    .shipMethodItem:hover,
+    .paymentMethodItem:hover {
         border-color: #bbb;
         background: #fdfdfd;
     }
 
-    .shipMethodItem.active, .paymentMethodItem.active {
+    .shipMethodItem.active,
+    .paymentMethodItem.active {
         border-color: #bbb;
         background: #fdfdfd;
     }
-
 </style>
