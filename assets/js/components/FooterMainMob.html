@@ -1,0 +1,17 @@
+<!-- components/FooterMainMob.html -->
+<template vibe-component="footer-main-mob">
+    <div class="footerMainMob">
+        <div vibe-for="(item, index) in footerItems">
+            <div class="footerMainMob__toggle"
+                 vibe-on:click="toggleFooter(index)"
+                 vibe-class:rotated="openIndex === index">
+                <span>{{item.title}}</span>
+                <span class="footer__icon"></span>
+            </div>
+            <div class="footerMainMob__content"
+                 vibe-bind:style.maxHeight="openIndex === index ? item.scrollHeight + 'px' : '0px'">
+                {{item.content}}
+            </div>
+        </div>
+    </div>
+</template>
