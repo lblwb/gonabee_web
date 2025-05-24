@@ -528,7 +528,12 @@ a.shopBgBtn:hover {
 	margin-top: 68px;
 	margin-bottom: 50px;
 }
-
+.cartPageHeadingTitle h1 {
+	font-family: 'Sofia Sans', sans-serif;
+	font-weight: 500;
+	font-size: 32px;
+	color: #1f1f1f;
+}
 .cartPageHeadingTitle h1 sup {
 	font-family: 'Manrope', sans-serif;
 	font-weight: 500;
@@ -685,7 +690,7 @@ a.shopBgBtn:hover {
 
 	.cartPageBodyListItem {
 		margin-bottom: 0;
-		border-bottom: solid 1px #e7e7e7;
+		/* border-bottom: solid 1px #e7e7e7; */
 		padding-bottom: 20px;
 	}
 
@@ -878,6 +883,9 @@ a.shopBgBtn:hover {
 }
 
 .checkoutBlockHeadingTitle {
+	font-weight: 500;
+	font-size: 24px;
+	color: #1f1f1f;
 }
 
 @media screen and (max-width: 768px) {
@@ -903,7 +911,10 @@ a.shopBgBtn:hover {
 }
 
 .checkout-button {
+	font-family: 'Montserrat', sans-serif;
 	background: #f0c224;
+	font-weight: 600;
+	font-size: 14px;
 	padding: 16px;
 	display: block;
 	border-radius: 25px;
@@ -959,7 +970,7 @@ a.shopBgBtn:hover {
 		width: 100%;
 		padding: 20px 0;
 		border-top: 1px solid #e7e7e7;
-		border-bottom: 1px solid #e7e7e7;
+		/* border-bottom: 1px solid #e7e7e7; */
 	}
 
 	.checkoutBlockBody hr {
@@ -970,6 +981,9 @@ a.shopBgBtn:hover {
 /**/
 
 .promocodeWrapper {
+	padding: 20px 0;
+	border-top: 1px solid #e7e7e7;
+	border-bottom: 1px solid #e7e7e7;
 }
 
 .promocodeBlock {
@@ -991,9 +1005,10 @@ a.shopBgBtn:hover {
 .promocodeBlock__headerText {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 135%;
 	letter-spacing: 0%;
+	color: #1f1f1f;
 }
 
 .promocodeBlock__arrow {
@@ -1011,6 +1026,7 @@ a.shopBgBtn:hover {
 }
 
 .promocodeBlock__content {
+	margin-top: 16px;
 	/*border: 1px solid #f5f5f5;*/
 	border-top: none;
 	border-radius: 0 0 20px 20px;
@@ -1036,7 +1052,6 @@ a.shopBgBtn:hover {
 	border-radius: 20px;
 	border: none;
 	width: 100%;
-	margin-bottom: 12px;
 	border: solid 1px #e2b53c;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
@@ -1235,7 +1250,11 @@ a.shopBgBtn:hover {
 	letter-spacing: 0%;
 	text-align: center;
 }
-
+.checkoutBlockBodyRowItem {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 16px;
+}
 .checkoutBlockBodyRowItemBold {
 	font-weight: 600;
 }
@@ -3000,7 +3019,6 @@ a.shopBgBtn:hover {
 	flex-flow: column;
 	gap: 12px;
 	max-height: 80vh;
-	overflow-y: auto;
 	width: 100%;
 	min-width: 15.5vh;
 }
@@ -3008,7 +3026,6 @@ a.shopBgBtn:hover {
 .cardImagesThumbItem {
 	min-height: 23vh;
 	max-height: 23vh;
-	min-width: 10vw;
 	max-width: 10vw;
 	overflow: hidden;
 	border-radius: 10px;
@@ -3034,10 +3051,9 @@ a.shopBgBtn:hover {
 .cardImagesThumbItem img {
 	min-height: 23vh;
 	max-height: 23vh;
-	min-width: 10vw;
-	max-width: 10vw;
 	object-position: center;
 	object-fit: cover;
+	width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -3157,6 +3173,13 @@ a.shopBgBtn:hover {
 	margin-bottom: 20px;
 }
 
+.separate hr,
+hr {
+	height: 1px;
+	background: #e7e7e7;
+	border: none;
+}
+
 .detailCardHeadingLink {
 	margin-bottom: 16px;
 }
@@ -3238,7 +3261,7 @@ a.shopBgBtn:hover {
 .bottomPaginate {
 	display: flex;
 	justify-content: center;
-	gap: 12px;
+	gap: 10px;
 	margin-top: 20px;
 	position: absolute;
 	bottom: 20px !important;
@@ -3247,16 +3270,22 @@ a.shopBgBtn:hover {
 	left: 10px;
 }
 
+@media screen and (max-width: 760px) {
+	.bottomPaginate {
+		gap: 5px;
+	}
+}
+
 .bottomPaginate .bullet {
 	min-width: 25%;
 	width: 25%;
-	height: 5px;
+	height: 2px;
 	background-color: #ccc;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 	border-radius: 7px;
 	background: #ffffff;
-	opacity: 0.6;
+	opacity: 0.5;
 	box-shadow: rgb(0 0 0 / 0.8%) 1px 1px 1px 0px;
 }
 
@@ -4570,6 +4599,9 @@ a.shopBgBtn:hover {
 }
 
 .woocommerce-billing-fields__field-wrapper .form-row input::placeholder {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
 	color: rgba(37, 37, 37, 0.3);
 }
 
@@ -4578,6 +4610,15 @@ a.shopBgBtn:hover {
 	border-radius: 16px !important;
 	border: 1px solid #ececec !important;
 	color: #000;
+	padding: 16px 20px !important;
+}
+
+.woocommerce-billing-fields__field-wrapper label {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+	color: #1f1f1f;
+	margin-bottom: 12px !important;
 }
 
 .wc-block-components-text-input input {
@@ -4795,7 +4836,7 @@ button[name='apply_coupon'],
 /*    display: none;*/
 /*}*/
 .woocommerce-billing-fields .form-row {
-	margin-bottom: 16px;
+	margin-bottom: 20px;
 }
 
 .woocommerce form .form-row {
@@ -5925,8 +5966,8 @@ br {
 .customerData {
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
-	margin-bottom: 32px;
+	/* gap: 24px; */
+	/* margin-bottom: 32px; */
 }
 
 .order-block {
@@ -5934,6 +5975,9 @@ br {
 	/*border: 1px solid #EAEAEA;*/
 	/*border-radius: 8px;*/
 	/*background-color: #fff;*/
+}
+.order-block:last-child {
+	border-bottom: 1px solid #eee;
 }
 
 .order-block__title {
@@ -6348,7 +6392,7 @@ label.filter-item input[type='radio']:checked {
 }
 
 .woocommerce-page label {
-	margin-bottom: 0 !important;
+	margin-bottom: 12px !important;
 }
 
 /**/
