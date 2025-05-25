@@ -60,13 +60,40 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                     data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
                     <div class="shopProductDetailCardImagesWrapper" style="display: flex;gap: 57px;">
                         <div class="shopProductDetailCardImagesThumb">
-                            <div class="cardImagesThumbWrapper" style="">
-                                <div class="cardImagesThumbItem" v-for="slideItem in appShopDetailCardSlider.slides"
-                                    :class="{__Active: slideItem === appShopDetailCardSlider.select.slide.src}"
-                                    @click="selectSlideImg(slideItem)">
-                                    <img :src="slideItem" alt="product thumb" />
+
+                            <div class="cardImagesThumbSliderNavBlock">
+                                <button class="cardImagesThumbSliderNavPrev cardImagesThumbSliderNavigation">
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.00143 3.02379L1.8766 7.14856L0.698096 5.97005L6.00143 0.666709L11.3047 5.97005L10.1262 7.14856L6.00143 3.02379Z" fill="#252525" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="cardImagesThumbSlider swiper">
+                                <!-- Основной контейнер слайдера -->
+
+
+                                <div class="cardImagesThumbWrapper swiper-wrapper">
+                                    <!-- Слайды -->
+                                    <div class="cardImagesThumbItem swiper-slide" v-for="slideItem in appShopDetailCardSlider.slides">
+                                        <img :src="slideItem" alt="product thumb" />
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="cardImagesThumbSliderNavBlock">
+                                <button class="cardImagesThumbSliderNavNext cardImagesThumbSliderNavigation">
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5.99857 4.97621L10.1234 0.851442L11.3019 2.02995L5.99857 7.33329L0.695312 2.02995L1.87382 0.851441L5.99857 4.97621Z" fill="#252525" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- <div class="cardImagesThumbItem" v-for="slideItem in appShopDetailCardSlider.slides"
+                                :class="{__Active: slideItem === appShopDetailCardSlider.select.slide.src}"
+                                @click="selectSlideImg(slideItem)">
+                                <img :src="slideItem" alt="product thumb" />
+                            </div> -->
+
                         </div>
                         <div class="shopProductDetailCardImagesMainMob">
                             <div class="detailCardImagesMainMobWrapper">
@@ -166,7 +193,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                             </div>
 
                         </div>
-                        <div class="shopProductDetailCardImagesMain" style="position: relative">
+                        <div class="shopProductDetailCardImagesMain swiper" style="position: relative">
                             <div class="cardImagesMainTop">
                                 <div class="cardImagesMainHeading">
                                     <div class="cardImagesMainHeadingFav">
@@ -211,18 +238,21 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                 </div>
                             </div>
 
-                            <div class="cardImagesMainImg">
-                                <transition name="fade">
+                            <div class="swiper-wrapper">
+                                <div class="cardImagesMainImg swiper-slide" v-for="slideItem in appShopDetailCardSlider.slides">
+                                    <img :src="slideItem" alt="product thumb" />
+                                </div>
+                            </div>
+
+
+                            <!-- <transition name="fade">
                                     <img :src="appShopDetailCardSlider.select.slide.src"
                                         v-show="appShopDetailCardSlider.select.slide.src"
                                         :key="appShopDetailCardSlider.select.slide.src" />
-                                </transition>
-                            </div>
+                                </transition> -->
                         </div>
                     </div>
                 </div>
-
-
                 <div class="shopProductDetailCardInfoWrap gridWrap">
                     <!-- Info -->
                     <div class="shopProductDetailCardInfo" style="flex: 1;">
@@ -472,16 +502,17 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
             </div>
         </div>
     </div>
+</div>
 
-    <?php get_template_part(
-        "template-parts/product_card/prdcardbar-mb",
-        null,
-        array(
-            'nonce' => $nonce,
-            'product_id' => $product_id,
-            'product' => $product,
-        )
-    ); ?>
+<?php get_template_part(
+    "template-parts/product_card/prdcardbar-mb",
+    null,
+    array(
+        'nonce' => $nonce,
+        'product_id' => $product_id,
+        'product' => $product,
+    )
+); ?>
 </div>
 
 </div>

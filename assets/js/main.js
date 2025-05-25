@@ -492,6 +492,45 @@ const ideaProductsSlider = async () => {
 	});
 };
 
+const thumbnailProductSlider = async () => {
+	console.log('THUMBNAIL !!!');
+
+	const thumbnailSlider = new Swiper('.cardImagesThumbSlider', {
+		slidesPerView: 3,
+		slideToClickedSlide: true,
+		watchSlidesProgress: true,
+		spaceBetween: 20,
+		direction: 'vertical',
+		drag: true,
+		loop: true,
+		slideActiveClass: '__Active',
+		mousewheel: true,
+		watchOverflow: true,
+		navigation: {
+			nextEl: '.cardImagesThumbSliderNavNext',
+			prevEl: '.cardImagesThumbSliderNavPrev',
+		},
+	});
+
+	const mainSlider = new Swiper('.shopProductDetailCardImagesMain', {
+		slidesPerView: 1,
+		spaceBetween: 20,
+		drag: true,
+		// resizeObserver: false,
+		thumbs: {
+			swiper: thumbnailSlider,
+			slideThumbActiveClass: '__Active',
+		},
+	});
+
+	thumbnailSlider.on('slideChange', () => {
+		// realIndex учитывает loop-клонирование
+		const newIndex = thumbnailSlider.realIndex;
+		// slideToLoop автоматически найдёт нужный «клонированный» слайд в mainSlider
+		mainSlider.slideToLoop(newIndex);
+	});
+};
+
 function createCustomPagination(swiper) {
 	//
 	const swiper_el = swiper.el;
@@ -601,6 +640,8 @@ const swipperInit = async () => {
 	await subGalleryProductCard();
 	//
 	await colorCircle();
+
+	await thumbnailProductSlider();
 };
 
 // const searchGlb = async () => {
@@ -1680,6 +1721,12 @@ const uiShopAppVibe = () => {
 							},
 							show: false,
 						},
+						//TODO: upd
+						sub_menu: {
+							show: false, // Состояние модального окна
+							content: '', // Содержимое подменю
+							title: '',
+						},
 						nav_search: {
 							context: {
 								queryText: '',
@@ -1796,6 +1843,34 @@ const uiShopAppVibe = () => {
 				const toggleMobNav = () => {
 					appMainNav.value.mob.nav_menu.show =
 						!appMainNav.value.mob.nav_menu.show;
+				};
+
+				//TODO: upd.
+
+				const openSubMenu = (dropdownContent, event, button) => {
+					console.log('Opening submenu:', dropdownContent);
+					appMainNav.value.mob.sub_menu.content = dropdownContent;
+					appMainNav.value.mob.sub_menu.title = button
+						? button.textContent.trim()
+						: '';
+					appMainNav.value.mob.sub_menu.show = true;
+					if (button && button.setAttribute) {
+						document
+							.querySelectorAll('.quadmenu-dropdown-toggle')
+							.forEach((btn) => btn.setAttribute('aria-expanded', 'false'));
+						button.setAttribute('aria-expanded', 'true');
+					} else {
+						console.warn('Button not available for aria-expanded update');
+					}
+				};
+
+				const closeSubMenu = () => {
+					appMainNav.value.mob.sub_menu.show = false;
+					appMainNav.value.mob.sub_menu.content = '';
+					appMainNav.value.mob.sub_menu.title = ''; // Clear title
+					document
+						.querySelectorAll('.quadmenu-dropdown-toggle')
+						.forEach((btn) => btn.setAttribute('aria-expanded', 'false'));
 				};
 
 				const toggleMobSearch = () => {
@@ -1929,6 +2004,83 @@ const uiShopAppVibe = () => {
 				};
 
 				Vue.onMounted(() => {
+					setTimeout(() => {
+						const menuContainer = document.querySelector('#quadmenu');
+						if (!menuContainer) {
+							console.warn('#quadmenu not found');
+							return;
+						}
+
+						const toggle_btns = document.querySelectorAll(
+							'.quadmenu-item-has-children .quadmenu-dropdown-toggle'
+						);
+						console.log(
+							'Found toggle buttons:',
+							toggle_btns.length,
+							toggle_btns
+						);
+
+						['click', 'touchstart'].forEach((eventType) => {
+							document.addEventListener(
+								eventType,
+								function (e) {
+									const itemBtn = e.target.closest(
+										'.quadmenu-item-has-children .quadmenu-dropdown-toggle'
+									);
+									if (itemBtn) {
+										console.log(`${eventType} on button:`, itemBtn);
+										e.preventDefault();
+										e.stopPropagation();
+										const dropdown = itemBtn.nextElementSibling;
+										if (dropdown) {
+											console.log('Submenu:', dropdown);
+											if (window.states.headMainNav) {
+												window.states.headMainNav.openSubMenu(
+													dropdown.outerHTML,
+													e,
+													itemBtn
+												);
+											} else {
+												console.error('window.states.headMainNav is undefined');
+											}
+										} else {
+											console.warn('Submenu not found for:', itemBtn);
+										}
+									}
+								},
+								{ passive: false }
+							);
+						});
+
+						jQuery('.quadmenu-dropdown-toggle').off(
+							'click touchstart mouseenter hover'
+						);
+
+						// Lazy loading for banner
+						const modalSubMenu = document.querySelector('.modalSubMenu');
+						if (modalSubMenu) {
+							const observer = new IntersectionObserver(
+								(entries) => {
+									entries.forEach((entry) => {
+										if (entry.isIntersecting) {
+											const banner =
+												modalSubMenu.querySelector('.bannerMenuWidget');
+											if (banner && banner.classList.contains('lazy')) {
+												const bgUrl = banner.getAttribute('data-bg');
+												if (bgUrl) {
+													banner.style.backgroundImage = bgUrl;
+													banner.classList.remove('lazy');
+												}
+											}
+										}
+									});
+								},
+								{ threshold: 0.1 }
+							);
+							observer.observe(modalSubMenu);
+						}
+					}, 1000);
+
 					// console.log(dataCount);
 					if (dataCount > 0) {
 						appMainNav.value.navbar.cart.count = dataCount;
@@ -1978,6 +2130,10 @@ const uiShopAppVibe = () => {
 					toggleMobSearch,
 					onInputSearchHandler,
 					//
+					openSubMenu,
+					closeSubMenu,
+					//
+					//
 					getSelectedWhtLst,
 					addToWhtListMob,
 					//
@@ -1996,10 +2152,37 @@ const uiShopAppVibe = () => {
 
 		window.states.headMainMbFilter = Vue.createApp({
 			setup() {
-				const debug = false;
+				const expandedSections = Vue.ref([
+					'sortBy',
+					'subcategory',
+					'categories',
+					'promotions',
+					'price',
+					'sizes',
+					'colors',
+					'collections',
+					'occupation',
+					'toggles',
+				]);
+				const selectedSubcategory = Vue.ref([]);
+				const selectedCategories = Vue.ref([]);
+				const promotionActive = Vue.ref(false);
+				const minPrice = Vue.ref(window.filterData.minPrice);
+				const maxPrice = Vue.ref(window.filterData.maxPrice);
+				const selectedSize = Vue.ref('');
+				const selectedColors = Vue.ref([]);
+				const selectedCollections = Vue.ref([]);
+				const selectedOccupations = Vue.ref([]);
+				const selectedSortBy = Vue.ref([]);
+				const onSale = Vue.ref(false);
+				const newCollection = Vue.ref(false);
+				const trending = Vue.ref(false);
+				const sizes = Vue.ref([]);
+				const filterData = Vue.ref(window.filterData);
+
+				console.log(filterData);
 
 				const appMainFilter = Vue.ref({
-					//appMainNav.mob.nav_filter.show
 					mob: {
 						nav_filter: {
 							show: false,
@@ -2018,13 +2201,58 @@ const uiShopAppVibe = () => {
 					);
 				};
 
-				// Следим за изменением состояния меню и блокируем body
+				const toggleSection = (section) => {
+					if (expandedSections.value.includes(section)) {
+						expandedSections.value = expandedSections.value.filter(
+							(s) => s !== section
+						);
+					} else {
+						expandedSections.value.push(section);
+					}
+				};
+
+				const fetchProductsWithFilters = (params) => {
+					// TODO: реализация
+				};
+
+				const updateUrlHistory = (params) => {
+					const newUrl = '?' + params.toString();
+					window.history.pushState({}, '', newUrl);
+					window.location.href = newUrl;
+					fetchProductsWithFilters(params);
+				};
+
+				const applyFilters = () => {
+					const params = new URLSearchParams();
+					if (selectedSubcategory.value.length)
+						params.set('subcategory', selectedSubcategory.value.join(','));
+					if (promotionActive.value) params.set('promotion', '1');
+					if (minPrice.value > window.filterData.minPrice)
+						params.set('min_price', minPrice.value);
+					if (maxPrice.value < window.filterData.maxPrice)
+						params.set('max_price', maxPrice.value);
+					if (selectedSize.value) params.set('size', selectedSize.value);
+					if (selectedColors.value.length)
+						params.set('color', selectedColors.value.join(','));
+					if (selectedCollections.value.length)
+						params.set('collection', selectedCollections.value.join(','));
+					if (selectedOccupations.value.length)
+						params.set('occupation', selectedOccupations.value.join(','));
+					if (selectedSortBy.value.length)
+						params.set('sortBy', selectedSortBy.value);
+					if (onSale.value) params.set('on_sale', '1');
+					if (newCollection.value) params.set('is_new', '1');
+					if (trending.value) params.set('is_trending', '1');
+
+					updateUrlHistory(params);
+				};
+
 				Vue.watch(
 					() => appMainFilter.value.mob.nav_filter.show,
 					(show) => {
 						if (show) {
-							document.body.style.overflow = 'hidden'; // блокируем прокрутку
-							document.body.style.touchAction = 'none'; // предотвращаем скролл на мобильных
+							document.body.style.overflow = 'hidden';
+							document.body.style.touchAction = 'none';
 						} else {
 							document.body.style.overflow = '';
 							document.body.style.touchAction = '';
@@ -2032,11 +2260,52 @@ const uiShopAppVibe = () => {
 					}
 				);
 
-				Vue.onMounted(() => {});
+				Vue.onMounted(() => {
+					const params = new URLSearchParams(window.location.search);
+					selectedSubcategory.value = params.get('subcategory')
+						? params.get('subcategory').split(',')
+						: [];
+					promotionActive.value = params.get('promotion') === '1';
+					minPrice.value =
+						parseFloat(params.get('min_price')) || window.filterData.minPrice;
+					maxPrice.value =
+						parseFloat(params.get('max_price')) || window.filterData.maxPrice;
+					selectedSize.value = params.get('size') || '';
+					selectedColors.value = params.get('color')
+						? params.get('color').split(',')
+						: [];
+					selectedCollections.value = params.get('collection')
+						? params.get('collection').split(',')
+						: [];
+					selectedOccupations.value = params.get('occupation')
+						? params.get('occupation').split(',')
+						: [];
+					selectedSortBy.value = params.get('sortBy');
+					onSale.value = params.get('on_sale') === '1';
+					newCollection.value = params.get('is_new') === '1';
+					trending.value = params.get('is_trending') === '1';
+				});
 
 				return {
+					expandedSections,
+					selectedSubcategory,
+					promotionActive,
+					minPrice,
+					maxPrice,
+					selectedSize,
+					selectedColors,
+					selectedCollections,
+					selectedOccupations,
+					selectedSortBy,
+					onSale,
+					newCollection,
+					trending,
+					sizes,
+					filterData,
 					toggleMobFilter,
 					appMainFilter,
+					toggleSection,
+					applyFilters,
 				};
 			},
 		}).mount(el);

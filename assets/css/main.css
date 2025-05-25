@@ -2449,7 +2449,11 @@ a.shopBgBtn:hover {
 }
 
 .shopProductDetailCardImagesThumb {
+	display: flex;
+	flex-direction: column;
 	min-width: 12vh;
+	max-height: 80vh;
+	gap: 20px;
 }
 
 @media screen and (max-width: 1600px) {
@@ -2987,8 +2991,8 @@ a.shopBgBtn:hover {
 
 .shopProductDetailCardImagesMain {
 	width: 100%;
-	min-width: 60vh;
 	max-height: 80vh;
+	max-width: 60vh;
 }
 
 .mainMobSlider {
@@ -3017,15 +3021,11 @@ a.shopBgBtn:hover {
 .cardImagesThumbWrapper {
 	display: flex;
 	flex-flow: column;
-	gap: 12px;
-	max-height: 80vh;
 	width: 100%;
 	min-width: 15.5vh;
 }
 
 .cardImagesThumbItem {
-	min-height: 23vh;
-	max-height: 23vh;
 	max-width: 10vw;
 	overflow: hidden;
 	border-radius: 10px;
@@ -6780,4 +6780,28 @@ br {
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-right: 6px;
+}
+.cardImagesThumbSliderNavBlock {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.cardImagesThumbSliderNavigation {
+	width: 40px;
+	height: 40px;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	border: none;
+	transition: all 0.25s;
+}
+.cardImagesThumbSliderNavigation:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+.cardImagesThumbSlider {
+	flex: 1;
+	min-width: 15.5vh;
 }
