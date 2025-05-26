@@ -6789,4 +6789,5 @@ br {
 }
 .headerMain {
 	min-height: 1px;
+	position: relative;
 }

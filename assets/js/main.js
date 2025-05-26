@@ -3509,7 +3509,7 @@ function setHeaderOffset(offset) {
 	const headerBottomHeight =
 		offset || document.querySelector('.headerMainNav').offsetHeight;
 
-	headerWrapper.style.marginBottom = headerBottomHeight + 'px';
+	headerWrapper.style.paddingBottom = headerBottomHeight + 'px';
 }
 
 setHeaderOffset();
