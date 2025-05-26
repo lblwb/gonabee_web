@@ -3570,15 +3570,6 @@ hr {
 
 /**/
 
-#quadmenu.quadmenu-is-horizontal
-	.quadmenu-navbar-nav
-	li.quadmenu-item
-	> .quadmenu-dropdown-menu
-	> ul {
-	position: relative;
-	visibility: hidden;
-}
-
 #quadmenu .quadmenu-navbar-nav li.quadmenu-item {
 }
 
@@ -3591,34 +3582,23 @@ hr {
 	margin: -7px -20px 0 0 !important;
 }
 
-#quadmenu .quadmenu-item.open .quadmenu_btt {
-	z-index: 103;
-	opacity: unset !important;
-}
-
-#quadmenu .quadmenu_btt {
-	right: 0;
-	left: 0;
-	/*opacity: 1 !important;*/
-	/*top: 136px !important;*/
-	top: 136px !important;
-	position: absolute;
-	border-top: solid 1px;
+#quadmenu .quadmenu-navbar-nav li.quadmenu-item > .quadmenu-dropdown-menu {
 	background: #222222 !important;
 	border-top: solid 1px #333 !important;
-	/* z-index: 200; */
-	/*opacity: 1;*/
-	padding: 10px 0;
-	padding-top: 48px;
-	overflow: hidden;
-	top: 106px !important;
-	/* top: 100% !important; */
-	transition: height 0.2s ease-out;
-	transform: unset !important;
-	-webkit-transform: unset !important;
-	z-index: 0;
-	transition: z-index 0s;
+	top: 100% !important;
 	opacity: unset !important;
+	transform: unset !important;
+	overflow: hidden !important;
+	display: block !important;
+	/* display: none !important;
+	animation: hideOnDelay 0s linear var(--open-transition) forwards; */
+	z-index: 10 !important;
+}
+#quadmenu .quadmenu-navbar-nav li.quadmenu-item.open > .quadmenu-dropdown-menu {
+	z-index: 13 !important;
+}
+#quadmenu .quadmenu-navbar-nav li.quadmenu-item.last > .quadmenu-dropdown-menu {
+	z-index: 13 !important;
 }
 
 @media screen and (max-width: 960px) {
@@ -4926,14 +4906,6 @@ button[name='apply_coupon'],
 	font-size: 16px !important;
 	line-height: 125%;
 	letter-spacing: 0%;
-}
-
-#quadmenu.quadmenu-is-horizontal
-	.quadmenu-navbar-nav
-	li.quadmenu-dropdown
-	> .quadmenu-dropdown-menu.quadmenu-dropdown-stretch-boxed {
-	left: 0;
-	right: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -6804,4 +6776,16 @@ br {
 .cardImagesThumbSlider {
 	flex: 1;
 	min-width: 15.5vh;
+}
+.headerMainNavWrapper {
+	--open-transition: 0.25s;
+	height: var(--height, auto);
+	position: absolute;
+	width: 100%;
+	overflow: hidden;
+	transition: height var(--open-transition);
+	z-index: 12;
+}
+.headerMain {
+	min-height: 1px;
 }
