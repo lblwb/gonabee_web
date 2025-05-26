@@ -694,7 +694,9 @@ const tooglesDropFooter = () => {
 const uiShopAppVibe = () => {
 	// Инициализируем глобальное хранилище состояний
 	window.states = window.states || {};
-
+	window.states.productSize = Vue.reactive({
+		size: 'L',
+	});
 	// Компонент для карточки товара (десктоп)
 	const singlePrdCard = () => {
 		const el = document.getElementById('singlePrdCard');
@@ -707,7 +709,10 @@ const uiShopAppVibe = () => {
 					cart: {
 						select: {
 							color: '',
-							size: 'L',
+							size: Vue.computed({
+								get: () => window.states.productSize.size,
+								set: (value) => (window.states.productSize.size = value),
+							}),
 						},
 						mob: {
 							size: {
@@ -1059,7 +1064,10 @@ const uiShopAppVibe = () => {
 					cart: {
 						select: {
 							color: '',
-							size: 'L',
+							size: Vue.computed({
+								get: () => window.states.productSize.size,
+								set: (value) => (window.states.productSize.size = value),
+							}),
 						},
 						mob: {
 							size: {
