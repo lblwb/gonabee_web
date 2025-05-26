@@ -1000,7 +1000,6 @@ a.shopBgBtn:hover {
 	cursor: pointer;
 	transition: background-color 0.3s ease;
 	background: transparent;
-	margin-bottom: 16px;
 }
 
 .promocodeBlock__headerText {
