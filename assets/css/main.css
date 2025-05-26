@@ -924,7 +924,10 @@ a.shopBgBtn:hover {
 	color: #252525;
 	margin-bottom: 16px;
 }
-
+.checkout-button:hover {
+	background: #222222;
+	color: #fff;
+}
 .delivery-note {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
