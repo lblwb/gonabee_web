@@ -159,14 +159,14 @@
                     </a>
                 </div>
             </div>
+
+
             <!-- /wp:group -->
         </div>
+        <div class="headerMainNavWrapBottom" style="width:100%;height:0px;bottom:0;position:absolute"></div>
     </div>
-    <!-- Не знаю где-то затерялся закрывающий тег -->
 </div>
-<!-- ----- -->
 
-<div class="headerMainNavWrapBottom" style="width:100%;height:0px;bottom:0;position:absolute"></div>
 
 <!-- /wp:group -->
 </div>
