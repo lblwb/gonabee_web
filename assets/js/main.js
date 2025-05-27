@@ -789,7 +789,7 @@ const uiShopAppVibe = () => {
 								if (action === 'added') {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										// 2.1) содержимое: просто передаём текст
 										{
 											title: 'Модель добавлена в корзину!',
@@ -803,7 +803,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -813,7 +813,7 @@ const uiShopAppVibe = () => {
 								} else {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										// 2.1) содержимое: просто передаём текст
 										{
 											title: 'Модель удалена из корзины!',
@@ -827,7 +827,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -874,7 +874,7 @@ const uiShopAppVibe = () => {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
 										// 2.1) содержимое: просто передаём текст
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель добавлена в избранное!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -887,7 +887,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -896,7 +896,7 @@ const uiShopAppVibe = () => {
 									);
 								} else {
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель удалена из избранного!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -908,7 +908,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1154,7 +1154,7 @@ const uiShopAppVibe = () => {
 								if (action === 'added') {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель добавлена в корзину!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1167,7 +1167,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1177,7 +1177,7 @@ const uiShopAppVibe = () => {
 								} else {
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель удалена из корзины!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1190,7 +1190,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1233,7 +1233,7 @@ const uiShopAppVibe = () => {
 								const action = response.data.data.action;
 								if (action === 'added') {
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель добавлена в избранное!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1247,7 +1247,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1260,7 +1260,7 @@ const uiShopAppVibe = () => {
 									// state.isFavorited = false;
 									// $(document) — глобальный контейнер уведомлений
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель удалена из избранного!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1272,7 +1272,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1447,7 +1447,7 @@ const uiShopAppVibe = () => {
 											appFavoriteBtn.value.status.active = true;
 
 											jQuery.notify(
-												jQuery('.headerMainNavWrapBottom'),
+												jQuery('.notifyAnchor'),
 												{
 													title: 'Модель добавлена в избранное!',
 													image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1460,7 +1460,7 @@ const uiShopAppVibe = () => {
 													showDuration: 300,
 													hideAnimation: 'slideUp',
 													hideDuration: 200,
-													autoHide: false,
+													autoHide: true,
 													autoHideDelay: 2000,
 													gap: 0,
 													position: 'bottom left',
@@ -1475,7 +1475,7 @@ const uiShopAppVibe = () => {
 											appFavoriteBtn.value.status.active = false;
 
 											jQuery.notify(
-												jQuery('.headerMainNavWrapBottom'),
+												jQuery('.notifyAnchor'),
 												{
 													title: 'Модель удалена из избранного!',
 													image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1487,7 +1487,7 @@ const uiShopAppVibe = () => {
 													showDuration: 300,
 													hideAnimation: 'slideUp',
 													hideDuration: 200,
-													autoHide: false,
+													autoHide: true,
 													autoHideDelay: 2000,
 													gap: 0,
 													position: 'bottom left',
@@ -1605,7 +1605,7 @@ const uiShopAppVibe = () => {
 	//                                 hideAnimation: 'slideUp',
 	//                                 hideDuration: 200,
 	//                                 // 2.4) автоскрытие через 2 секунды
-	//                                 autoHide: false,
+	//                                 autoHide: true,
 	//                                 autoHideDelay: 2000,
 	//                                 // 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 	//                                 globalPosition: 'top center',
@@ -1630,7 +1630,7 @@ const uiShopAppVibe = () => {
 	//                                 hideAnimation: 'slideUp',
 	//                                 hideDuration: 200,
 	//                                 // 2.4) автоскрытие через 2 секунды
-	//                                 autoHide: false,
+	//                                 autoHide: true,
 	//                                 autoHideDelay: 2000,
 	//                                 // 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 	//                                 globalPosition: 'top center',
@@ -1783,7 +1783,7 @@ const uiShopAppVibe = () => {
 									addToFavorites(productId);
 
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель добавлена в избранное!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1796,7 +1796,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1809,7 +1809,7 @@ const uiShopAppVibe = () => {
 									removeFromFavorites(productId);
 
 									jQuery.notify(
-										jQuery('.headerMainNavWrapBottom'),
+										jQuery('.notifyAnchor'),
 										{
 											title: 'Модель удалена из избранного!',
 											image: `<img src="${imageUrl}" alt="Карточка товара" />`,
@@ -1821,7 +1821,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: false,
+											autoHide: true,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -2478,7 +2478,7 @@ const uiShopAppVibe = () => {
 									hideAnimation: 'slideUp',
 									hideDuration: 200,
 									// 2.4) автоскрытие через 2 секунды
-									autoHide: false,
+									autoHide: true,
 									autoHideDelay: 2000,
 									// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 									globalPosition: 'top center',
@@ -2504,7 +2504,7 @@ const uiShopAppVibe = () => {
 									hideAnimation: 'slideUp',
 									hideDuration: 200,
 									// 2.4) автоскрытие через 2 секунды
-									autoHide: false,
+									autoHide: true,
 									autoHideDelay: 2000,
 									// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 									globalPosition: 'top center',
@@ -2887,7 +2887,7 @@ const uiShopAppVibe = () => {
 								showDuration: 300,
 								hideAnimation: 'slideUp',
 								hideDuration: 200,
-								autoHide: false,
+								autoHide: true,
 								autoHideDelay: 2000,
 								globalPosition: 'top center',
 								icon: null,
@@ -2904,7 +2904,7 @@ const uiShopAppVibe = () => {
 								showDuration: 300,
 								hideAnimation: 'slideUp',
 								hideDuration: 200,
-								autoHide: false,
+								autoHide: true,
 								autoHideDelay: 2000,
 								globalPosition: 'top center',
 								icon: null,
@@ -3518,40 +3518,43 @@ function initNotify() {
 	// Объявляем переменные
 	console.log('notify');
 	const notifyNode = document.createElement('div');
-	const menu = document.querySelector('.headerMainNavWrapper');
-	let positionTopNotify = menu?.getBoundingClientRect()?.bottom || 0;
+	const notifyWrapperNode = document.createElement('div');
+	notifyWrapperNode.classList.add('notifyAnchorWrapper');
+	notifyWrapperNode.appendChild(notifyNode);
 
+	const menu = document.querySelector('.headerMainNavWrapper');
+	changeNotifyPosition();
+
+	// notifyAnchor
 	// Добавляем нужные атрибуты
-	notifyNode.classList.add('headerMainNavWrapBottom');
-	notifyNode.style.position = 'fixed';
-	notifyNode.style.width = '100%';
-	notifyNode.style.height = '0px';
-	notifyNode.style.top = positionTopNotify + 'px';
+	notifyNode.classList.add('notifyAnchor');
+
+	notifyWrapperNode.style.position = 'fixed';
+	notifyWrapperNode.style.width = '100%';
+	notifyWrapperNode.style.height = '0px';
 
 	// Добавляем узел в документ
-	document.body.appendChild(notifyNode);
+	document.body.appendChild(notifyWrapperNode);
 
 	// Функция для изменения позиции врапера
-	const changeNotifyPosition = rateLimit(() => {
+	function changeNotifyPosition() {
 		if (!menu) return;
 
-		setTimeout(() => {
-			const newPosition = menu.getBoundingClientRect().bottom;
-			const scrollTop = window.scrollY || document.documentElement.scrollTop;
-			headerLogo = document.querySelector('.headerMbBarNavLogo');
+		let newPosition = menu.getBoundingClientRect().bottom;
+		const scrollTop = window.scrollY || document.documentElement.scrollTop;
+		const headerLogo = document.querySelector('.headerMbBarNavLogo');
 
-			if (
-				headerLogo &&
-				window.innerWidth <= 768 &&
-				headerLogo.classList.contains('__Hide') &&
-				scrollTop < 70
-			) {
-				newPosition += headerLogo.offsetHeight;
-			}
+		if (
+			headerLogo &&
+			window.innerWidth <= 768 &&
+			headerLogo.classList.contains('__Hide') &&
+			scrollTop < 70
+		) {
+			newPosition += headerLogo.offsetHeight;
+		}
 
-			notifyNode.style.top = newPosition + 'px';
-		}, 0);
-	}, 500);
+		notifyWrapperNode.style.top = newPosition + 'px';
+	}
 
 	window.addEventListener('scroll', changeNotifyPosition);
 	window.addEventListener('resize', changeNotifyPosition);

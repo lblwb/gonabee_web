@@ -6795,3 +6795,7 @@ br {
 	min-height: 1px;
 	position: relative;
 }
+.notifyAnchorWrapper {
+	z-index: 100;
+	transition: all 0.25s;
+}
