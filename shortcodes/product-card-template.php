@@ -79,7 +79,7 @@ $is_sale = get_post_meta($post_id, 'has_discount', true) === '1';
                     data-product-id="<?php echo esc_attr($product->get_id()); ?>"
                     data-nonce="<?php echo esc_attr(wp_create_nonce('toggle_favorite_nonce')); ?>"
                     data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
-                    <div test class="whiteListBtn" style="background: #FFFFFF;" @click.stop="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
+                    <div class="whiteListBtn" style="background: #FFFFFF;" @click.stop="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
                         <!--                        {{getSelectedWhtLst(-->
                         <div class="whiteListBtnIcon" v-if="!appFavoriteBtn.status.active">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
