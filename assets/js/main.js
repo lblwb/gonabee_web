@@ -3479,11 +3479,13 @@ function dropdownMenu() {
 
 		menuWrapper.style.height =
 			menuWrapperBaseHeight + currentDropMenuHeight + 'px';
+		// menuWrapper.style.maxHeight = 'none';
 	}
 
 	function closeMenu(mutation) {
 		console.log('closes');
 		menuWrapper.style.height = '';
+		// menuWrapper.style.maxHeight = '';
 	}
 
 	function setLast(node) {

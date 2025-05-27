@@ -6784,12 +6784,17 @@ br {
 }
 .headerMainNavWrapper {
 	--open-transition: 0.25s;
-	max-height: var(--height, auto);
+	height: var(--height, auto);
 	position: absolute;
 	width: 100%;
 	overflow: hidden;
 	transition: height var(--open-transition);
 	z-index: 12;
+}
+@media screen and (max-width: 768px) {
+	.headerMainNavWrapper {
+		transition: height 0s;
+	}
 }
 .headerMain {
 	min-height: 1px;
