@@ -2022,6 +2022,7 @@ const uiShopAppVibe = () => {
 						const toggle_btns = document.querySelectorAll(
 							'.quadmenu-item-has-children .quadmenu-dropdown-toggle'
 						);
+
 						console.log(
 							'Found toggle buttons:',
 							toggle_btns.length,
@@ -2036,6 +2037,10 @@ const uiShopAppVibe = () => {
 										'.quadmenu-item-has-children .quadmenu-dropdown-toggle'
 									);
 									if (itemBtn) {
+
+										document.removeEventListener('click', itemBtn);
+										document.removeEventListener('touchstart', itemBtn);
+
 										console.log(`${eventType} on button:`, itemBtn);
 										e.preventDefault();
 										e.stopPropagation();
@@ -2051,6 +2056,12 @@ const uiShopAppVibe = () => {
 											} else {
 												console.error('window.states.headMainNav is undefined');
 											}
+
+											console.log(itemBtn.nextElementSibling);
+
+											//
+											itemBtn.nextElementSibling.remove();
+
 										} else {
 											console.warn('Submenu not found for:', itemBtn);
 										}
@@ -3371,11 +3382,15 @@ const fixedScrollNavMob = () => {
 		}
 	};
 
+	//
+
 	setTimeout(() => {
+		updateNavPosition();
 		updateHeaderHeight();
 		setCssVariables(headerHeight, 'height', header);
 		setHeaderOffset(headerHeight);
-	}, 0);
+	}, 10);
+
 
 	window.addEventListener('scroll', updateNavPosition);
 	window.addEventListener('resize', () => {

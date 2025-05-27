@@ -103,8 +103,6 @@
             </div>
 
             <div class="mobileMenuContentWrapper" style="">
-
-
                 <div class="mobileMenuContentHeaderSubHeader"
                      style="">
                     <div class="headerSubHeaderTitle"
@@ -252,6 +250,34 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Модальное окно для подменю -->
+            <div class="modalSubMenu" v-show="appMainNav.mob.sub_menu.show" style="position: fixed; top: 0;left: 0;right: 0;bottom: 0;width: 100%;height: 100%; background: #222222; z-index: 1000; transition: transform 0.3s ease-in-out;">
+                <div class="modalSubMenuHeader" style="padding: 18px 10px; width: 100%;">
+                        <div class="mobileSearchContentHeaderWrapper" style="width: 100%">
+                            <div class="mobileSearchContentHeaderBack" @click="closeSubMenu">
+                                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.47759 10.4995L13.8086 6.16838L12.5712 4.93095L7.00265 10.4995L12.5712 16.0679L13.8086 14.8304L9.47759 10.4995Z" fill="#F9F9F9"/>
+                                </svg>
+                            </div>
+                            <div class="mobileMenuContentHeading" style="">
+                                <div class="mobileMenuContentHeadingTitle"
+                                     style="font-family: 'Sofia Sans',sans-serif;font-weight: 600;font-size: 20px;line-height: 125%;letter-spacing: 0%;text-align: center;">
+                                    {{ appMainNav.mob.sub_menu.title }}
+                                </div>
+                            </div>
+                            <div class="mobileSearchContentHeaderExit" @click="closeSubMenu">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                            d="M8.82223 10L2.32812 3.5059L3.50663 2.32739L10.0007 8.82143L16.4948 2.32739L17.6733 3.5059L11.1792 10L17.6733 16.494L16.4948 17.6726L10.0007 11.1785L3.50663 17.6726L2.32812 16.494L8.82223 10Z"
+                                            fill="#F9F9F9"/>
+                                </svg>
+                            </div>
+                        </div>
+                </div>
+                <div class="modalSubMenuContent" v-html="appMainNav.mob.sub_menu.content"></div>
             </div>
 
         </div>

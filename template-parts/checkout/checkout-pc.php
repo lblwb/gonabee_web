@@ -177,14 +177,14 @@
                             <hr>
                             <div class="checkoutBlockBodyRow">
                                 <?php
-                                //                                if (is_user_logged_in() || WC()->checkout()->is_registration_enabled() || !WC()->checkout()->is_registration_required()) {
-                                //                                    wc_get_template(
-                                //                                        'checkout/form-coupon.php',
-                                //                                        array(
-                                //                                            'checkout' => WC()->checkout(),
-                                //                                        )
-                                //                                    );
-                                //                                }
+                                if (is_user_logged_in() || WC()->checkout()->is_registration_enabled() || !WC()->checkout()->is_registration_required()) {
+                                    wc_get_template(
+                                        'checkout/form-coupon.php',
+                                        array(
+                                            'checkout' => WC()->checkout(),
+                                        )
+                                    );
+                                }
                                 ?>
                             </div>
                         </div>

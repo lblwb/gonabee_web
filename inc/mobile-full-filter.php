@@ -28,9 +28,9 @@
                 </div>
             </div>
             <div class="mobileFilterContentWrapper" style="">
-                <?php echo do_shortcode('[woocommerce_filter]') ?>
+                <?php echo do_shortcode('[woocommerce_mob_filter]') ?>
             </div>
-            <div class="mobileFilterContentFooter" style="position: absolute; bottom: 0; right: 0; left: 0; background: #fff;">
+            <div class="mobileFilterContentFooter" style="position: absolute; bottom: 0; right: 0; left: 0; background: #fff;" onclick="navigation.reload()">
                 <div class="filterContentFooterBlock" style="padding: 8px 10px; margin-bottom: 30px; width: 100%;">
                     <div class="footerBlockBtn" style="background: #F0C224; border-radius: 100px; width: 100%; padding: 12px 24px;">
                         <div class="footerBlockBtnTitle" style="font-family: 'Montserrat',sans-serif;font-weight: 600;font-size: 14px;line-height: 125%;letter-spacing: 0%;text-align: center; color: #000;" @click="toggleMobFilter">

@@ -15,15 +15,15 @@ function woocommerce_filter_shortcode()
         'orderby' => 'name',
     ]);
 
-    //    $subcategories = [];
-    //
-    //    foreach ($subcategories_terms as $subcategory) {
-    //        $subcategories[] = $subcategory;
-    //    }
+//    $subcategories = [];
+//
+//    foreach ($subcategories_terms as $subcategory) {
+//        $subcategories[] = $subcategory;
+//    }
 
-    //    var_dump($subcategories);
+//    var_dump($subcategories);
 
-    //    delete_transient('unique_product_colors');
+//    delete_transient('unique_product_colors');
 
     // Лучше кэшировать!
     $colors = get_transient('unique_product_colors');
@@ -70,11 +70,11 @@ function woocommerce_filter_shortcode()
         set_transient('unique_product_colors', $colors, HOUR_IN_SECONDS);
     }
 
-    //    $collections = get_terms([
-    //        'taxonomy' => 'prd_collection',
-    //        'hide_empty' => true,
-    //        'orderby' => 'name',
-    //    ]);
+//    $collections = get_terms([
+//        'taxonomy' => 'prd_collection',
+//        'hide_empty' => true,
+//        'orderby' => 'name',
+//    ]);
 
     $collections = get_terms([
         'taxonomy' => 'prd_collection',
@@ -105,15 +105,151 @@ function woocommerce_filter_shortcode()
         'min_price' => $min_price,
         'max_price' => $max_price,
         'sizes' => $sizes,
+        'sortBy' => [
+            [
+                "name" => "По популярности",
+                "slug" => "popular" // сортировка по популярности (sales)
+            ],
+            [
+                "name" => "По возрастанию цены",
+                "slug" => "price_asc"
+            ],
+            [
+                "name" => "По убыванию цены",
+                "slug" => "price_desc"
+            ],
+            [
+                "name" => "По новизне",
+                "slug" => "date_desc"
+            ]
+        ]
     ));
 
-    //    var_dump($sizes);
+//    var_dump($sizes);
 
     return ob_get_clean();
 }
 
+function woocommerce_mob_filter_shortcode()
+{
+    $parent_id = 0;
+    if (is_product_category()) {
+        $current_category = get_queried_object();
+        $parent_id = $current_category->term_id;
+    }
+
+    $subcategories = get_terms([
+        'taxonomy' => 'product_cat',
+        'parent' => $parent_id,
+        'hide_empty' => true,
+        'orderby' => 'name',
+    ]);
+
+//    $subcategories = [];
+//
+//    foreach ($subcategories_terms as $subcategory) {
+//        $subcategories[] = $subcategory;
+//    }
+
+//    var_dump($subcategories);
+
+//    delete_transient('unique_product_colors');
+
+    // Лучше кэшировать!
+    $colors = get_transient('unique_product_colors');
+    if (!$colors) {
+        $colors = [];
+
+        $product_ids = get_posts([
+            'post_type' => 'product',
+            'posts_per_page' => -1,
+            'fields' => 'ids',
+            'post_status' => 'publish',
+        ]);
+
+        foreach ($product_ids as $product_id) {
+            $product_colors = get_field('product_colors', $product_id);
+
+            if ($product_colors && is_array($product_colors)) {
+                foreach ($product_colors as $color) {
+                    // Убедимся, что color_slug установлен
+                    if (
+                        is_array($color) &&
+                        isset($color['color_slug']) &&
+                        !empty($color['color_slug'])
+                    ) {
+                        $slug = sanitize_title($color['color_slug']);
+
+                        // Если такой slug ещё не добавлен
+                        if (!isset($colors[$slug])) {
+                            $colors[$slug] = [
+                                'slug' => $slug,
+                                'name' => $color['color_name'] ?? ucfirst($slug),
+                                'hex' => $color['color_code'] ?? '#000000',
+                            ];
+                        }
+                    }
+                }
+            }
+        }
+
+        // Преобразуем ассоциативный массив в обычный
+        $colors = array_values($colors);
+
+        // Кэшируем на 1 час
+        set_transient('unique_product_colors', $colors, HOUR_IN_SECONDS);
+    }
+
+//    $collections = get_terms([
+//        'taxonomy' => 'prd_collection',
+//        'hide_empty' => true,
+//        'orderby' => 'name',
+//    ]);
+
+    $collections = get_terms([
+        'taxonomy' => 'prd_collection',
+        'hide_empty' => true,
+        'orderby' => 'name',
+    ]);
+
+    //Размеры
+    $sizes = get_terms([
+        'taxonomy' => 'pa_sizes',
+        'hide_empty' => false, // true — только те, что есть у продуктов
+        'orderby' => 'name',
+        'order' => 'ASC',
+    ]);
+
+    $occupations = ['Для йоги', 'Для активного спорта', 'Для бега', 'Для похода в зал'];
+
+    global $wpdb;
+    $min_price = (float)$wpdb->get_var("SELECT MIN(CAST(meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} WHERE meta_key='_price' AND meta_value != ''");
+    $max_price = (float)$wpdb->get_var("SELECT MAX(CAST(meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} WHERE meta_key='_price' AND meta_value != ''");
+
+    ob_start();
+    locate_template("template-parts/catalog/filter/ctg-filter-mb.php", true, null, array(
+        'subcategories' => $subcategories,
+        'colors' => $colors,
+        'collections' => $collections,
+        'occupations' => $occupations,
+        'min_price' => $min_price,
+        'max_price' => $max_price,
+        'sizes' => $sizes,
+        'sortBy' => [
+            [
+                "name" => 'По популярности',
+                "slug" => 'popular'
+            ]
+        ]
+    ));
+
+//    var_dump($sizes);
+
+    return ob_get_clean();
+}
 
 add_shortcode('woocommerce_filter', 'woocommerce_filter_shortcode');
+add_shortcode('woocommerce_mob_filter', 'woocommerce_mob_filter_shortcode');
 
 // Функция для добавления фильтра в WHERE-условие
 function add_color_filter_to_where($where)
@@ -208,10 +344,10 @@ function custom_woocommerce_filter_query($query)
                     'operator' => 'AND', // означает: товар должен иметь ВСЕ указанные размеры
                 ];
 
-                //                var_dump($tax_query);
+//                var_dump($tax_query);
             }
 
-            //            var_dump($sizes);
+//            var_dump($sizes);
         }
 
         // Фильтр по цвету
@@ -278,7 +414,42 @@ function custom_woocommerce_filter_query($query)
             }
         }
 
-        //        var_dump($meta_query);
+        // SORT
+        //
+
+        $orderby = 'date';
+        $order = 'DESC';
+
+        // Считываем sortBy из запроса
+        if (!empty($_GET['sort'])) {
+            switch ($_GET['sort']) {
+                case 'popular':
+                    $orderby = 'meta_value_num';
+                    $order = 'DESC';
+                    $meta_key = 'total_sales'; // WooCommerce сохраняет это поле
+                    break;
+
+                case 'price_asc':
+                    $orderby = 'meta_value_num';
+                    $order = 'ASC';
+                    $meta_key = '_price';
+                    break;
+
+                case 'price_desc':
+                    $orderby = 'meta_value_num';
+                    $order = 'DESC';
+                    $meta_key = '_price';
+                    break;
+
+                case 'date_desc':
+                    $orderby = 'date';
+                    $order = 'DESC';
+                    break;
+            }
+        }
+
+//        var_dump($meta_query);
+
 
         // Обновляем параметры
         if ($tax_query) {
@@ -287,6 +458,15 @@ function custom_woocommerce_filter_query($query)
 
         if ($meta_query) {
             $query->set('meta_query', $meta_query);
+        }
+
+        // применяем сортировку
+        $query->set('orderby', $orderby);
+        $query->set('order', $order);
+
+
+        if (!empty($meta_key)) {
+            $query->set('meta_key', $meta_key);
         }
     }
 }
