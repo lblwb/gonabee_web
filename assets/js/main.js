@@ -3431,6 +3431,8 @@ function setCssVariables(
 ) {
 	targetNode.style.setProperty(`--${variableName}`, `${value}px`);
 }
+
+// Устанавливаем ширину скроллбара
 const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 setCssVariables(scrollbarWidth, 'scrollbar-width');
 
@@ -3517,30 +3519,32 @@ function setHeaderOffset(offset) {
 setHeaderOffset();
 
 function initNotify() {
-	// Объявляем переменные
-	console.log('notify');
+	// Якорь для уведомления
 	const notifyNode = document.createElement('div');
+	notifyNode.classList.add('notifyAnchor');
+
+	// Обертка для уведомления
 	const notifyWrapperNode = document.createElement('div');
 	notifyWrapperNode.classList.add('notifyAnchorWrapper');
 	notifyWrapperNode.appendChild(notifyNode);
-
-	const menu = document.querySelector('.headerMainNavWrapper');
-	changeNotifyPosition();
-
-	// notifyAnchor
-	// Добавляем нужные атрибуты
-	notifyNode.classList.add('notifyAnchor');
-
 	notifyWrapperNode.style.position = 'fixed';
 	notifyWrapperNode.style.width = '100%';
 	notifyWrapperNode.style.height = '0px';
 
-	// Добавляем узел в документ
 	document.body.appendChild(notifyWrapperNode);
+
+	const menu = document.querySelector('.headerMainNavWrapper');
+
+	changeNotifyPosition();
+
+	window.addEventListener('scroll', changeNotifyPosition);
+	window.addEventListener('resize', changeNotifyPosition);
 
 	// Функция для изменения позиции врапера
 	function changeNotifyPosition() {
 		if (!menu) return;
+
+		const offset = 18;
 
 		let newPosition = menu.getBoundingClientRect().bottom;
 		const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -3555,33 +3559,22 @@ function initNotify() {
 			newPosition += headerLogo.offsetHeight;
 		}
 
+		// Для десктопа
+		if (window.innerWidth > 768) {
+			newPosition += offset;
+		}
+
 		notifyWrapperNode.style.top = newPosition + 'px';
 	}
-
-	window.addEventListener('scroll', changeNotifyPosition);
-	window.addEventListener('resize', changeNotifyPosition);
 }
 
-function rateLimit(fn, delay) {
-	let timeoutId = null;
-	let lastArgs = null;
-	let lastCallTime = 0;
+function setContainerScope() {
+	const container = document.querySelector('.gridWrap');
 
-	return function (...args) {
-		const now = Date.now();
-
-		if (now - lastCallTime >= delay) {
-			lastCallTime = now;
-			fn(...args);
-		} else {
-			lastArgs = args;
-			clearTimeout(timeoutId);
-			timeoutId = setTimeout(() => {
-				lastCallTime = Date.now();
-				fn(...lastArgs);
-			}, delay - (now - lastCallTime));
-		}
-	};
+	if (container) {
+		const right = container.getBoundingClientRect().right;
+		setCssVariables(right, 'coordinate-container-right');
+	}
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -3603,6 +3596,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	dropdownMenu();
 
 	initNotify();
+
+	setContainerScope();
 });
 
 uiShopAppVibe();

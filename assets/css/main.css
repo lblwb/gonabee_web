@@ -2295,7 +2295,14 @@ a.shopBgBtn:hover {
 	width: calc((100% / 3) - 10px);
 }
 
+.shopCatalogCollection .previewSliderItem {
+	width: calc((100% / 4) - 10px);
+}
+
 @media screen and (max-width: 560px) {
+	.shopCatalogCollection .previewSliderItem {
+		width: calc((100% / 2) - 10px);
+	}
 	.shopCatalogCollection {
 	}
 
@@ -3587,9 +3594,21 @@ hr {
 	margin: -7px -20px 0 0 !important;
 }
 
+.modalSubMenuContent
+	#quadmenu
+	.quadmenu-navbar-nav
+	li.quadmenu-item
+	> .quadmenu-dropdown-menu {
+	border-top: solid 1px #333 !important;
+}
+
+/* upd 27 */
+.quadmenu-navbar-collapse {
+	box-shadow: none !important;
+}
+
 #quadmenu .quadmenu-navbar-nav li.quadmenu-item > .quadmenu-dropdown-menu {
 	background: #222222 !important;
-	border-top: solid 1px #333 !important;
 	top: 100% !important;
 	opacity: unset !important;
 	transform: unset !important;
@@ -6803,4 +6822,18 @@ br {
 .notifyAnchorWrapper {
 	z-index: 100;
 	transition: all 0.25s;
+}
+
+@media screen and (min-width: 768px) {
+	.notifyAnchorWrapper .notifyjs-wrapper {
+		left: var(--coordinate-container-right, 0px) !important;
+	}
+	.notifyAnchorWrapper .notifyjs-container {
+		min-width: 347px;
+		left: unset !important;
+		transform: translateX(-100%);
+	}
+	.notifyAnchorWrapper .notifyjs-cartStyle-base {
+		border-radius: 100px;
+	}
 }
