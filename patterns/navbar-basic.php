@@ -163,7 +163,6 @@
 
             <!-- /wp:group -->
         </div>
-        <div class="headerMainNavWrapBottom" style="width:100%;height:0px;bottom:0;position:absolute"></div>
     </div>
 </div>
 

@@ -803,7 +803,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -827,7 +827,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -887,7 +887,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -908,7 +908,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1167,7 +1167,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1190,7 +1190,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1247,7 +1247,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1272,7 +1272,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1460,7 +1460,7 @@ const uiShopAppVibe = () => {
 													showDuration: 300,
 													hideAnimation: 'slideUp',
 													hideDuration: 200,
-													autoHide: true,
+													autoHide: false,
 													autoHideDelay: 2000,
 													gap: 0,
 													position: 'bottom left',
@@ -1487,7 +1487,7 @@ const uiShopAppVibe = () => {
 													showDuration: 300,
 													hideAnimation: 'slideUp',
 													hideDuration: 200,
-													autoHide: true,
+													autoHide: false,
 													autoHideDelay: 2000,
 													gap: 0,
 													position: 'bottom left',
@@ -1605,7 +1605,7 @@ const uiShopAppVibe = () => {
 	//                                 hideAnimation: 'slideUp',
 	//                                 hideDuration: 200,
 	//                                 // 2.4) автоскрытие через 2 секунды
-	//                                 autoHide: true,
+	//                                 autoHide: false,
 	//                                 autoHideDelay: 2000,
 	//                                 // 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 	//                                 globalPosition: 'top center',
@@ -1630,7 +1630,7 @@ const uiShopAppVibe = () => {
 	//                                 hideAnimation: 'slideUp',
 	//                                 hideDuration: 200,
 	//                                 // 2.4) автоскрытие через 2 секунды
-	//                                 autoHide: true,
+	//                                 autoHide: false,
 	//                                 autoHideDelay: 2000,
 	//                                 // 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 	//                                 globalPosition: 'top center',
@@ -1796,7 +1796,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -1821,7 +1821,7 @@ const uiShopAppVibe = () => {
 											showDuration: 300,
 											hideAnimation: 'slideUp',
 											hideDuration: 200,
-											autoHide: true,
+											autoHide: false,
 											autoHideDelay: 2000,
 											gap: 0,
 											position: 'bottom left',
@@ -2478,7 +2478,7 @@ const uiShopAppVibe = () => {
 									hideAnimation: 'slideUp',
 									hideDuration: 200,
 									// 2.4) автоскрытие через 2 секунды
-									autoHide: true,
+									autoHide: false,
 									autoHideDelay: 2000,
 									// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 									globalPosition: 'top center',
@@ -2504,7 +2504,7 @@ const uiShopAppVibe = () => {
 									hideAnimation: 'slideUp',
 									hideDuration: 200,
 									// 2.4) автоскрытие через 2 секунды
-									autoHide: true,
+									autoHide: false,
 									autoHideDelay: 2000,
 									// 2.5) позиционирование (можно изменить на top left / bottom right и т.д.)
 									globalPosition: 'top center',
@@ -2887,7 +2887,7 @@ const uiShopAppVibe = () => {
 								showDuration: 300,
 								hideAnimation: 'slideUp',
 								hideDuration: 200,
-								autoHide: true,
+								autoHide: false,
 								autoHideDelay: 2000,
 								globalPosition: 'top center',
 								icon: null,
@@ -2904,7 +2904,7 @@ const uiShopAppVibe = () => {
 								showDuration: 300,
 								hideAnimation: 'slideUp',
 								hideDuration: 200,
-								autoHide: true,
+								autoHide: false,
 								autoHideDelay: 2000,
 								globalPosition: 'top center',
 								icon: null,
@@ -3358,6 +3358,7 @@ const fixedScrollNavMob = () => {
 	const updateNavPosition = () => {
 		const scrollTop = window.scrollY || document.documentElement.scrollTop;
 		updateHeaderHeight();
+		setCssVariables(headerNav.offsetHeight, 'height', header);
 
 		if (scrollTop >= 70) {
 			header.style.position = 'fixed';
@@ -3366,7 +3367,6 @@ const fixedScrollNavMob = () => {
 		} else if (scrollTop < 70) {
 			header.style.position = 'absolute';
 			header.style.top = 'unset';
-			setCssVariables(headerHeight, 'height', header);
 			isFixed = false;
 		}
 	};
@@ -3514,6 +3514,71 @@ function setHeaderOffset(offset) {
 
 setHeaderOffset();
 
+function initNotify() {
+	// Объявляем переменные
+	console.log('notify');
+	const notifyNode = document.createElement('div');
+	const menu = document.querySelector('.headerMainNavWrapper');
+	let positionTopNotify = menu?.getBoundingClientRect()?.bottom || 0;
+
+	// Добавляем нужные атрибуты
+	notifyNode.classList.add('headerMainNavWrapBottom');
+	notifyNode.style.position = 'fixed';
+	notifyNode.style.width = '100%';
+	notifyNode.style.height = '0px';
+	notifyNode.style.top = positionTopNotify + 'px';
+
+	// Добавляем узел в документ
+	document.body.appendChild(notifyNode);
+
+	// Функция для изменения позиции врапера
+	const changeNotifyPosition = rateLimit(() => {
+		if (!menu) return;
+
+		setTimeout(() => {
+			const newPosition = menu.getBoundingClientRect().bottom;
+			const scrollTop = window.scrollY || document.documentElement.scrollTop;
+			headerLogo = document.querySelector('.headerMbBarNavLogo');
+
+			if (
+				headerLogo &&
+				window.innerWidth <= 768 &&
+				headerLogo.classList.contains('__Hide') &&
+				scrollTop < 70
+			) {
+				newPosition += headerLogo.offsetHeight;
+			}
+
+			notifyNode.style.top = newPosition + 'px';
+		}, 0);
+	}, 500);
+
+	window.addEventListener('scroll', changeNotifyPosition);
+	window.addEventListener('resize', changeNotifyPosition);
+}
+
+function rateLimit(fn, delay) {
+	let timeoutId = null;
+	let lastArgs = null;
+	let lastCallTime = 0;
+
+	return function (...args) {
+		const now = Date.now();
+
+		if (now - lastCallTime >= delay) {
+			lastCallTime = now;
+			fn(...args);
+		} else {
+			lastArgs = args;
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(() => {
+				lastCallTime = Date.now();
+				fn(...lastArgs);
+			}, delay - (now - lastCallTime));
+		}
+	};
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 	//
 	console.debug('loaded!');
@@ -3531,6 +3596,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	selAccountGender();
 
 	dropdownMenu();
+
+	initNotify();
 });
 
 uiShopAppVibe();

@@ -6784,7 +6784,7 @@ br {
 }
 .headerMainNavWrapper {
 	--open-transition: 0.25s;
-	height: var(--height, auto);
+	max-height: var(--height, auto);
 	position: absolute;
 	width: 100%;
 	overflow: hidden;
