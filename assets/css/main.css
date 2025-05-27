@@ -3653,6 +3653,7 @@ li.quadmenu-item
 
 	#quadmenu .quadmenu-navbar-nav li.quadmenu-item {
 		border: none !important;
+		border-bottom: solid 1px #F9F9F920 !important;
 	}
 
 	#quadmenu .quadmenu_btt .quadmenu-row {
