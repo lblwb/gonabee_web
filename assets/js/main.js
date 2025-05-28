@@ -254,6 +254,10 @@ const newProductsSlider = async () => {
 	// const featuresSliderActionCount = document.querySelector(".featuresSliderActionCount");
 
 	newProductsPreviewSliders.forEach((SliderEl, index) => {
+		const parent = SliderEl.parentElement;
+		const prevButton = parent.querySelector('.sliderNavBtnPrev');
+		const nextButton = parent.querySelector('.sliderNavBtnNext');
+
 		var featuresProductSlider = new Swiper(SliderEl, {
 			// effect: 'cards',
 			// Optional parameters
@@ -269,8 +273,8 @@ const newProductsSlider = async () => {
 			spaceBetween: 12,
 
 			navigation: {
-				nextEl: '.sliderNavBtnNext',
-				prevEl: '.sliderNavBtnPrev',
+				nextEl: nextButton,
+				prevEl: prevButton,
 			},
 
 			breakpoints: {
@@ -374,6 +378,9 @@ const mobMainProductsSlider = async () => {
 
 const accesrPreviewSlider = async () => {
 	const accesrPreviewSlider = document.querySelector('.accesrPreviewSlider');
+	const parent = accesrPreviewSlider.parentElement;
+	const prevButton = parent.querySelector('.sliderNavBtnPrev');
+	const nextButton = parent.querySelector('.sliderNavBtnNext');
 	// const featuresSliderActionBtnLft = document.querySelector(".featuresSliderActionBtnLft");
 	// const featuresSliderActionBtnRgt = document.querySelector(".featuresSliderActionBtnRgh");
 	// const featuresSliderActionCount = document.querySelector(".featuresSliderActionCount");
@@ -392,8 +399,8 @@ const accesrPreviewSlider = async () => {
 		spaceBetween: 12,
 
 		navigation: {
-			nextEl: '.sliderNavBtnNext',
-			prevEl: '.sliderNavBtnPrev',
+			nextEl: nextButton,
+			prevEl: prevButton,
 		},
 
 		breakpoints: {
@@ -457,8 +464,8 @@ const ideaProductsSlider = async () => {
 			},
 
 			navigation: {
-				nextEl: '.sliderNavBtnNext',
-				prevEl: '.sliderNavBtnPrev',
+				nextEl: '.ideaProductSliderNext',
+				prevEl: '.ideaProductSliderPrev',
 			},
 
 			breakpoints: {
@@ -2037,7 +2044,6 @@ const uiShopAppVibe = () => {
 										'.quadmenu-item-has-children .quadmenu-dropdown-toggle'
 									);
 									if (itemBtn) {
-
 										document.removeEventListener('click', itemBtn);
 										document.removeEventListener('touchstart', itemBtn);
 
@@ -2061,7 +2067,6 @@ const uiShopAppVibe = () => {
 
 											//
 											itemBtn.nextElementSibling.remove();
-
 										} else {
 											console.warn('Submenu not found for:', itemBtn);
 										}
@@ -3390,7 +3395,6 @@ const fixedScrollNavMob = () => {
 		setCssVariables(headerHeight, 'height', header);
 		setHeaderOffset(headerHeight);
 	}, 10);
-
 
 	window.addEventListener('scroll', updateNavPosition);
 	window.addEventListener('resize', () => {
