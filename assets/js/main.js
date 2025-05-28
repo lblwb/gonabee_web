@@ -506,7 +506,7 @@ const thumbnailProductSlider = async () => {
 	console.log('THUMBNAIL !!!');
 
 	const thumbnailSlider = new Swiper('.cardImagesThumbSlider', {
-		slidesPerView: 'auto',
+		slidesPerView: 3,
 		slideToClickedSlide: true,
 		watchSlidesProgress: true,
 		spaceBetween: 20,
@@ -523,7 +523,7 @@ const thumbnailProductSlider = async () => {
 	});
 
 	const mainSlider = new Swiper('.shopProductDetailCardImagesMain', {
-		slidesPerView: 1,
+		slidesPerView: 'auto',
 		spaceBetween: 20,
 		drag: true,
 		// resizeObserver: false,
