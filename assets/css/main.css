@@ -286,7 +286,7 @@ a.shopBgBtn:hover {
 #headerMainNav {
 	transition: background 0.1s linear;
 	transition: z-index 0.5s step-end, opacity 0.5s ease 0.4s,
-	transform 0.4s ease-in-out;
+		transform 0.4s ease-in-out;
 	position: sticky;
 }
 
@@ -567,9 +567,9 @@ a.shopBgBtn:hover {
 }
 
 .cartMobBottom
-.cartMobBottomBlock
-.cartMobBottomBlockAction
-.cartMobBottomBlockActionBtn {
+	.cartMobBottomBlock
+	.cartMobBottomBlockAction
+	.cartMobBottomBlockActionBtn {
 	width: 100%;
 	background: #f0c224;
 	color: #252525;
@@ -580,30 +580,30 @@ a.shopBgBtn:hover {
 }
 
 .cartMobBottom
-.cartMobBottomBlock
-.cartMobBottomBlockAction
-.cartMobBottomBlockActionBtn:hover,
+	.cartMobBottomBlock
+	.cartMobBottomBlockAction
+	.cartMobBottomBlockActionBtn:hover,
 .cartMobBottom
-.cartMobBottomBlock
-.cartMobBottomBlockAction
-.cartMobBottomBlockActionBtn:focus {
+	.cartMobBottomBlock
+	.cartMobBottomBlockAction
+	.cartMobBottomBlockActionBtn:focus {
 	background: #252525;
 	color: #fff;
 }
 
 .cartMobBottom
-.cartMobBottomBlock
-.cartMobBottomBlockAction
-.cartMobBottomBlockActionBtn
-.blockActionBtnHeading {
+	.cartMobBottomBlock
+	.cartMobBottomBlockAction
+	.cartMobBottomBlockActionBtn
+	.blockActionBtnHeading {
 }
 
 .cartMobBottom
-.cartMobBottomBlock
-.cartMobBottomBlockAction
-.cartMobBottomBlockActionBtn
-.blockActionBtnHeading
-.blockActionBtnHeadingTitle {
+	.cartMobBottomBlock
+	.cartMobBottomBlockAction
+	.cartMobBottomBlockActionBtn
+	.blockActionBtnHeading
+	.blockActionBtnHeadingTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
 	font-size: 14px;
@@ -1303,9 +1303,9 @@ a.shopBgBtn:hover {
 		width: 100%;
 		height: 52%; /* регулируй под нужную высоту градиента */
 		background: linear-gradient(
-				to top,
-				#f2f2f2 50%,
-				rgba(255, 255, 255, 0) 100%
+			to top,
+			#f2f2f2 50%,
+			rgba(255, 255, 255, 0) 100%
 		);
 		pointer-events: none; /* чтобы не мешал кликам по кнопке */
 		z-index: 1;
@@ -1919,9 +1919,9 @@ a.shopBgBtn:hover {
 }
 
 .collectionView
-.tabSelListBlockItem
-.tabSelListBlockItemBottom
-.tabSelListBlockItemBtn {
+	.tabSelListBlockItem
+	.tabSelListBlockItemBottom
+	.tabSelListBlockItemBtn {
 	background: #fff;
 	border-radius: 30px;
 	padding: 1.6rem 2.4rem;
@@ -1929,13 +1929,13 @@ a.shopBgBtn:hover {
 }
 
 .collectionView
-.tabSelListBlockItem:focus
-.tabSelListBlockItemBottom
-.tabSelListBlockItemBtn,
+	.tabSelListBlockItem:focus
+	.tabSelListBlockItemBottom
+	.tabSelListBlockItemBtn,
 .collectionView
-.tabSelListBlockItem:hover
-.tabSelListBlockItemBottom
-.tabSelListBlockItemBtn {
+	.tabSelListBlockItem:hover
+	.tabSelListBlockItemBottom
+	.tabSelListBlockItemBtn {
 	background: #222222;
 	color: #fff;
 }
@@ -2291,17 +2291,16 @@ a.shopBgBtn:hover {
 	width: 100%;
 }
 
-.shopCollection .shopCatalogCollection .previewSliderItem {
-	width: calc((100% / 4) - 10px);
-}
-
 .previewSliderItem {
-	width: calc((100% / 4) - 10px);
+	width: calc((100% / 3) - 10px);
 }
 
+.shopCatalogCollection .previewSliderItem {
+	width: calc((100% / 4) - 10px);
+}
 
 @media screen and (max-width: 560px) {
-	.shopCollection .shopCatalogCollection .previewSliderItem  {
+	.shopCatalogCollection .previewSliderItem {
 		width: calc((100% / 2) - 10px);
 	}
 	.shopCatalogCollection {
@@ -3336,10 +3335,10 @@ hr {
 }
 
 .ideaBottomPaginate
-.bullet
-.bullet.swiper-pagination-bullet-active
-.bottomPaginateCorn
-.bullet.swiper-pagination-bullet-active {
+	.bullet
+	.bullet.swiper-pagination-bullet-active
+	.bottomPaginateCorn
+	.bullet.swiper-pagination-bullet-active {
 	background-color: #ffffff;
 	opacity: 1;
 }
@@ -3498,11 +3497,11 @@ hr {
 }
 
 .orderPageBlockContent
-.orderList
-.orderBlock
-.orderHeading
-.orderItemHeading
-.orderItemHeadingTitle {
+	.orderList
+	.orderBlock
+	.orderHeading
+	.orderItemHeading
+	.orderItemHeadingTitle {
 	margin-bottom: 16px;
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
@@ -3514,21 +3513,21 @@ hr {
 }
 
 .orderPageBlockContent
-.orderList
-.orderBlock
-.orderHeading
-.orderItemHeading
-.orderItemHeadingTitle
-__Act {
+	.orderList
+	.orderBlock
+	.orderHeading
+	.orderItemHeading
+	.orderItemHeadingTitle
+	__Act {
 	font-weight: 600;
 }
 
 .orderPageBlockContent
-.orderList
-.orderBlock
-.orderHeading
-.orderItemHeading
-.orderItemHeadingStatus {
+	.orderList
+	.orderBlock
+	.orderHeading
+	.orderItemHeading
+	.orderItemHeadingStatus {
 	display: flex;
 	align-items: center;
 	color: #41b481;
@@ -3537,23 +3536,23 @@ __Act {
 }
 
 .orderPageBlockContent
-.orderList
-.orderBlock
-.orderHeading
-.orderItemHeading
-.orderItemHeadingStatus
-.orderItemHeadingIcon {
+	.orderList
+	.orderBlock
+	.orderHeading
+	.orderItemHeading
+	.orderItemHeadingStatus
+	.orderItemHeadingIcon {
 	display: flex;
 	align-items: center;
 }
 
 .orderPageBlockContent
-.orderList
-.orderBlock
-.orderHeading
-.orderItemHeading
-.orderItemHeadingStatus
-.orderItemHeadingTitle {
+	.orderList
+	.orderBlock
+	.orderHeading
+	.orderItemHeading
+	.orderItemHeadingStatus
+	.orderItemHeadingTitle {
 	display: flex;
 	align-items: center;
 	font-family: 'Montserrat', sans-serif;
@@ -3587,19 +3586,19 @@ __Act {
 }
 
 #quadmenu
-.quadmenu-navbar-nav
-li.quadmenu-item
-> a
-> .quadmenu-item-content
-> .quadmenu-caret:before {
+	.quadmenu-navbar-nav
+	li.quadmenu-item
+	> a
+	> .quadmenu-item-content
+	> .quadmenu-caret:before {
 	margin: -7px -20px 0 0 !important;
 }
 
 .modalSubMenuContent
-#quadmenu
-.quadmenu-navbar-nav
-li.quadmenu-item
-> .quadmenu-dropdown-menu {
+	#quadmenu
+	.quadmenu-navbar-nav
+	li.quadmenu-item
+	> .quadmenu-dropdown-menu {
 	border-top: solid 1px #333 !important;
 }
 
@@ -3637,23 +3636,22 @@ li.quadmenu-item
 	}
 
 	#quadmenu:not(.quadmenu-is-horizontal)
-	.quadmenu-navbar-nav
-	li.quadmenu-item.open:not(.closing)
-	> .quadmenu-dropdown-menu {
+		.quadmenu-navbar-nav
+		li.quadmenu-item.open:not(.closing)
+		> .quadmenu-dropdown-menu {
 		max-height: unset !important;
 	}
 
 	#quadmenu:not(.quadmenu-is-horizontal)
-	.quadmenu-navbar-nav
-	li.quadmenu-item.open:not(.closing)
-	> .quadmenu-dropdown-menu {
+		.quadmenu-navbar-nav
+		li.quadmenu-item.open:not(.closing)
+		> .quadmenu-dropdown-menu {
 		max-height: unset !important;
 		top: 0 !important;
 	}
 
 	#quadmenu .quadmenu-navbar-nav li.quadmenu-item {
 		border: none !important;
-		border-bottom: solid 1px #F9F9F920 !important;
 	}
 
 	#quadmenu .quadmenu_btt .quadmenu-row {
@@ -3679,10 +3677,10 @@ li.quadmenu-item
 	}
 
 	#quadmenu
-	.quadmenu-navbar-nav
-	li.quadmenu-item.open
-	> .quadmenu-dropdown-menu
-	> ul {
+		.quadmenu-navbar-nav
+		li.quadmenu-item.open
+		> .quadmenu-dropdown-menu
+		> ul {
 		padding: 0 !important;
 	}
 
@@ -3691,9 +3689,9 @@ li.quadmenu-item
 	}
 
 	#quadmenu
-	.quadmenu-navbar-nav
-	.quadmenu-dropdown-menu
-	li.quadmenu-item:not(.quadmenu-item-type-column) {
+		.quadmenu-navbar-nav
+		.quadmenu-dropdown-menu
+		li.quadmenu-item:not(.quadmenu-item-type-column) {
 		padding: 0 !important;
 	}
 
@@ -3766,11 +3764,11 @@ li.quadmenu-item
 }
 
 #quadmenu
-.quadmenu-navbar-nav
-li.quadmenu-item
-.quadmenu-item-widget
-.widget_product_categories
-.quadmenu-title {
+	.quadmenu-navbar-nav
+	li.quadmenu-item
+	.quadmenu-item-widget
+	.widget_product_categories
+	.quadmenu-title {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 600;
@@ -3878,7 +3876,6 @@ li.quadmenu-item
 
 .pageWhlsSide {
 	max-width: 31vh;
-	min-width: 31vh;
 	width: 100%;
 }
 
@@ -4128,7 +4125,7 @@ li.quadmenu-item
 		width: 18px;
 		height: 18px;
 		background: url('data:image/svg+xml,%3Csvg%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2018%2018%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20opacity%3D%220.5%22%3E%3Cpath%20d%3D%22M9.87635%209.00047L6.16406%2012.7128L7.22472%2013.7735L11.9977%209.00047L7.22472%204.22754L6.16406%205.2882L9.87635%209.00047Z%22%20fill%3D%22%23252525%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E')
-		no-repeat center center;
+			no-repeat center center;
 		pointer-events: none;
 		transition: background 0.2s ease-in-out;
 	}
@@ -4229,8 +4226,8 @@ li.quadmenu-item
 }
 
 .pageAccountBodyBlock.__Small
-.accountBodyBlockHeading
-.accountBodyBlockHeadingTitle {
+	.accountBodyBlockHeading
+	.accountBodyBlockHeadingTitle {
 	font-family: 'Sofia Sans', sans-serif;
 	font-style: normal;
 	font-weight: 500;
@@ -4242,8 +4239,8 @@ li.quadmenu-item
 }
 
 .pageAccountBodyBlock.__Small
-.accountBodyBlockHeading
-.accountBodyBlockHeadingSubTitle {
+	.accountBodyBlockHeading
+	.accountBodyBlockHeadingSubTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 600;
@@ -4303,9 +4300,9 @@ li.quadmenu-item
 }
 
 .accountBlockProgram
-.accountBlockProgramItem
-.blockProgramItemHeading
-.blockProgramItemHeadingTitle {
+	.accountBlockProgramItem
+	.blockProgramItemHeading
+	.blockProgramItemHeadingTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 500;
@@ -4316,9 +4313,9 @@ li.quadmenu-item
 }
 
 .accountBlockProgram
-.accountBlockProgramItem
-.blockProgramItemHeading
-.blockProgramItemHeadingValue {
+	.accountBlockProgramItem
+	.blockProgramItemHeading
+	.blockProgramItemHeadingValue {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 500;
@@ -4333,15 +4330,15 @@ li.quadmenu-item
 }
 
 .accountBlockProgram
-.accountBlockProgramItem
-.blockProgramItemHeading
-.blockProgramItemHeadingTitle {
+	.accountBlockProgramItem
+	.blockProgramItemHeading
+	.blockProgramItemHeadingTitle {
 }
 
 .accountBlockProgram
-.accountBlockProgramItem
-.blockProgramItemHeading
-.blockProgramItemHeadingValue {
+	.accountBlockProgramItem
+	.blockProgramItemHeading
+	.blockProgramItemHeadingValue {
 }
 
 @media screen and (max-width: 768px) {
@@ -4360,9 +4357,9 @@ li.quadmenu-item
 		border-radius: 10px;
 	}
 	.accountBlockProgram
-	.accountBlockProgramItem
-	.blockProgramItemHeading
-	.blockProgramItemHeadingTitle {
+		.accountBlockProgramItem
+		.blockProgramItemHeading
+		.blockProgramItemHeadingTitle {
 		font-family: 'Montserrat', sans-serif;
 		font-style: normal;
 		font-weight: 500;
@@ -4371,9 +4368,9 @@ li.quadmenu-item
 		color: #1f1f1f;
 	}
 	.accountBlockProgram
-	.accountBlockProgramItem
-	.blockProgramItemHeading
-	.blockProgramItemHeadingValue {
+		.accountBlockProgramItem
+		.blockProgramItemHeading
+		.blockProgramItemHeadingValue {
 		font-family: 'Montserrat', sans-serif;
 		font-style: normal;
 		font-weight: 500;
@@ -4883,37 +4880,37 @@ button[name='apply_coupon'],
 }
 
 #quadmenu.quadmenu-default_theme.quadmenu-is-horizontal.js
-.quadmenu-navbar-nav
-> li.quadmenu-item {
+	.quadmenu-navbar-nav
+	> li.quadmenu-item {
 	height: 36px !important;
 	margin-right: 16px;
 }
 
 #quadmenu.quadmenu-default_theme
-.quadmenu-navbar-nav
-> li:not(.quadmenu-item-type-button).quadmenu-has-link:hover,
+	.quadmenu-navbar-nav
+	> li:not(.quadmenu-item-type-button).quadmenu-has-link:hover,
 #quadmenu.quadmenu-default_theme
-.quadmenu-navbar-nav
-> li:not(.quadmenu-item-type-button).quadmenu-has-link.open {
+	.quadmenu-navbar-nav
+	> li:not(.quadmenu-item-type-button).quadmenu-has-link.open {
 	background-color: transparent !important;
 }
 
 #quadmenu.quadmenu-default_theme.quadmenu-is-horizontal.quadmenu-divider-show
-.quadmenu-navbar-nav
-> li
-> a:after,
+	.quadmenu-navbar-nav
+	> li
+	> a:after,
 #quadmenu.quadmenu-default_theme.quadmenu-is-horizontal.quadmenu-divider-show
-.quadmenu-navbar-nav
-> li.quadmenu-item-type-search
-> form:after {
+	.quadmenu-navbar-nav
+	> li.quadmenu-item-type-search
+	> form:after {
 	background-color: unset !important;
 }
 
 #quadmenu.quadmenu-default_theme .quadmenu-navbar-nav > li.quadmenu-item > a,
 #quadmenu.quadmenu-default_theme
-.quadmenu-navbar-nav
-> li.quadmenu-item
-> form {
+	.quadmenu-navbar-nav
+	> li.quadmenu-item
+	> form {
 	font-family: 'Sofia Sans', sans-serif;
 	font-weight: 600 !important;
 	font-size: 16px !important;
@@ -4922,11 +4919,11 @@ button[name='apply_coupon'],
 }
 
 #quadmenu
-.quadmenu-navbar-nav
-li.quadmenu-item
-> a
-> .quadmenu-item-content
-> .quadmenu-text {
+	.quadmenu-navbar-nav
+	li.quadmenu-item
+	> a
+	> .quadmenu-item-content
+	> .quadmenu-text {
 	display: inline-block;
 	font-family: 'Sofia Sans' sans-serif !important;
 	font-weight: 600 !important;
@@ -4950,18 +4947,18 @@ li.quadmenu-item
 		width: 30px;
 		height: 30px;
 		background: url('data:image/svg+xml,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.4606%2015.0008L10.2734%2021.188L12.0412%2022.9558L19.9962%2015.0008L12.0412%207.0459L10.2734%208.81366L16.4606%2015.0008Z%22%20fill%3D%22%23F9F9F9%22%2F%3E%3C%2Fsvg%3E')
-		no-repeat center center;
+			no-repeat center center;
 		background-size: contain;
 		pointer-events: none;
 		transition: background 0.2s ease-in-out;
 	}
 
 	#quadmenu
-	.quadmenu-navbar-nav
-	li.quadmenu-item
-	> a
-	> .quadmenu-item-content
-	> .quadmenu-text {
+		.quadmenu-navbar-nav
+		li.quadmenu-item
+		> a
+		> .quadmenu-item-content
+		> .quadmenu-text {
 		font-size: 18px !important;
 	}
 
@@ -5010,8 +5007,8 @@ li.quadmenu-item
 }
 
 .mobileMenuContentBanner
-.mobileMenuContentBannerTop
-.mobileMenuContentBannerTopHeading {
+	.mobileMenuContentBannerTop
+	.mobileMenuContentBannerTopHeading {
 	font-family: 'Sofia Sans', sans-serif;
 	font-weight: 500;
 	font-size: 25px;
@@ -5047,9 +5044,9 @@ li.quadmenu-item
 }
 
 .mobileMenuContentBannerFooter
-.bannerFooterBtn
-.bannerFooterBtnHeading
-.bannerFooterBtnHeadingTitle {
+	.bannerFooterBtn
+	.bannerFooterBtnHeading
+	.bannerFooterBtnHeadingTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 600;
@@ -5086,9 +5083,9 @@ li.quadmenu-item
 }
 
 .mobileMenuContentFooterNav
-.footerNavBlock
-.footerNavBlockHeading
-.footerNavBlockHeadingTitle {
+	.footerNavBlock
+	.footerNavBlockHeading
+	.footerNavBlockHeadingTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 600;
@@ -5102,27 +5099,27 @@ li.quadmenu-item
 }
 
 .mobileMenuContentFooterNav
-.footerNavBlock
-.footerNavBlockBody
-.footerNavBlockBodyList {
+	.footerNavBlock
+	.footerNavBlockBody
+	.footerNavBlockBodyList {
 	display: flex;
 	flex-flow: column;
 	gap: 12px;
 }
 
 .mobileMenuContentFooterNav
-.footerNavBlock
-.footerNavBlockBody
-.footerNavBlockBodyList
-.footerNavBlockBodyListItem {
+	.footerNavBlock
+	.footerNavBlockBody
+	.footerNavBlockBodyList
+	.footerNavBlockBodyListItem {
 }
 
 .mobileMenuContentFooterNav
-.footerNavBlock
-.footerNavBlockBody
-.footerNavBlockBodyList
-.footerNavBlockBodyListItem
-a {
+	.footerNavBlock
+	.footerNavBlockBody
+	.footerNavBlockBodyList
+	.footerNavBlockBodyListItem
+	a {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 500;
@@ -5214,27 +5211,27 @@ a {
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard {
 	text-decoration: none;
 	color: #fff;
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardWrapper {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardWrapper {
 	display: flex;
 	gap: 12px;
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardImg {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardImg {
 	min-height: 16vh;
 	max-height: 16vh;
 	max-width: 21.5vw;
@@ -5243,19 +5240,19 @@ a {
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardImg.__Bord {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardImg.__Bord {
 	border: solid 1px #46464650;
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardImg
-img {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardImg
+	img {
 	object-fit: cover;
 	object-position: bottom;
 	min-height: 16vh;
@@ -5263,18 +5260,18 @@ img {
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardHeading {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardHeading {
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardHeading
-.cardHeadingTitle {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardHeading
+	.cardHeadingTitle {
 	margin-bottom: 8px;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
@@ -5284,11 +5281,11 @@ img {
 }
 
 .mobileSearchContentSearchCat
-.searchCatList
-.searchCatListItem
-.searchCatListItemCard
-.searchCatListItemCardHeading
-.cardHeadingSubTitle {
+	.searchCatList
+	.searchCatListItem
+	.searchCatListItemCard
+	.searchCatListItemCardHeading
+	.cardHeadingSubTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
 	font-size: 14px;
@@ -5333,24 +5330,24 @@ img {
 }
 
 .mobileMenuContentSearchResult
-.searchResultList
-.searchResultListItem
-.itemBlockHeadingPrice {
+	.searchResultList
+	.searchResultListItem
+	.itemBlockHeadingPrice {
 	color: #fff !important;
 }
 
 .mobileMenuContentSearchResult
-.searchResultList
-.searchResultListItem
-.itemBlockHeadingSelColor {
+	.searchResultList
+	.searchResultListItem
+	.itemBlockHeadingSelColor {
 	display: flex;
 	gap: 8px;
 }
 
 .mobileMenuContentSearchResult
-.searchResultList
-.searchResultListItem
-.colorBox {
+	.searchResultList
+	.searchResultListItem
+	.colorBox {
 	border: solid 1px #333;
 }
 
@@ -5748,9 +5745,9 @@ br {
 }
 
 .wpc-filters-main-wrap
-input.wpc-label-input
-+ label:hover
-span.wpc-filter-label-wrapper {
+	input.wpc-label-input
+	+ label:hover
+	span.wpc-filter-label-wrapper {
 	background: transparent;
 	/*width: 100%;*/
 	color: #000;
@@ -5842,10 +5839,10 @@ span.wpc-filter-label-wrapper {
 }
 
 .mobileFilterContent
-.widget_wpc_filters_widget
-ul.wpc-filters-ul-list
-li.wpc-term-item
-a {
+	.widget_wpc_filters_widget
+	ul.wpc-filters-ul-list
+	li.wpc-term-item
+	a {
 	/*color: #fff !important;*/
 	font-family: 'Montserrat', sans-serif !important;
 	font-weight: 500 !important;
@@ -5864,9 +5861,9 @@ a {
 }
 
 .mobileFilterContent
-.widget_wpc_filters_widget
-.wpc-filters-range-wrapper
-input[type='number'] {
+	.widget_wpc_filters_widget
+	.wpc-filters-range-wrapper
+	input[type='number'] {
 	border-radius: 100px;
 	border: solid 1px #e3e3e3;
 }
@@ -6484,9 +6481,9 @@ label.filter-item input[type='radio']:checked {
 }
 
 .bannerMenuWidget
-.bannerMenuWidgetContentBannerTop
-.contentBannerTopHeading
-.contentBannerTopHeadingTitle {
+	.bannerMenuWidgetContentBannerTop
+	.contentBannerTopHeading
+	.contentBannerTopHeadingTitle {
 	font-family: 'Sofia Sans', sans-serif;
 	font-weight: 500;
 	font-size: 25px;
@@ -6522,9 +6519,9 @@ label.filter-item input[type='radio']:checked {
 }
 
 .bannerMenuWidget
-.bannerFooterBtn
-.bannerFooterBtnHeading
-.bannerFooterBtnHeadingTitle {
+	.bannerFooterBtn
+	.bannerFooterBtnHeading
+	.bannerFooterBtnHeadingTitle {
 	font-family: 'Montserrat', sans-serif;
 	font-style: normal;
 	font-weight: 600;
@@ -6536,13 +6533,13 @@ label.filter-item input[type='radio']:checked {
 }
 
 .bannerMenuWidget
-.bannerFooterBtn:hover
-.bannerFooterBtnHeading
-.bannerFooterBtnHeadingTitle,
+	.bannerFooterBtn:hover
+	.bannerFooterBtnHeading
+	.bannerFooterBtnHeadingTitle,
 .bannerMenuWidget
-.bannerFooterBtn:focus
-.bannerFooterBtnHeading
-.bannerFooterBtnHeadingTitle {
+	.bannerFooterBtn:focus
+	.bannerFooterBtnHeading
+	.bannerFooterBtnHeadingTitle {
 	color: #fff;
 }
 
@@ -6722,7 +6719,7 @@ br {
 		width: 30px;
 		height: 30px;
 		background: url('data:image/svg+xml,%3Csvg%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.4606%2015.0008L10.2734%2021.188L12.0412%2022.9558L19.9962%2015.0008L12.0412%207.0459L10.2734%208.81366L16.4606%2015.0008Z%22%20fill%3D%22%23F9F9F9%22%2F%3E%3C%2Fsvg%3E')
-		no-repeat center center;
+			no-repeat center center;
 		background-size: contain;
 		pointer-events: none;
 		transition: background 0.2s ease-in-out;
@@ -6811,7 +6808,7 @@ br {
 	width: 100%;
 	overflow: hidden;
 	transition: height var(--open-transition);
-	z-index: 12;
+	z-index: 20;
 }
 @media screen and (max-width: 768px) {
 	.headerMainNavWrapper {
@@ -6839,4 +6836,7 @@ br {
 	.notifyAnchorWrapper .notifyjs-cartStyle-base {
 		border-radius: 100px;
 	}
+}
+.sliderRelativeWrapper {
+	position: relative;
 }
