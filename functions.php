@@ -698,3 +698,4 @@ require_once(__DIR__ . "/inc/ctg-filter.php");
 require_once(__DIR__ . "/inc/product-cat-menu-widget.php");
 require_once(__DIR__ . "/inc/product-coll-menu-widget.php");
 require_once(__DIR__ . "/inc/banner-menu-widget.php");
+require_once(__DIR__ . "/inc/account-auth.php");

@@ -1716,6 +1716,7 @@ const uiShopAppVibe = () => {
 		const nonce = el.getAttribute('data-nonce');
 		const ajaxUrl = el.getAttribute('data-ajax-url');
 		const dataCount = el.getAttribute('data-count');
+		const userAuthStatus = el.getAttribute('data-user-auth');
 
 		window.states.headMainNav = Vue.createApp({
 			setup() {
@@ -1728,6 +1729,19 @@ const uiShopAppVibe = () => {
 						favorite: {
 							count: null,
 						},
+						user: {
+							isAuth: false
+						},
+						modals:{
+							account:{
+								step: "",
+								field: {
+									email: "",
+									password: "",
+									email_checkbox: true,
+								}
+							}
+						}
 					},
 					mob: {
 						nav_menu: {
@@ -1974,11 +1988,163 @@ const uiShopAppVibe = () => {
 						});
 				};
 
+
+				const closeModalAccount = () => {
+					appMainNav.value.navbar.modals.account.step = "";
+					appMainNav.value.navbar.modals.account.field.email = "";
+					appMainNav.value.navbar.modals.account.field.password = "";
+				};
+
+				const viewModalAccount = (step) => {
+					appMainNav.value.navbar.modals.account.step = step;
+					console.log(appMainNav.value.modals);
+				}
+
+				const checkEmailExists = () => {
+					// appMainNav.navbar.modals.account.field.passwor
+					const email = appMainNav.value.navbar.modals.account.field.email;
+					fetch('/wp-admin/admin-ajax.php?action=check_email_exists', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: new URLSearchParams({ email })
+					})
+						.then(res => res.json())
+						.then(data => {
+							if (data.exists) {
+								appMainNav.value.navbar.modals.account.step = 'authLogin';
+							} else {
+								appMainNav.value.navbar.modals.account.step = 'authCreateNew';
+							}
+						});
+				};
+
+				const doLogin = () => {
+					const { email, password } = appMainNav.value.navbar.modals.account.field;
+					fetch('/wp-admin/admin-ajax.php', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: new URLSearchParams({ action: 'ajax_login', email, password })
+					})
+						.then(res => res.json())
+						.then(data => {
+							if (data.success) {
+								appMainNav.value.navbar.user.isAuth = true;
+								appMainNav.value.navbar.user.data = data.user;
+								closeModalAccount();
+
+
+								jQuery.notify(
+									jQuery('.notifyAnchor'),
+									{
+										title: 'Успешная авторизация!',
+									},
+									{
+										style: 'cartStyle',
+										className: 'base',
+										showAnimation: 'slideDown',
+										showDuration: 300,
+										hideAnimation: 'slideUp',
+										hideDuration: 200,
+										autoHide: true,
+										autoHideDelay: 2000,
+										gap: 0,
+										position: 'bottom left',
+										arrowShow: false,
+									}
+								);
+
+								navigation.reload();
+
+							} else {
+								// alert(data.message);
+								jQuery.notify(
+									jQuery('.notifyAnchor'),
+									{
+										title: "Ошибка! Проверьте данные и попробуйте снова!",
+									},
+									{
+										style: 'cartStyle',
+										className: 'base',
+										showAnimation: 'slideDown',
+										showDuration: 300,
+										hideAnimation: 'slideUp',
+										hideDuration: 200,
+										autoHide: true,
+										autoHideDelay: 2000,
+										gap: 0,
+										position: 'bottom left',
+										arrowShow: false,
+									}
+								);
+							}
+						});
+				};
+
+				const doRegister = () => {
+					const { email, password } = appMainNav.value.navbar.modals.account.field;
+					fetch('/wp-admin/admin-ajax.php', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: new URLSearchParams({ action: 'ajax_register', email, password })
+					})
+						.then(res => res.json())
+						.then(data => {
+							if (data.success) {
+								appMainNav.value.navbar.user.isAuth = true;
+								appMainNav.value.navbar.user.data = data.user;
+								closeModalAccount();
+								navigation.reload();
+
+								jQuery.notify(
+									jQuery('.notifyAnchor'),
+									{
+										title: 'Успешная регистрация!',
+									},
+									{
+										style: 'cartStyle',
+										className: 'base',
+										showAnimation: 'slideDown',
+										showDuration: 300,
+										hideAnimation: 'slideUp',
+										hideDuration: 200,
+										autoHide: true,
+										autoHideDelay: 2000,
+										gap: 0,
+										position: 'bottom left',
+										arrowShow: false,
+									}
+								);
+							} else {
+								jQuery.notify(
+									jQuery('.notifyAnchor'),
+									{
+										title: 'Ошибка! Проверьте данные и попробуйте снова!',
+									},
+									{
+										style: 'cartStyle',
+										className: 'base',
+										showAnimation: 'slideDown',
+										showDuration: 300,
+										hideAnimation: 'slideUp',
+										hideDuration: 200,
+										autoHide: true,
+										autoHideDelay: 2000,
+										gap: 0,
+										position: 'bottom left',
+										arrowShow: false,
+									}
+								);
+							}
+						});
+				};
+
+
 				// Следим за изменением состояния меню и блокируем body
 				Vue.watch(
 					() =>
 						appMainNav.value.mob.nav_menu.show ||
-						appMainNav.value.mob.nav_search.show,
+						appMainNav.value.mob.nav_search.show ||
+						appMainNav.value.navbar.modals.account.step !== "",
 					(show) => {
 						if (show) {
 							document.body.style.overflow = 'hidden'; // блокируем прокрутку
@@ -2108,6 +2274,8 @@ const uiShopAppVibe = () => {
 						}
 					}, 1000);
 
+					appMainNav.value.navbar.user.isAuth = userAuthStatus;
+
 					// console.log(dataCount);
 					if (dataCount > 0) {
 						appMainNav.value.navbar.cart.count = dataCount;
@@ -2123,7 +2291,7 @@ const uiShopAppVibe = () => {
 
 					//
 					if (debug) {
-						appMainNav.value.mob.nav_search.show = true;
+						                                                                                                          mob.nav_search.show = true;
 						appMainNav.value.mob.nav_search.context.queryText = 'му';
 						onInputSearchHandler();
 						setTimeout(() => {
@@ -2156,6 +2324,11 @@ const uiShopAppVibe = () => {
 					toggleMobNav,
 					toggleMobSearch,
 					onInputSearchHandler,
+					viewModalAccount,
+					closeModalAccount,
+					checkEmailExists,
+					doLogin,
+					doRegister,
 					//
 					openSubMenu,
 					closeSubMenu,
