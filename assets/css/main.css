@@ -5851,6 +5851,13 @@ br {
     will-change: max-height;
     padding-top: 0;
     padding-bottom: 0;
+    font-family: 'Montserrat',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 145%;
+    /* or 20px */
+    color: #252525;
 }
 
 /* При открытии — применим внутренний отступ через JS, если надо */
