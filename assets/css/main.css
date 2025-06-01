@@ -6599,6 +6599,11 @@ label.filter-item input[type='radio']:checked {
     color: #ffffff;
 }
 
+.widgetMenuHeading a{
+    text-decoration: none;
+    outline: none;
+}
+
 .widgetMenuHeading .widgetMenuHeadingWrapper {
     display: flex;
     align-items: center;
