@@ -343,6 +343,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                     <?php endif; ?>
                                 </div>
                             </div>
+                            <?php if (have_rows('product_colors')): ?>
                             <div class="detailCardHeadingSeparate">
                                 <div class="detailCardInfoHeadingColor">
                                     <?php if (have_rows('product_colors')): ?>
@@ -373,6 +374,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                     <?php endif; ?>
                                 </div>
                             </div>
+                            <?  endif; ?>
                             <div class="detailCardInfoHeadingAtr" style="">
                                 <div class="detailCardInfoHeadingSizes">
                                     <?php
@@ -433,10 +435,8 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                                 </svg>
                                             </span>
                                         </button>
-                                        <div class="footerMainMob__content">
-                                            <ul>
-                                                <li><a href="#">....</a></li>
-                                            </ul>
+                                        <div class="footerMainMob__content" style="max-height: 0px;margin-bottom: 20px;padding: 0;color: #444;">
+                                      <?php $cmps_care    = get_field( 'cmps_care', $product->get_id() ); echo wp_kses_post($cmps_care); ?>
                                         </div>
                                     </div>
 
@@ -454,10 +454,8 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                                 </svg>
                                             </span>
                                         </button>
-                                        <div class="footerMainMob__content">
-                                            <ul>
-                                                <li><a href="#">...</a></li>
-                                            </ul>
+                                        <div class="footerMainMob__content" style="max-height: 0px;margin-bottom: 20px;padding: 0;color: #444;">
+                                            <?php $delivery_pay = get_field( 'delivery_pay', $product->get_id()); echo wp_kses_post($delivery_pay); ?>
                                         </div>
                                     </div>
                                 </div>
