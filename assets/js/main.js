@@ -959,7 +959,7 @@ const uiShopAppVibe = () => {
                 };
 
                 const addToWhtListMob = (itemCard) => {
-                    console.log('test');
+                    console.log('test mob');
                     showAddFavoriteNotification(itemCard);
                 };
 
@@ -1523,8 +1523,18 @@ const uiShopAppVibe = () => {
                         const addToWhtListMob = (itemCard) => {
                             console.log('addToWhtListMob', itemCard);
                             showAddFavoriteNotification(itemCard);
+                            appFavoriteBtn.value.status.active = !appFavoriteBtn.value.status.active;
                             // navigation.reload();
                         };
+
+                        // Vue.watch(getFavorites(), () => {
+                        //     if (getFavorites().includes(productId)) {
+                        //         appFavoriteBtn.value.status.active = true;
+                        //     } else {
+                        //         appFavoriteBtn.value.status.active = false;
+                        //     }
+                        // })
+
 
                         Vue.onMounted(() => {
                             // console.log("Fav btn", favBtn);
@@ -2587,23 +2597,22 @@ const uiShopAppVibe = () => {
                 // const getSelectedWhtLst = (productId) => Vue.computed(() => !(getFavorites().includes(productId))).value;
                 // const getSelectedWhtLst = (productId) => Vue.computed(() => window.states.headMainNav.get).value;
                 // const getSelectedWhtLst = (productId) => Vue.computed(() => window.states.headMainNav.getSelectedWhtLst(productId).value).value;
-                const getSelectedWhtLst = (productId) =>
-                    Vue.computed(() => !getFavorites().includes(productId)).value;
+                const getSelectedWhtLst = (productId) => Vue.computed(() => !getFavorites().includes(productId)).value;
 
                 const addToWhtListMob = (itemCard) => {
-                    console.log('test');
-
-                    appFavoriteBtn.value.status.active =
-                        !getFavorites().includes(productId);
+                    console.log('test prd', !getFavorites().includes(productId));
+                    appFavoriteBtn.value.status.active = !getFavorites().includes(productId);
+                    console.log(appFavoriteBtn.value.status.active);
                     window.states.headMainNav.addToWhtListMob({
                         ...itemCard,
                         ...{productId: productId},
                     });
                 };
 
+
                 Vue.onMounted(() => {
-                    appFavoriteBtn.value.status.active =
-                        !getFavorites().includes(productId);
+                    appFavoriteBtn.value.status.active = getFavorites().includes(productId);
+                    // console.log("init", appFavoriteBtn.value.status.active, !getFavorites().includes(productId))
                 });
 
                 return {

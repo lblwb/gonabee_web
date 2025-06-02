@@ -204,7 +204,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                             $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
                                         }
                                         ?>
-                                        <div class="previewSliderItemWhiteList" id="favBtnPrd"
+                                        <div class="previewSliderItemWhiteList"
                                             data-product-id="<?php echo esc_attr($product->get_id()); ?>"
                                             data-add-to-cart-nonce="<?php echo esc_attr(wp_create_nonce('add_to_cart_nonce')); ?>"
                                             data-nonce="<?php echo esc_attr(wp_create_nonce('toggle_favorite_nonce')); ?>"
@@ -212,23 +212,26 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                             data-default-color=""
                                             data-default-size="L"
                                             @click="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
-
-
                                             <div class="whiteListBtn" style="background: #FFFFFF;">
-                                                <div class="whiteListBtnIcon"
-                                                    v-if="getSelectedWhtLst(<?= esc_attr($product->get_id()); ?>)">
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M7.99839 3.01902C9.56439 1.61333 11.9844 1.66 13.4928 3.17157C15.0013 4.68315 15.0531 7.09133 13.6501 8.662L7.99765 14.3233L2.34531 8.662C0.94242 7.09133 0.99486 4.67934 2.50263 3.17157C4.0121 1.6621 6.42785 1.61125 7.99839 3.01902ZM12.5491 4.1134C11.5497 3.11196 9.93612 3.07134 8.88905 4.01125L7.99899 4.81016L7.10845 4.01187C6.05837 3.07065 4.44776 3.11205 3.44543 4.11438C2.45227 5.10754 2.40241 6.6982 3.31767 7.7488L7.99765 12.4362L12.6778 7.7488C13.5934 6.6978 13.5437 5.11017 12.5491 4.1134Z"
-                                                            fill="#1F1F1F" />
-                                                    </svg>
-                                                </div>
-                                                <div class="whiteListBtnIcon" v-else>
+                                                <div class="whiteListBtnIcon" v-if="appFavoriteBtn.status.active">
                                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
+                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <rect width="30" height="30" rx="15" fill="white" />
                                                         <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0022 11.6831 22.054 14.0913 20.6511 15.662L14.9986 21.3233L9.34628 15.662C7.9434 14.0913 7.99584 11.6793 9.5036 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019Z"
-                                                            fill="#CE1B19" />
+                                                              fill="#CE1B19" />
+                                                    </svg>
+                                                </div>
+                                                <div class="whiteListBtnIcon"  v-if="!appFavoriteBtn.status.active">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clip-path="url(#clip0_1347_18)">
+                                                            <path d="M30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15Z" fill="white"/>
+                                                            <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0023 11.6831 22.0541 14.0913 20.6511 15.662L14.9986 21.3233L9.34629 15.662C7.9434 14.0913 7.99584 11.6793 9.50361 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019ZM19.5501 11.1134C18.5507 10.112 16.9371 10.0713 15.89 11.0112L15 11.8102L14.1094 11.0119C13.0593 10.0706 11.4487 10.112 10.4464 11.1144C9.45325 12.1075 9.40339 13.6982 10.3186 14.7488L14.9986 19.4362L19.6788 14.7488C20.5944 13.6978 20.5447 12.1102 19.5501 11.1134Z" fill="#1F1F1F"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_1347_18">
+                                                                <rect width="30" height="30" fill="white"/>
+                                                            </clipPath>
+                                                        </defs>
                                                     </svg>
                                                 </div>
                                             </div>
