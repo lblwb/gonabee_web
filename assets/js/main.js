@@ -2429,7 +2429,7 @@ const uiShopAppVibe = () => {
                     const newUrl = '?' + params.toString();
                     window.history.pushState({}, '', newUrl);
                     window.location.href = newUrl;
-                    fetchProductsWithFilters(params);
+                    // fetchProductsWithFilters(params);
                 };
 
                 const applyFilters = () => {
@@ -2443,13 +2443,12 @@ const uiShopAppVibe = () => {
                         params.set('max_price', maxPrice.value);
                     if (selectedSize.value) params.set('size', selectedSize.value);
                     if (selectedColors.value.length)
-                        params.set('color', selectedColors.value.join(','));
+                        params.set('color_ex', selectedColors.value.join(','));
                     if (selectedCollections.value.length)
                         params.set('collection', selectedCollections.value.join(','));
                     if (selectedOccupations.value.length)
                         params.set('occupation', selectedOccupations.value.join(','));
-                    if (selectedSortBy.value.length)
-                        params.set('sortBy', selectedSortBy.value);
+                    if (selectedSortBy.value && selectedSortBy.value.length) params.set('sortBy', selectedSortBy.value);
                     if (onSale.value) params.set('on_sale', '1');
                     if (newCollection.value) params.set('is_new', '1');
                     if (trending.value) params.set('is_trending', '1');
@@ -2481,8 +2480,8 @@ const uiShopAppVibe = () => {
                     maxPrice.value =
                         parseFloat(params.get('max_price')) || window.filterData.maxPrice;
                     selectedSize.value = params.get('size') || '';
-                    selectedColors.value = params.get('color')
-                        ? params.get('color').split(',')
+                    selectedColors.value = params.get('color_ex')
+                        ? params.get('color_ex').split(',')
                         : [];
                     selectedCollections.value = params.get('collection')
                         ? params.get('collection').split(',')
@@ -3305,8 +3304,8 @@ const uiShopAppVibe = () => {
                     this.maxPrice =
                         parseFloat(params.get('max_price')) || window.filterData.maxPrice;
                     this.selectedSize = params.get('size') || '';
-                    this.selectedColors = params.get('color')
-                        ? params.get('color').split(',')
+                    this.selectedColors = params.get('color_ex')
+                        ? params.get('color_ex').split(',')
                         : [];
                     this.selectedCollections = params.get('collection')
                         ? params.get('collection').split(',')
@@ -3353,7 +3352,7 @@ const uiShopAppVibe = () => {
                         if (this.maxPrice < window.filterData.maxPrice)
                             params.set('max_price', this.maxPrice);
                         if (this.selectedSize) params.set('size', this.selectedSize);
-                        if (this.selectedColors.length) params.set('color', this.selectedColors.join(','));
+                        if (this.selectedColors.length) params.set('color_ex', this.selectedColors.join(','));
                         if (this.selectedCollections.length)
                             params.set('collection', this.selectedCollections.join(','));
                         if (this.selectedOccupations.length)

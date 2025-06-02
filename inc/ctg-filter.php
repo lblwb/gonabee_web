@@ -351,8 +351,8 @@ function custom_woocommerce_filter_query($query)
         }
 
         // Фильтр по цвету
-        if (isset($_GET['color']) && !empty($_GET['color'])) {
-            $colors = explode(',', sanitize_text_field($_GET['color']));
+        if (isset($_GET['color_ex']) && !empty($_GET['color_ex'])) {
+            $colors = explode(',', sanitize_text_field($_GET['colors']));
             $color_query = [
                 'relation' => 'OR', // Any of the specified colors
             ];
