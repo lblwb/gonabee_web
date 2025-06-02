@@ -180,8 +180,8 @@ function woocommerce_mob_filter_shortcode()
                     ) {
                         $slug = sanitize_title($color['color_slug']);
 
-                        // Если такой slug ещё не добавлен
-                        if (!isset($colors[$slug])) {
+                        // Пропускаем, если slug содержит %-кодировку
+                        if (!str_contains($slug, '%') && !isset($colors[$slug])) {
                             $colors[$slug] = [
                                 'slug' => $slug,
                                 'name' => $color['color_name'] ?? ucfirst($slug),
@@ -374,7 +374,7 @@ function custom_woocommerce_filter_query($query)
         }
 
 
-        print_r($query->get('post__in'), true);
+//        print_r($query->get('post__in'), true);
 
         // Строгая фильтрация по occupation
         if (isset($_GET['occupation'])) {

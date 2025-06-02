@@ -3353,8 +3353,7 @@ const uiShopAppVibe = () => {
                         if (this.maxPrice < window.filterData.maxPrice)
                             params.set('max_price', this.maxPrice);
                         if (this.selectedSize) params.set('size', this.selectedSize);
-                        if (this.selectedColors.length)
-                            params.set('color', this.selectedColors.join(','));
+                        if (this.selectedColors.length) params.set('color', this.selectedColors.join(','));
                         if (this.selectedCollections.length)
                             params.set('collection', this.selectedCollections.join(','));
                         if (this.selectedOccupations.length)
