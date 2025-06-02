@@ -2194,10 +2194,11 @@ a.shopBgBtn:hover {
 
 .shopCatalogBodyWrapper {
     display: flex;
-    /* flex-flow: row; */
     gap: 40px;
     margin-bottom: 120px;
     flex-flow: row;
+    max-width: 100%; /* Ограничиваем ширину контейнера */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
 }
 
 @media screen and (max-width: 768px) {
@@ -2217,8 +2218,7 @@ a.shopBgBtn:hover {
 }
 
 .shopCatalogSidebar {
-    flex: auto;
-    width: 100%;
+    flex: 0 0 21.8vw; /* Фиксированная ширина, без auto */
     max-width: 21.8vw;
     min-width: 21.8vw;
 }
@@ -2289,25 +2289,34 @@ a.shopBgBtn:hover {
     }
 }
 
+.shopCollection{
+    flex: 1; /* Занимает оставшееся пространство */
+    max-width: calc(100% - 21.8vw - 40px); /* Учитываем ширину sidebar и gap */
+}
+
 .shopCatalogCollection {
     display: flex;
     flex-flow: row wrap;
     gap: 12px;
-    flex: auto;
     width: 100%;
+    margin-bottom: 5vh;
+    box-sizing: border-box; /* Учитываем padding и border */
 }
 
 .previewSliderItem {
     width: calc((100% / 3) - 10px);
+    flex-shrink: 0; /* Предотвращаем сжатие карточек */
 }
 
 .shopCatalogCollection .previewSliderItem {
     width: calc((100% / 4) - 10px);
+    flex-shrink: 0; /* Предотвращаем сжатие карточек */
 }
 
 @media screen and (max-width: 560px) {
     .shopCatalogCollection .previewSliderItem {
         width: calc((100% / 2) - 10px);
+        flex-shrink: 0; /* Предотвращаем сжатие карточек */
     }
 
     .shopCatalogCollection {

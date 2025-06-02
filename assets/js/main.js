@@ -132,6 +132,7 @@ const subGalleryProductCard = async () => {
                     el: paginationContainer,
                     clickable: true,
                     renderBullet: function (index, className) {
+                        if (index >= 3) return '';  // после третьего булета ничего не рендерим
                         return `<span class="${className} bullet"></span>`;
                     },
                 },
