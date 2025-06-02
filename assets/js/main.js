@@ -3187,13 +3187,15 @@ const uiShopAppVibe = () => {
                 );
 
                 Vue.watch(currentHref, (newHref) => {
-                    const header = document.querySelector('.headerMain')
-                    if (!header) return
+                    if(window.innerWidth < 780){
+                        const header = document.querySelector('.headerMain')
+                        if (!header) return
 
-                    if (newHref.includes('/checkout/')) {
-                        header.style.visibility = 'hidden'
-                    } else {
-                        header.style.visibility = 'visible'
+                        if (newHref.includes('/checkout/')) {
+                            header.style.visibility = 'hidden'
+                        } else {
+                            header.style.visibility = 'visible'
+                        }
                     }
                 }, { immediate: true })
 

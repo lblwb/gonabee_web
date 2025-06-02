@@ -764,10 +764,10 @@ a.shopBgBtn:hover {
 .bodyListItemProductInfoCardImage {
     height: 100%;
     width: 100%;
-    max-width: 14vw;
-    max-height: 28vw;
-    min-width: 14vw;
-    min-height: 28vh;
+    max-width: 12vw;
+    max-height: 34vw;
+    min-width: 12vw;
+    min-height: 34vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
