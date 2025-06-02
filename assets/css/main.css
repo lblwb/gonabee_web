@@ -2306,8 +2306,9 @@ a.shopBgBtn:hover {
 }
 
 .previewSliderItem {
-    width: calc((100% / 3) - 10px);
+    width: calc((100% / 4) - 10px);
     flex-shrink: 0; /* Предотвращаем сжатие карточек */
+    box-sizing: border-box;
 }
 
 .shopCatalogCollection .previewSliderItem {
@@ -4095,6 +4096,7 @@ li.quadmenu-item
 
 .pageWhlsSide {
     max-width: 31vh;
+    min-width: 31vh;
     width: 100%;
 }
 
