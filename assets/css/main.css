@@ -3839,6 +3839,50 @@ li.quadmenu-item
     /*}*/
 }
 
+/* navbar - search */
+
+.modalFullSearch{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #222222; z-index: 10010
+}
+
+.modalFullSearch .modalFullSearchWrapper{
+
+}
+
+.modalFullSearch .modalFullSearchTop{}
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox{
+    padding: 30px; border-bottom: solid 1px #F9F9F920
+}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox .modalFullSearchTopInputBoxWrapper{
+    display: flex; gap: 14px;
+}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox .modalFullSearchTopInputBoxIcon{
+    display: flex;
+    align-items: center;
+}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox  .modalFullSearchTopInput{}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox  .modalFullSearchTopInput input{
+    width: 100%; height: 100%; background: transparent; border: none;
+    font-family: 'Sofia Sans',sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    /* identical to box height, or 20px */
+    font-feature-settings: 'ss01' on;
+    color: #FFFFFF;
+    outline: none;
+}
+
 /* navbar - auth */
 .modalAuth {
     position: fixed;

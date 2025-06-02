@@ -1742,7 +1742,25 @@ const uiShopAppVibe = () => {
                                     email_checkbox: true,
                                 }
                             }
-                        }
+                        },
+                        nav_search: {
+                            show: false,
+                            context: {
+                                queryText: '',
+                            },
+                            cat: {
+                                count: 1,
+                                result: {
+                                    list: [],
+                                },
+                            },
+                            products: {
+                                count: 0,
+                                result: {
+                                    list: [],
+                                },
+                            },
+                        },
                     },
                     mob: {
                         nav_menu: {
@@ -1766,13 +1784,13 @@ const uiShopAppVibe = () => {
                             },
                             show: false,
                             cat: {
-                                count: 1,
+                                count: 0,
                                 result: {
                                     list: [],
                                 },
                             },
                             products: {
-                                count: 10,
+                                count: 0,
                                 result: {
                                     list: [],
                                 },
@@ -2144,6 +2162,7 @@ const uiShopAppVibe = () => {
                 //Full Search
 
                 const toggleSearchFull = () => {
+                    appMainNav.value.navbar.nav_search.show = !appMainNav.value.navbar.nav_search.show;
                 }
 
                 //Watch
