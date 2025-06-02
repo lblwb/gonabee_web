@@ -688,6 +688,7 @@ function make_product_category_title_clickable($title, $instance, $id_base) {
 
 require_once(__DIR__ . "/inc/favorites-shc.php");
 require_once(__DIR__ . "/inc/add-to-cart.php");
+require_once(__DIR__ . "/inc/checkout-ipc.php");
 // HOOK Account Edit
 require_once(__DIR__ . "/inc/account-edit-hk.php");
 // HOOK Search

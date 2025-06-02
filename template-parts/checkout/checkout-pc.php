@@ -75,83 +75,6 @@
                             <h1>Способ доставки</h1>
                         </div>
                         <div class="shipping-methods-grid">
-
-
-                            <?php
-                            function get_pickup_location_address($ship_method)
-                            {
-                                try {
-                                    if (!is_object($ship_method)) {
-                                        throw new Exception(__('Метод доставки недоступен.', 'your-textdomain'));
-                                    }
-
-                                    $reflection = new ReflectionClass($ship_method);
-
-                                    if (!$reflection->hasProperty('pickup_locations')) {
-                                        throw new Exception(__('Поле pickup_locations не найдено.', 'your-textdomain'));
-                                    }
-
-                                    $property = $reflection->getProperty('pickup_locations');
-                                    $property->setAccessible(true);
-
-                                    $pickup_locations = $property->getValue($ship_method);
-
-                                    if (!is_array($pickup_locations) || empty($pickup_locations)) {
-                                        throw new Exception(__('Нет доступных адресов самовывоза.', 'your-textdomain'));
-                                    }
-
-                                    $location = $pickup_locations[0]; // Возьмём первую точку
-                                    $address = isset($location['address']) ? $location['address'] : [];
-
-                                    $address_1 = trim($address['address_1'] ?? '');
-                                    $details = trim($location['details'] ?? '');
-
-                                    if (empty($address_1)) {
-                                        throw new Exception(__('Адрес не указан.', 'your-textdomain'));
-                                    }
-
-                                    // Привести адрес к аккуратному виду
-                                    $address_1 = preg_replace('/\s+/', ' ', $address_1);
-
-                                    // Попытка разделить на улицу и офис
-                                    if (preg_match('/^(.*?),\s*(офис\s*\d+\.?)/iu', $address_1, $matches)) {
-                                        $street = trim($matches[1]);
-                                        $office = trim($matches[2]);
-                                        $full = sprintf(
-                                        /* translators: 1: street, 2: office, 3: details */
-                                            __('По адресу: %1$s, %2$s %3$s', 'your-textdomain'),
-                                            $street,
-                                            $office,
-                                            $details
-                                        );
-                                    } else {
-                                        // fallback
-                                        $full = sprintf(
-                                        /* translators: 1: address, 2: details */
-                                            __('По адресу: %1$s %2$s', 'your-textdomain'),
-                                            $address_1,
-                                            $details
-                                        );
-                                    }
-
-
-                                    // Выводим адрес + info
-                                    $html = '<div class="pickup-location">';
-                                    $html .= esc_html($full);
-                                    $html .= '<div style="margin-top: 6px; color: #1F1F1F;">' . esc_html__('Сегодня до 20:00, бесплатно', 'your-textdomain') . '</div>';
-                                    $html .= '</div>';
-
-                                    return wp_kses_post($html);
-
-//                                    return esc_html($full) . '<div style="margin-top: 6px; color: #1F1F1F;">Сегодня до 20:00, бесплатно<div/>';
-
-                                } catch (Exception $e) {
-//                                    return esc_html__('Ошибка: ', 'your-textdomain') . esc_html($e->getMessage());
-                                    return "";
-                                }
-                            }
-
-                            ?>
                             <?php foreach ($shipping_methods as $ship_method_id => $ship_method) : ?>
                                 <?php if ($ship_method->enabled == 'yes' && !empty($ship_method->get_title())) : ?>
                                     <div class="shipMethodItem"
@@ -322,7 +245,7 @@
                                                     <?php if ($gateway_id == 'cod') { ?>
                                                         <strong>В магазине</strong>
                                                     <?php } else if ($gateway_id == 'ygo_card') { ?>
-                                                        Картой на сайте
+                                                    <strong>Картой на сайте</strong>
                                                     <?php } else if ($gateway_id == 'ygo_cash') { ?>
                                                         <strong>Оплата после примерки</strong>
                                                     <?php } else { ?>
