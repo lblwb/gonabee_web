@@ -2294,6 +2294,8 @@ a.shopBgBtn:hover {
     max-width: calc(100% - 21.8vw - 40px); /* Учитываем ширину sidebar и gap */
 }
 
+
+
 .shopCatalogCollection {
     display: flex;
     flex-flow: row wrap;
@@ -2314,6 +2316,10 @@ a.shopBgBtn:hover {
 }
 
 @media screen and (max-width: 560px) {
+    .shopCollection{
+        flex: unset!important;
+        max-width: unset!important;
+    }
     .shopCatalogCollection .previewSliderItem {
         width: calc((100% / 2) - 10px);
         flex-shrink: 0; /* Предотвращаем сжатие карточек */
