@@ -165,7 +165,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                             <div class="mainMobTopWhtAdd">
                                                 <a @click="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
                                                     <div class="mainMobTopWhtAddBtn"
-                                                        v-if="appFavoriteBtn !== null && appFavoriteBtn.status.active">
+                                                        v-if="appFavoriteBtn !== null && !appFavoriteBtn.status.active">
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <rect width="40" height="40" rx="20" fill="white" />
@@ -213,25 +213,30 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                             data-default-size="L"
                                             @click="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
                                             <div class="whiteListBtn" style="background: #FFFFFF;">
-                                                <div class="whiteListBtnIcon" v-if="appFavoriteBtn.status.active">
+                                                <div class="whiteListBtnIcon" v-if="appFavoriteBtn !== null && !appFavoriteBtn.status.active">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clip-path="url(#clip0_1365_42)">
+                                                            <mask id="mask0_1365_42" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+                                                                <path d="M30 0H0V30H30V0Z" fill="white"/>
+                                                            </mask>
+                                                            <g mask="url(#mask0_1365_42)">
+                                                                <path d="M30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15Z" fill="white"/>
+                                                                <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0023 11.6831 22.0541 14.0913 20.6511 15.662L14.9986 21.3233L9.34629 15.662C7.9434 14.0913 7.99584 11.6793 9.50361 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019ZM19.5501 11.1134C18.5507 10.112 16.9371 10.0713 15.89 11.0112L15 11.8102L14.1094 11.0119C13.0593 10.0706 11.4487 10.112 10.4464 11.1144C9.45325 12.1075 9.40339 13.6982 10.3186 14.7488L14.9986 19.4362L19.6788 14.7488C20.5944 13.6978 20.5447 12.1102 19.5501 11.1134Z" fill="#1F1F1F"/>
+                                                            </g>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_1365_42">
+                                                                <rect width="30" height="30" fill="white"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                                <div class="whiteListBtnIcon"  v-else>
                                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
                                                         <rect width="30" height="30" rx="15" fill="white" />
                                                         <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0022 11.6831 22.054 14.0913 20.6511 15.662L14.9986 21.3233L9.34628 15.662C7.9434 14.0913 7.99584 11.6793 9.5036 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019Z"
                                                               fill="#CE1B19" />
-                                                    </svg>
-                                                </div>
-                                                <div class="whiteListBtnIcon"  v-if="!appFavoriteBtn.status.active">
-                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_1347_18)">
-                                                            <path d="M30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15Z" fill="white"/>
-                                                            <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0023 11.6831 22.0541 14.0913 20.6511 15.662L14.9986 21.3233L9.34629 15.662C7.9434 14.0913 7.99584 11.6793 9.50361 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019ZM19.5501 11.1134C18.5507 10.112 16.9371 10.0713 15.89 11.0112L15 11.8102L14.1094 11.0119C13.0593 10.0706 11.4487 10.112 10.4464 11.1144C9.45325 12.1075 9.40339 13.6982 10.3186 14.7488L14.9986 19.4362L19.6788 14.7488C20.5944 13.6978 20.5447 12.1102 19.5501 11.1134Z" fill="#1F1F1F"/>
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_1347_18">
-                                                                <rect width="30" height="30" fill="white"/>
-                                                            </clipPath>
-                                                        </defs>
                                                     </svg>
                                                 </div>
                                             </div>
