@@ -146,15 +146,15 @@ if ($loop->have_posts()) : ?>
                                         <?php if (have_rows('product_colors')): ?>
                                             <div class="itemBlockHeadingSelColor">
                                                 <?php while (have_rows('product_colors')): the_row();
-                                                    $color_name = get_sub_field('color_name');
-                                                    $color_code = get_sub_field('color_code');
-                                                    $color_slug = get_sub_field('color_slug');
-                                                ?>
+                                                    $color_rel = get_sub_field('color_rel');        // массив или null
+                                                    $color_post = is_array($color_rel) ? $color_rel[0] : null;
+                                                    $color_id   = $color_post->ID;
+                                                    $color_name = get_the_title( $color_id );
+                                                    $color_code = get_field( 'color_code',  $color_id );
+                                                    $color_slug = get_field( 'color_slug',  $color_id );
+                                                    ?>
                                                     <div class="colorBox">
-                                                        <div class="color-circle"
-                                                            title="<?php echo esc_attr($color_name); ?>"
-                                                            data-color-id="<?php echo esc_attr($color_slug); ?>"
-                                                            style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
+                                                        <div class="color-circle" title="<?php echo esc_attr($color_name); ?>" data-color-id="<?php echo esc_attr($color_slug); ?>" style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
                                                     </div>
                                                 <?php endwhile; ?>
                                             </div>
