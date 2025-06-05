@@ -6603,6 +6603,7 @@ label.filter-item input[type='radio']:checked {
     border-bottom: solid 1px #e7e7e7;
 }
 
+
 /*.noUi-handle-upper{*/
 /*    right: 0px!important;*/
 /*    left: -15px!important;*/
@@ -6828,6 +6829,8 @@ br {
     #appMainFilter .filter-section {
         padding-bottom: 0 !important;
         padding-top: 16px;
+        overflow: auto;
+        max-height: 90vh;
     }
 }
 

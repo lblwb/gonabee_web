@@ -44,7 +44,7 @@ remove_filter('the_content', 'wpautop');
                                                                 style="background: #FFFFFF; border-radius: 50px; max-width: 30px; max-height: 30px; width: 100%; height: 100%;"
                                                                 @click.stop="addToWhtListMob({imageUrl:'<?php echo $main_image_url ?>'})">
                                                                 <div class="infoCardTopWhlBtnIcon"
-                                                                    v-if="getSelectedWhtLst(<?= esc_attr($product->get_id()); ?>)">
+                                                                    v-if="!getSelectedWhtLst(<?= esc_attr($product->get_id()); ?>)">
                                                                     <svg width="30" height="30" viewBox="0 0 30 30"
                                                                         fill="none"
                                                                         xmlns="http://www.w3.org/2000/svg">

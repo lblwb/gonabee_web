@@ -239,7 +239,11 @@ const bannerProductSlider = async () => {
         pagination: {
             el: paginationContainer,
             clickable: true,
+            // renderBullet: function (index, className) {
+            //     return `<span class="${className} bullet"></span>`;
+            // },
             renderBullet: function (index, className) {
+                if (index >= 3) return '';  // после третьего булета ничего не рендерим
                 return `<span class="${className} bullet"></span>`;
             },
         },
@@ -331,7 +335,11 @@ const mobMainProductsSlider = async () => {
             pagination: {
                 el: paginationContainer,
                 clickable: true,
+                // renderBullet: function (index, className) {
+                //     return `<span class="${className} bullet"></span>`;
+                // },
                 renderBullet: function (index, className) {
+                    if (index >= 3) return '';  // после третьего булета ничего не рендерим
                     return `<span class="${className} bullet"></span>`;
                 },
             },
@@ -463,6 +471,7 @@ const ideaProductsSlider = async () => {
                 ),
                 clickable: true,
                 renderBullet: function (index, className) {
+                    if (index >= 3) return '';  // после третьего булета ничего не рендерим
                     return `<span class="${className} bullet"></span>`;
                 },
             },
@@ -3301,6 +3310,7 @@ const uiShopAppVibe = () => {
                             'collections',
                             'occupation',
                             'toggles',
+                            'vwMatch',
                         ],
                         selectedCategories: [],
                         promotionActive: false,
@@ -3308,6 +3318,7 @@ const uiShopAppVibe = () => {
                         maxPrice: window.filterData.maxPrice,
                         selectedSize: '',
                         selectedColors: [],
+                        selectedVwMatch: [],
                         selectedCollections: [],
                         selectedOccupations: [],
                         selectedSubcategory: null,
@@ -3343,9 +3354,11 @@ const uiShopAppVibe = () => {
                     this.selectedOccupations = params.get('occupation')
                         ? params.get('occupation').split(',')
                         : [];
+                    this.selectedVwMatch = params.get('vwMatch') ? params.get('vwMatch').split(',') : [];
                     this.onSale = params.get('on_sale') === '1';
                     this.newCollection = params.get('new') === '1';
                     this.trending = params.get('trending') === '1';
+                    //
 
                     setTimeout(() => {
                         // Initialize price slider
@@ -3365,6 +3378,7 @@ const uiShopAppVibe = () => {
                     }, 200);
 
                     this.filterData = window.filterData;
+                    // console.log(this.filterData);
                 },
                 methods: {
                     toggleSection(section) {
@@ -3383,10 +3397,11 @@ const uiShopAppVibe = () => {
                             params.set('max_price', this.maxPrice);
                         if (this.selectedSize) params.set('size', this.selectedSize);
                         if (this.selectedColors.length) params.set('color_ex', this.selectedColors.join(','));
-                        if (this.selectedCollections.length)
-                            params.set('collection', this.selectedCollections.join(','));
+                        if (this.selectedCollections.length) params.set('collection', this.selectedCollections.join(','));
                         if (this.selectedOccupations.length)
                             params.set('occupation', this.selectedOccupations.join(','));
+                        if (this.selectedVwMatch.length)
+                            params.set('vwMatch', this.selectedVwMatch.join(','));
                         if (this.onSale) params.set('on_sale', '1');
                         if (this.newCollection) params.set('new', '1');
                         if (this.trending) params.set('trending', '1');

@@ -269,5 +269,6 @@
         maxPrice: <?php echo $args['max_price']; ?>,
         sizes: <?php echo json_encode($args['sizes']); ?>,
         sortBy: <?php echo json_encode($args['sortBy']) ?>,
+        vwMatch: <?php echo json_encode($args['vwMatch']) ?>,
     };
 </script>

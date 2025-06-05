@@ -92,6 +92,35 @@ function woocommerce_filter_shortcode()
 
     $occupations = ['Для йоги', 'Для активного спорта', 'Для бега', 'Для похода в зал'];
 
+    $vwMatch = [
+        [ 'name' => 'Футболки', 'slug' => 'tshirts', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'summer' ],
+        [ 'name' => 'Майки', 'slug' => 'tank-tops', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'summer' ],
+        [ 'name' => 'Лонгсливы', 'slug' => 'longsleeves', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Худи', 'slug' => 'hoodies', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Свитшоты', 'slug' => 'sweatshirts', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Толстовки', 'slug' => 'sweaters', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Шорты', 'slug' => 'shorts', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'summer' ],
+        [ 'name' => 'Спортивные штаны', 'slug' => 'joggers', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Леггинсы', 'slug' => 'leggings', 'isPopular' => true, 'gender' => 'women', 'season' => 'allseason' ],
+        [ 'name' => 'Брюки', 'slug' => 'pants', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Ветровки', 'slug' => 'windbreakers', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Спортивные куртки', 'slug' => 'sports-jackets', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Термобелье', 'slug' => 'thermal-underwear', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Компрессионная одежда', 'slug' => 'compression-wear', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Футболки-поло', 'slug' => 'polo-shirts', 'isPopular' => false, 'gender' => 'men', 'season' => 'summer' ],
+        [ 'name' => 'Куртки', 'slug' => 'jackets', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Безрукавки', 'slug' => 'vests', 'isPopular' => false, 'gender' => 'men', 'season' => 'summer' ],
+        [ 'name' => 'Купальники', 'slug' => 'swimwear', 'isPopular' => true, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Купальные шорты', 'slug' => 'swim-shorts', 'isPopular' => true, 'gender' => 'men', 'season' => 'summer' ],
+        [ 'name' => 'Спортивные платья', 'slug' => 'sports-dresses', 'isPopular' => false, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Юбки', 'slug' => 'skirts', 'isPopular' => false, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Топы', 'slug' => 'tops', 'isPopular' => true, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Костюмы спортивные', 'slug' => 'tracksuits', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Комбинезоны', 'slug' => 'jumpsuits', 'isPopular' => false, 'gender' => 'women', 'season' => 'allseason' ],
+        [ 'name' => 'Анораки', 'slug' => 'anoraks', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Балмакаан', 'slug' => 'balmakan', 'isPopular' => false, 'gender' => 'men', 'season' => 'winter' ],
+    ];
+
     global $wpdb;
     $min_price = (float)$wpdb->get_var("SELECT MIN(CAST(meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} WHERE meta_key='_price' AND meta_value != ''");
     $max_price = (float)$wpdb->get_var("SELECT MAX(CAST(meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} WHERE meta_key='_price' AND meta_value != ''");
@@ -122,7 +151,8 @@ function woocommerce_filter_shortcode()
                 "name" => "По новизне",
                 "slug" => "date_desc"
             ]
-        ]
+        ],
+        'vwMatch' => $vwMatch,
     ));
 
 //    var_dump($sizes);
@@ -226,6 +256,36 @@ function woocommerce_mob_filter_shortcode()
     $min_price = (float)$wpdb->get_var("SELECT MIN(CAST(meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} WHERE meta_key='_price' AND meta_value != ''");
     $max_price = (float)$wpdb->get_var("SELECT MAX(CAST(meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} WHERE meta_key='_price' AND meta_value != ''");
 
+    $vwMatch = [
+        [ 'name' => 'Футболки', 'slug' => 'tshirts', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'summer' ],
+        [ 'name' => 'Майки', 'slug' => 'tank-tops', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'summer' ],
+        [ 'name' => 'Лонгсливы', 'slug' => 'longsleeves', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Худи', 'slug' => 'hoodies', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Свитшоты', 'slug' => 'sweatshirts', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Толстовки', 'slug' => 'sweaters', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Шорты', 'slug' => 'shorts', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'summer' ],
+        [ 'name' => 'Спортивные штаны', 'slug' => 'joggers', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Леггинсы', 'slug' => 'leggings', 'isPopular' => true, 'gender' => 'women', 'season' => 'allseason' ],
+        [ 'name' => 'Брюки', 'slug' => 'pants', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Ветровки', 'slug' => 'windbreakers', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Спортивные куртки', 'slug' => 'sports-jackets', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Термобелье', 'slug' => 'thermal-underwear', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Компрессионная одежда', 'slug' => 'compression-wear', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Футболки-поло', 'slug' => 'polo-shirts', 'isPopular' => false, 'gender' => 'men', 'season' => 'summer' ],
+        [ 'name' => 'Куртки', 'slug' => 'jackets', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'winter' ],
+        [ 'name' => 'Безрукавки', 'slug' => 'vests', 'isPopular' => false, 'gender' => 'men', 'season' => 'summer' ],
+        [ 'name' => 'Купальники', 'slug' => 'swimwear', 'isPopular' => true, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Купальные шорты', 'slug' => 'swim-shorts', 'isPopular' => true, 'gender' => 'men', 'season' => 'summer' ],
+        [ 'name' => 'Спортивные платья', 'slug' => 'sports-dresses', 'isPopular' => false, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Юбки', 'slug' => 'skirts', 'isPopular' => false, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Топы', 'slug' => 'tops', 'isPopular' => true, 'gender' => 'women', 'season' => 'summer' ],
+        [ 'name' => 'Костюмы спортивные', 'slug' => 'tracksuits', 'isPopular' => true, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Комбинезоны', 'slug' => 'jumpsuits', 'isPopular' => false, 'gender' => 'women', 'season' => 'allseason' ],
+        [ 'name' => 'Анораки', 'slug' => 'anoraks', 'isPopular' => false, 'gender' => 'unisex', 'season' => 'allseason' ],
+        [ 'name' => 'Балмакаан', 'slug' => 'balmakan', 'isPopular' => false, 'gender' => 'men', 'season' => 'winter' ],
+    ];
+
+
     ob_start();
     locate_template("template-parts/catalog/filter/ctg-filter-mb.php", true, null, array(
         'subcategories' => $subcategories,
@@ -240,7 +300,8 @@ function woocommerce_mob_filter_shortcode()
                 "name" => 'По популярности',
                 "slug" => 'popular'
             ]
-        ]
+        ],
+        'vwMatch' => $vwMatch,
     ));
 
 //    var_dump($sizes);
