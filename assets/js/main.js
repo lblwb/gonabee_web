@@ -3416,7 +3416,7 @@ const uiShopAppVibe = () => {
         const elAppPopularCat = document.querySelector('#popularCat');
         const appFilter = Vue.createApp({
             setup() {
-                const popularCatSel = Vue.ref('man');
+                const popularCatSel = Vue.ref('woman');
                 return {
                     popularCatSel
                 };

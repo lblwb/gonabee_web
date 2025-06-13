@@ -74,6 +74,7 @@ $filtered_categories = array_slice($filtered_categories, 0, 6);
 
 <!--                <input x-model="popularCatSel">-->
 
+
                 <div class="popularCatTabSel">
                     <?php foreach ($typeCat as $tc) : ?>
                         <div v-show="popularCatSel === '<?php echo $tc['cat_slug']; ?>'" class="popularCatTabSelList">
