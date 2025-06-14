@@ -2948,7 +2948,6 @@ const uiShopAppVibe = () => {
         if (!el) return console.warn('#appMbCheckout не найден!');
 
 
-
         window.states.checkoutMbView = Vue.createApp({
             setup() {
                 const currentHref = Vue.ref(window.location.href)
@@ -3205,7 +3204,7 @@ const uiShopAppVibe = () => {
                 );
 
                 Vue.watch(currentHref, (newHref) => {
-                    if(window.innerWidth < 780){
+                    if (window.innerWidth < 780) {
                         const header = document.querySelector('.headerMain')
                         if (!header) return
 
@@ -3215,7 +3214,7 @@ const uiShopAppVibe = () => {
                             header.style.visibility = 'visible'
                         }
                     }
-                }, { immediate: true })
+                }, {immediate: true})
 
                 Vue.onMounted(() => {
                     setupFormHandlers();
@@ -3424,6 +3423,86 @@ const uiShopAppVibe = () => {
         }).mount(elAppPopularCat);
     }
 
+    const footerSubscribeForm = () => {
+        const footerSubscribeForm = document.querySelector("#footerSubscribeForm");
+        const appFooterSubscriveForm = Vue.createApp({
+            setup() {
+                const subscribeFormStates = Vue.ref({
+                    fields: {
+                        email: ""
+                    }
+                });
+
+                const isEmailValid = Vue.computed(() => {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    const email = subscribeFormStates.value?.fields?.email || ''
+                    return emailPattern.test(email)
+                })
+
+
+                const getValid = () => {
+                    try {
+                        return !isEmailValid.value
+                    } catch (e) {
+                        return false
+                    }
+                }
+
+                const subscribeSubmitForm = () => {
+                    //TODO: [handle wp method]
+                    const subscriptionKey = 'isSubscribed';
+                    const isSubscribed = localStorage.getItem(subscriptionKey);
+                    if (isSubscribed) {
+                        // Пользователь уже подписан
+                        jQuery.notify(
+                            jQuery('.notifyAnchor'),
+                            'ℹ️ Вы уже подписаны на рассылку!',
+                            {
+                                style: 'cartStyleTwo',
+                                className: 'info',
+                                showAnimation: 'slideDown',
+                                showDuration: 300,
+                                hideAnimation: 'slideUp',
+                                hideDuration: 200,
+                                autoHide: true,
+                                autoHideDelay: 2000,
+                                gap: 0,
+                                position: 'bottom left',
+                                arrowShow: false,
+                            }
+                        );
+                        return;
+                    }
+
+                    jQuery.notify(
+                        jQuery('.notifyAnchor'),
+                        '🥳 Поздравляем! Вы успешно подписались на рассылку!',
+                        {
+                            style: 'cartStyleTwo',
+                            className: 'base',
+                            showAnimation: 'slideDown',
+                            showDuration: 300,
+                            hideAnimation: 'slideUp',
+                            hideDuration: 200,
+                            autoHide: true,
+                            autoHideDelay: 2000,
+                            gap: 0,
+                            position: 'bottom left',
+                            arrowShow: false,
+                        }
+                    );
+                    localStorage.setItem(subscriptionKey, 'true');
+                }
+
+                return {
+                    subscribeSubmitForm,
+                    subscribeFormStates,
+                    getValid,
+                };
+            }
+        }).mount(footerSubscribeForm);
+    }
+
     // const addFavorite
 
     // Запуск всех компонентов
@@ -3439,6 +3518,8 @@ const uiShopAppVibe = () => {
     checkoutMbView();
     favBtnPrd();
     ctgFilterPc();
+    //
+    footerSubscribeForm();
 };
 
 // const uiMenuVibe = () => {

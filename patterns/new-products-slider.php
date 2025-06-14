@@ -71,7 +71,7 @@ if ($loop->get_posts()) : ?>
                                                     );
 
                                                     foreach ($all_images as $attachment_id) :
-                                                        $image_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_thumbnail');
+                                                        $image_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_single');
                                                         $color_id = get_post_meta($attachment_id, '_color_id', true); // Например, мета-поле у картинки
                                                         if (!$color_id) $color_id = 'gray'; // fallback
                                                         $colors[$color_id] = true;
@@ -99,7 +99,7 @@ if ($loop->get_posts()) : ?>
                                         $main_thumb_url = "";
                                         $main_thumb_id = $product->get_image_id();
                                         if ($main_thumb_id) {
-                                            $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
+                                            $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'woocommerce_single');
                                         }
                                         ?>
                                         <div class="previewSliderItemWhiteList" id="favBtnPrd"

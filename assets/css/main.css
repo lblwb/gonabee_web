@@ -1435,6 +1435,8 @@ a.shopBgBtn:hover {
     background-position: center;
     flex: 1;
     position: relative;
+    text-decoration: none;
+    color: #0f0f0f;
 }
 
 @media screen and (max-width: 560px) {
@@ -5744,6 +5746,26 @@ br {
     opacity: 0.7;
     text-decoration: none;
 }
+
+/**/
+.footerMainNavBlockForm{}
+.footerMainNavBlockFormWrap{display: flex; flex-flow: row; gap: 10px}
+.footerMainNavBlockFormInput{flex: 1; flex-grow: 1; width: 100%;}
+.footerMainNavBlockFormInput input{border: solid 1px #eee; border-radius: 100px; padding: 20px; background: transparent; width: 100%; color: #fff;}
+.footerMainNavBlockFormBtn button{
+    min-width: 170px; height: 100%; background: #fff; border:none; border-radius: 100px; font-family: 'Montserrat',sans-serif;font-weight: 500;font-size: 14px;line-height: 125%;letter-spacing: 0%;text-align: center;
+    cursor: pointer;
+}
+
+.footerMainNavBlockFormBtn button.__Disable{
+    opacity: 0.7;
+}
+
+.footerMainNavBlockFormBtn button:hover,
+.footerMainNavBlockFormBtn button:focus{
+    background: #f0c325;
+}
+/**/
 
 .footerMainMob {
     display: none;

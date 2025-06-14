@@ -5,11 +5,20 @@
  * Categories: banner
  * @package WordPress
  */
+
+// Получаем объекты категорий по имени
+$cat_women = get_term_by('name', 'Женская одежда', 'product_cat');
+$cat_men = get_term_by('name', 'Мужская одежда', 'product_cat');
+
+// Получаем ссылки на архивы категорий
+$link_women = $cat_women ? get_term_link($cat_women) : '#';
+$link_men = $cat_men ? get_term_link($cat_men) : '#';
+
 ?>
 
 <div class="catalogGenBanner">
     <div class="catalogGenBannerWrapper">
-        <div class="catalogGenBannerBlock"
+        <a href="<?php echo esc_url($link_women); ?>" class="catalogGenBannerBlock"
              style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnGrl.png' ?>');">
             <div class="catalogGenBannerBottom">
                 <div class="bannerBottomBtn">
@@ -18,8 +27,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="catalogGenBannerBlock"
+        </a>
+        <a href="<?php echo esc_url($link_men); ?>" class="catalogGenBannerBlock"
              style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnMan.png' ?>');">
             <div class="catalogGenBannerBottom">
                 <div class="bannerBottomBtn">
@@ -28,6 +37,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
