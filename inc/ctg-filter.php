@@ -333,184 +333,208 @@ function add_color_filter_to_where($where)
 add_action('pre_get_posts', 'custom_woocommerce_filter_query');
 function custom_woocommerce_filter_query($query)
 {
-    if (!is_admin() && $query->is_main_query() && (is_shop() || is_product_category())) {
-        $meta_query = $query->get('meta_query') ?: [];
-        $tax_query = $query->get('tax_query') ?: [];
+    try {
+        if (!is_admin() && $query->is_main_query() && (is_shop() || is_product_category() || is_tax( 'prd_collection'))) {
+            $meta_query = $query->get('meta_query') ?: [];
+            $tax_query = $query->get('tax_query') ?: [];
 
-        // === TAX QUERIES ===
+            // === TAX QUERIES ===
 
-        // Фильтр по подкатегориям
-        if (!empty($_GET['subcategory'])) {
-            $raw_subcats = explode(',', $_GET['subcategory']);
-            $subcats = array_map('sanitize_text_field', $raw_subcats);
+            // Фильтр по подкатегориям
+            if (!empty($_GET['subcategory'])) {
+                $raw_subcats = explode(',', $_GET['subcategory']);
+                $subcats = array_map('sanitize_text_field', $raw_subcats);
 
-            if (!empty($subcats)) {
-                $tax_query[] = [
-                    'taxonomy' => 'product_cat',
-                    'field' => 'slug',
-                    'terms' => $subcats,
-                    'operator' => 'AND' // или 'IN', в зависимости от логики фильтра
-                ];
-            }
-        }
-
-        // Фильтр по коллекции
-        if (isset($_GET['collection'])) {
-            $tax_query[] = [
-                'taxonomy' => 'prd_collection',
-                'field' => 'slug',
-                'terms' => explode(',', sanitize_text_field($_GET['collection'])),
-                'operator' => 'AND'
-            ];
-        }
-
-        // === META QUERIES ===
-
-        // Цена
-        if (isset($_GET['min_price'])) {
-            $meta_query[] = [
-                'key' => '_price',
-                'value' => (float)$_GET['min_price'],
-                'compare' => '>=',
-                'type' => 'NUMERIC'
-            ];
-        }
-
-        if (isset($_GET['max_price'])) {
-            $meta_query[] = [
-                'key' => '_price',
-                'value' => (float)$_GET['max_price'],
-                'compare' => '<=',
-                'type' => 'NUMERIC'
-            ];
-        }
-
-        // Строгая проверка размера (одиночное значение — строгое совпадение)
-        if (isset($_GET['size'])) {
-            $raw_sizes = explode(',', sanitize_text_field($_GET['size']));
-            $sizes = [];
-
-            foreach ($raw_sizes as $size) {
-                $size = trim($size);
-                if (!empty($size)) {
-                    $sizes[] = sanitize_title($size); // добавляем префикс + нормализуем slug
-                }
-            }
-
-            if (!empty($sizes)) {
-                $tax_query[] = [
-                    'taxonomy' => 'pa_sizes', // это атрибут, важен префикс pa_
-                    'field' => 'slug',
-                    'terms' => $sizes,
-                    'operator' => 'AND', // означает: товар должен иметь ВСЕ указанные размеры
-                ];
-
-//                var_dump($tax_query);
-            }
-
-//            var_dump($sizes);
-        }
-
-        // Фильтр по цвету
-        if (isset($_GET['color_ex']) && !empty($_GET['color_ex'])) {
-            $colors = explode(',', sanitize_text_field($_GET['colors']));
-            $color_query = [
-                'relation' => 'OR', // Any of the specified colors
-            ];
-
-            foreach ($colors as $color) {
-                $color = trim(sanitize_title($color)); // Sanitize and normalize color slug
-                if (!empty($color)) {
-                    $color_query[] = [
-                        'key' => 'product_colors_%_color_slug',
-                        'value' => $color, // Use the actual color from the loop
-                        'compare' => '=',
+                if (!empty($subcats)) {
+                    $tax_query[] = [
+                        'taxonomy' => 'product_cat',
+                        'field' => 'slug',
+                        'terms' => $subcats,
+                        'operator' => 'AND' // или 'IN', в зависимости от логики фильтра
                     ];
                 }
             }
 
-            if (!empty($color_query['relation'])) {
-                $meta_query[] = $color_query; // Append color query to meta_query
+            // Фильтр по коллекции
+            if (isset($_GET['collection'])) {
+                $tax_query[] = [
+                    'taxonomy' => 'prd_collection',
+                    'field' => 'slug',
+                    'terms' => explode(',', sanitize_text_field($_GET['collection'])),
+                    'operator' => 'AND'
+                ];
             }
-        }
+
+            // === META QUERIES ===
+
+            // Цена
+            if (isset($_GET['min_price'])) {
+                $meta_query[] = [
+                    'key' => '_price',
+                    'value' => (float)$_GET['min_price'],
+                    'compare' => '>=',
+                    'type' => 'NUMERIC'
+                ];
+            }
+
+            if (isset($_GET['max_price'])) {
+                $meta_query[] = [
+                    'key' => '_price',
+                    'value' => (float)$_GET['max_price'],
+                    'compare' => '<=',
+                    'type' => 'NUMERIC'
+                ];
+            }
+
+            // Строгая проверка размера (одиночное значение — строгое совпадение)
+            if (isset($_GET['size'])) {
+                $raw_sizes = explode(',', sanitize_text_field($_GET['size']));
+                $sizes = [];
+
+                foreach ($raw_sizes as $size) {
+                    $size = trim($size);
+                    if (!empty($size)) {
+                        $sizes[] = sanitize_title($size); // добавляем префикс + нормализуем slug
+                    }
+                }
+
+                if (!empty($sizes)) {
+                    $tax_query[] = [
+                        'taxonomy' => 'pa_sizes', // это атрибут, важен префикс pa_
+                        'field' => 'slug',
+                        'terms' => $sizes,
+                        'operator' => 'AND', // означает: товар должен иметь ВСЕ указанные размеры
+                    ];
+
+//                var_dump($tax_query);
+                }
+
+//            var_dump($sizes);
+            }
+
+            // Фильтр по цвету
+            if (isset($_GET['color_ex']) && !empty($_GET['color_ex'])) {
+                $colors = explode(',', sanitize_text_field($_GET['colors']));
+                $color_query = [
+                    'relation' => 'OR', // Any of the specified colors
+                ];
+
+                foreach ($colors as $color) {
+                    $color = trim(sanitize_title($color)); // Sanitize and normalize color slug
+                    if (!empty($color)) {
+                        $color_query[] = [
+                            'key' => 'product_colors_%_color_slug',
+                            'value' => $color, // Use the actual color from the loop
+                            'compare' => '=',
+                        ];
+                    }
+                }
+
+                if (!empty($color_query['relation'])) {
+                    $meta_query[] = $color_query; // Append color query to meta_query
+                }
+            }
 
 
 //        print_r($query->get('post__in'), true);
 
-        // Строгая фильтрация по occupation
-        if (isset($_GET['occupation'])) {
-            $occupations = explode(',', sanitize_text_field($_GET['occupation']));
-            foreach ($occupations as $occupation) {
-                $meta_query[] = [
-                    'key' => 'occupation',
-                    'value' => '"' . $occupation . '"',
-                    'compare' => 'LIKE'
-                ];
+            // Строгая фильтрация по occupation
+            if (isset($_GET['occupation'])) {
+                $occupations = explode(',', sanitize_text_field($_GET['occupation']));
+                foreach ($occupations as $occupation) {
+                    $meta_query[] = [
+                        'key' => 'occupation',
+                        'value' => '"' . $occupation . '"',
+                        'compare' => 'LIKE'
+                    ];
+                }
             }
-        }
 
-        // Если на скидке — используем post__in
-        if (isset($_GET['on_sale']) && $_GET['on_sale'] === '1') {
-            $query->set('post__in', wc_get_product_ids_on_sale());
-        }
-
-        // === Строгая фильтрация по бейджам ===
-        $acf_badges = [
-            'is_trending',
-            'is_new',
-            'has_discount',
-            'is_limited',
-            'is_exclusive',
-            'fast_shipping',
-            'his_gift'
-        ];
-
-        foreach ($acf_badges as $badge_key) {
-            if (isset($_GET[$badge_key]) && $_GET[$badge_key] === '1') {
-                $meta_query[] = [
-                    'key' => $badge_key,
-                    'value' => '1',
-                    'compare' => '='
-                ];
+            // Если на скидке — используем post__in
+            if (isset($_GET['on_sale']) && $_GET['on_sale'] === '1') {
+                $query->set('post__in', wc_get_product_ids_on_sale());
             }
-        }
 
-        // SORT
-        //
+            // === Строгая фильтрация по бейджам ===
+            $acf_badges = [
+                'is_trending',
+                'is_new',
+                'has_discount',
+                'is_limited',
+                'is_exclusive',
+                'fast_shipping',
+                'his_gift'
+            ];
 
-        $orderby = 'date';
-        $order = 'DESC';
-
-        // Считываем sortBy из запроса
-        if (!empty($_GET['sort'])) {
-            switch ($_GET['sort']) {
-                case 'popular':
-                    $orderby = 'meta_value_num';
-                    $order = 'DESC';
-                    $meta_key = 'total_sales'; // WooCommerce сохраняет это поле
-                    break;
-
-                case 'price_asc':
-                    $orderby = 'meta_value_num';
-                    $order = 'ASC';
-                    $meta_key = '_price';
-                    break;
-
-                case 'price_desc':
-                    $orderby = 'meta_value_num';
-                    $order = 'DESC';
-                    $meta_key = '_price';
-                    break;
-
-                case 'date_desc':
-                    $orderby = 'date';
-                    $order = 'DESC';
-                    break;
+            foreach ($acf_badges as $badge_key) {
+                if (isset($_GET[$badge_key]) && $_GET[$badge_key] === '1') {
+                    $meta_query[] = [
+                        'key' => $badge_key,
+                        'value' => '1',
+                        'compare' => '='
+                    ];
+                }
             }
-        }
+
+            // SORT
+            //
+
+            $orderby = 'date';
+            $order = 'DESC';
+
+            // Считываем sortBy из запроса
+            if (!empty($_GET['sort'])) {
+                switch ($_GET['sort']) {
+                    case 'popular':
+                        $orderby = 'meta_value_num';
+                        $order = 'DESC';
+                        $meta_key = 'total_sales'; // WooCommerce сохраняет это поле
+                        break;
+
+                    case 'price_asc':
+                        $orderby = 'meta_value_num';
+                        $order = 'ASC';
+                        $meta_key = '_price';
+                        break;
+
+                    case 'price_desc':
+                        $orderby = 'meta_value_num';
+                        $order = 'DESC';
+                        $meta_key = '_price';
+                        break;
+
+                    case 'date_desc':
+                        $orderby = 'date';
+                        $order = 'DESC';
+                        break;
+                }
+            }
 
 //        var_dump($meta_query);
 
+
+            // Обновляем параметры
+            if ($tax_query) {
+                $query->set('tax_query', $tax_query);
+            }
+
+            if ($meta_query) {
+                $query->set('meta_query', $meta_query);
+            }
+
+            // применяем сортировку
+            $query->set('orderby', $orderby);
+            $query->set('order', $order);
+
+
+            if (!empty($meta_key)) {
+                $query->set('meta_key', $meta_key);
+            }
+        }
+    }catch (e){
+
+        $meta_query = $query->get('meta_query') ?: [];
+        $tax_query = $query->get('tax_query') ?: [];
 
         // Обновляем параметры
         if ($tax_query) {
@@ -520,11 +544,9 @@ function custom_woocommerce_filter_query($query)
         if ($meta_query) {
             $query->set('meta_query', $meta_query);
         }
-
         // применяем сортировку
         $query->set('orderby', $orderby);
         $query->set('order', $order);
-
 
         if (!empty($meta_key)) {
             $query->set('meta_key', $meta_key);

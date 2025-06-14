@@ -45,7 +45,7 @@ $collectionPrds = get_terms(array(
                             $image_url = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : get_stylesheet_directory_uri() . '/assets/images/banner_image_hero.png';
                             ?>
 
-                            <a href="<?php echo esc_url(get_term_link($collectionItem)); ?>" class="tabSelListBlockItem"
+                            <a href="/shop/?collection=<?php echo esc_html($collectionItem->slug); ?>" class="tabSelListBlockItem"
                                style="background-image: url('<?php echo esc_url($image_url); ?>')">
                                 <div class="tabSelListBlockItemTop">
                                     <div class="tabSelListBlockItemBtn">

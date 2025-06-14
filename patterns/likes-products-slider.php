@@ -40,7 +40,7 @@ if ($loop->have_posts()) : ?>
         <div class="newProductsPreviewWrapper gridWrap">
             <div class="newProductsPreviewHeading" style="margin-bottom: 40px;">
                 <div class="newProductsPreviewHeadingTitle">
-                    Вам может понравится
+                    Вам может понравиться
                 </div>
             </div>
             <div class="sliderRelativeWrapper">
