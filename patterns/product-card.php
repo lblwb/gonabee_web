@@ -34,7 +34,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                 $slides = [];
                 $attachment_ids = $product->get_gallery_image_ids();
 
-                // Если есть изображения в галерее
+                // 1. Добавим изображения из галереи WooCommerce
                 if (!empty($attachment_ids)) {
                     foreach ($attachment_ids as $attachment_id) {
                         $thumb_url = wp_get_attachment_image_url($attachment_id, 'original');
@@ -48,7 +48,38 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                         $slides[] = esc_url($main_thumb_url);
                     }
                 }
-                ?>
+
+                // 2. Добавим изображения из ACF поля 'color_images' для каждого цвета
+                if (have_rows('product_colors')) {
+                    while (have_rows('product_colors')) {
+                        the_row();
+                        $color_rel = get_sub_field('color_rel');
+                        $color_post = is_array($color_rel) ? $color_rel[0] : null;
+
+//                        var_dump(get_sub_field('color_images', $color_post->ID));
+
+                        if ($color_post) {
+                            // Получаем ACF поле 'color_images' — это gallery (массив ID или массив массивов)
+                            $color_images = get_sub_field('color_images', $color_post->ID);
+//                            var_dump($color_images);
+                            if (!empty($color_images) && is_array($color_images)) {
+                                foreach ($color_images as $image) {
+                                    // ACF может возвращать ID, array или URL, зависит от настроек
+                                    if (is_array($image) && isset($image['url'])) {
+                                        $slides[] = esc_url($image['url']);
+                                    } elseif (is_numeric($image)) {
+                                        $url = wp_get_attachment_image_url($image, 'original');
+                                        if ($url) {
+                                            $slides[] = esc_url($url);
+                                        }
+                                    } elseif (is_string($image)) {
+                                        $slides[] = esc_url($image); // уже готовый URL
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }?>
                 <script>
                     window.prdImagesSlides = <?php echo json_encode($slides) ?>;
                 </script>
