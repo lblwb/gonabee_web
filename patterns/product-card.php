@@ -114,7 +114,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
 
                                 <div class="cardImagesThumbWrapper swiper-wrapper">
                                     <!-- Слайды -->
-                                    <div class="cardImagesThumbItem swiper-slide"
+                                    <div class="cardImagesThumbItem swiper-slide" :data-select="appShopDetailCardSlider.select.slide.src == slideItem"
                                          v-for="slideItem in appShopDetailCardSlider.slides">
                                         <img :src="slideItem" alt="product thumb"/>
                                     </div>

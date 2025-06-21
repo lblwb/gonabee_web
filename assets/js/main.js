@@ -549,6 +549,55 @@ const thumbnailProductSlider = async () => {
         // slideToLoop автоматически найдёт нужный «клонированный» слайд в mainSlider
         mainSlider.slideToLoop(newIndex);
     });
+
+    // ➕ Автоматический переход к слайду, где data-select="true"
+    const observeSelection = (thumbnailSlider, mainSlider) => {
+        const container = document.querySelector('.cardImagesThumbSlider .swiper-wrapper');
+        if (!container) return;
+
+        const checkAndSlide = () => {
+            const selected = container.querySelector('.cardImagesThumbItem[data-select="true"]');
+            if (selected) {
+                const realIndex = parseInt(selected.getAttribute('data-swiper-slide-index'), 10);
+                if (!isNaN(realIndex)) {
+                    console.log('➡️ Переход к слайду с data-select="true", индекс:', realIndex);
+                    mainSlider.slideToLoop(realIndex);
+                    thumbnailSlider.slideToLoop(realIndex);
+                }
+            }
+        };
+
+        // Следим за изменениями атрибутов
+        const observer = new MutationObserver((mutationsList) => {
+            for (const mutation of mutationsList) {
+                if (
+                    mutation.type === 'attributes' &&
+                    mutation.attributeName === 'data-select' &&
+                    mutation.target.getAttribute('data-select') === 'true'
+                ) {
+                    checkAndSlide();
+                    break;
+                }
+            }
+        });
+
+        // Запускаем наблюдение за всеми слайдами
+        const slides = container.querySelectorAll('.cardImagesThumbItem');
+        slides.forEach((slide) => {
+            observer.observe(slide, {
+                attributes: true,
+                attributeFilter: ['data-select'],
+            });
+        });
+
+        // Первая проверка при инициализации
+        checkAndSlide();
+    };
+    // Наблюдение за изменениями data-select
+    setTimeout(() => {
+        observeSelection(thumbnailSlider, mainSlider);
+    }, 100); // можно заменить на nextTick или mounted в Vue
+
 };
 
 function createCustomPagination(swiper) {
