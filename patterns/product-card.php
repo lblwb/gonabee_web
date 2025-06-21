@@ -66,7 +66,14 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                 foreach ($color_images as $image) {
                                     // ACF может возвращать ID, array или URL, зависит от настроек
                                     if (is_array($image) && isset($image['url'])) {
-                                        $slides[] = esc_url($image['url']);
+                                        try{
+                                            $color_id = $color_post->ID;
+                                            $color_slug = get_field( 'color_slug',  $color_id);
+                                            $slides[] = esc_url($image['url'] . '?color=' . $color_slug);
+                                        }catch (Exception $e){
+                                            $slides[] = esc_url($image['url']);
+                                        }
+
                                     } elseif (is_numeric($image)) {
                                         $url = wp_get_attachment_image_url($image, 'original');
                                         if ($url) {
@@ -414,10 +421,11 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                                         $color_name = get_the_title( $color_id );
                                                         $color_code = get_field( 'color_code',  $color_id );
                                                         $color_slug = get_field( 'color_slug',  $color_id );
+                                                        $color_images = get_sub_field( 'color_images',  $color_id);
                                                         ?>
                                                         <div class="colorBox" :class="{ __Active: appShop.cart.select.color === '<?php echo esc_js($color_slug); ?>' }"
                                                              @click="selectCartColor('<?php echo $color_slug ?>')">
-                                                            <div class="color-circle" title="<?php echo esc_attr($color_name); ?>" data-color-id="<?php echo esc_attr($color_slug); ?>" style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
+                                                            <div class="color-circle" title="<?php echo esc_attr($color_name); ?>" data-color-images="<?php echo esc_attr(json_encode($color_images[0]['url'])); ?>" data-color-id="<?php echo esc_attr($color_slug); ?>" style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
                                                         </div>
                                                     <?php endwhile; ?>
                                                 </div>

@@ -772,6 +772,8 @@ const uiShopAppVibe = () => {
                 const selectCartColor = (color) => {
                     console.log('Выбран цвет:', color);
                     appShop.value.cart.select.color = color;
+                    //
+                        window.states.shopPrdDetailCardImages.selectSlideImgByColorQuery(color);
                 };
 
                 // Получаем параметры из data-атрибутов
@@ -1348,6 +1350,7 @@ const uiShopAppVibe = () => {
                 const selectCartColor = (color) => {
                     console.log('Выбран цвет:', color);
                     appMobShop.value.cart.select.color = color;
+                    window.states.shopPrdDetailCardImages.selectSlideImgByColorQuery(color);
                 };
 
                 return {
@@ -2600,7 +2603,33 @@ const uiShopAppVibe = () => {
                 }
 
                 const selectSlideImg = (slideItem) => {
+                    console.log("Selected image:", slideItem);
                     appShopDetailCardSlider.value.select.slide.src = slideItem;
+                };
+
+                const selectSlideImgByColorQuery = (queryColor) => {
+                    const slides = appShopDetailCardSlider.value.slides;
+
+                    if (!slides || slides.length === 0) return;
+
+                    const foundSlide = slides.find((slideUrl) => {
+                        try {
+                            const url = new URL(slideUrl);
+                            console.log(url.searchParams.get('color'));
+                            console.log(url.searchParams.get('color') === queryColor);
+                            return url.searchParams.get('color') === queryColor;
+                        } catch (e) {
+                            console.warn('Invalid URL in slides:', slideUrl);
+                            return false;
+                        }
+                    });
+
+                    if (foundSlide) {
+                        console.log("View color slide",foundSlide )
+                        appShopDetailCardSlider.value.select.slide.src = foundSlide;
+                    } else {
+                        console.warn(`Slide with color=${queryColor} not found`);
+                    }
                 };
 
                 // const getSelectedWhtLst = (productId) => Vue.computed(() => !(getFavorites().includes(productId))).value;
@@ -2627,6 +2656,7 @@ const uiShopAppVibe = () => {
                 return {
                     getSelectedWhtLst,
                     selectSlideImg,
+                    selectSlideImgByColorQuery,
                     addToWhtListMob,
                     appShopDetailCardSlider,
                     appFavoriteBtn,
