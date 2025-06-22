@@ -2632,100 +2632,139 @@ const uiShopAppVibe = () => {
     }).mount(el);
   };
 
-const shopProductDetailCardImages = () => {
-  const el = document.getElementById('shopProductDetailCardImages');
-  if (!el) {
-    console.warn('#shopProductDetailCardImages не найден!');
-    return;
-  }
-
-  const defaultColor = el.dataset.defaultColor || 'default';
-  const allImages    = window.prdImagesByColor || { default: [] };
-  const productId    = el.dataset.productId;
-
-  window.states.shopPrdDetailCardImages = Vue.createApp({
-    setup() {
-      // Инициализация слайдов из группы по умолчанию
-      const initialSlides = allImages[defaultColor] || allImages.default;
-
-      // Ссылка на Swiper-инстансы
-      let thumbSwiper = null;
-      let mainSwiper  = null;
-
-      // Реактивное состояние слайдера
-      const appShopDetailCardSlider = Vue.ref({
-        slides: [...initialSlides],
-        select: {
-          slide: { src: initialSlides[0] || null }
-        }
-      });
-
-      // Текущий выбранный цвет для класса __Active
-      const currentColor = Vue.ref(defaultColor);
-
-      // Инициализация Swiper после монтирования
-      Vue.onMounted(() => {
-        thumbSwiper = new Swiper('.cardImagesThumbSlider .swiper', {
-          slidesPerView: 'auto',
-          watchSlidesProgress: true,
-        });
-        mainSwiper = new Swiper('.shopProductDetailCardImagesMain.swiper', {
-          slidesPerView: 1,
-          thumbs: { swiper: thumbSwiper }
-        });
-      });
-
-      // Выбор мини-изображения
-      const selectSlideImg = (slideItem) => {
-        appShopDetailCardSlider.value.select.slide.src = slideItem;
-      };
-
-      // Переключение группы слайдов по цвету
-      const selectCartColor = (slug) => {
-        const newSlides = allImages[slug] || allImages.default;
-        currentColor.value = slug;
-        appShopDetailCardSlider.value.slides = [...newSlides];
-        appShopDetailCardSlider.value.select.slide.src = newSlides[0] || null;
-
-        // Обновляем Swiper: сначала удаляем все, затем добавляем заново
-        if (thumbSwiper && mainSwiper) {
-          thumbSwiper.removeAllSlides();
-          mainSwiper.removeAllSlides();
-          newSlides.forEach((url) => {
-            thumbSwiper.appendSlide(`<div class="swiper-slide"><img src="${url}" /></div>`);
-            mainSwiper.appendSlide(`<div class="swiper-slide"><img src="${url}" /></div>`);
-          });
-          thumbSwiper.update();
-          mainSwiper.update();
-        }
-      };
-
-      // — остальной ваш код (избранное, добавление в корзину и т.п.) —
-      const appFavoriteBtn = Vue.ref({ status: { active: false } });
-      const FAVORITES_KEY = 'favorite_products';
-      function getFavorites() {
-        try { return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || []; }
-        catch { return []; }
-      }
-      const addToWhtListMob = (itemCard) => {
-        appFavoriteBtn.value.status.active = getFavorites().includes(productId);
-        window.states.headMainNav.addToWhtListMob({ ...itemCard, productId });
-      };
-      Vue.onMounted(() => {
-        appFavoriteBtn.value.status.active = getFavorites().includes(productId);
-      });
-
-      return {
-        appShopDetailCardSlider,
-        currentColor,
-        appFavoriteBtn,
-        selectSlideImg,
-        selectCartColor,
-        addToWhtListMob,
-      };
+  const shopProductDetailCardImages = () => {
+    const el = document.getElementById("shopProductDetailCardImages");
+    if (!el) {
+      console.warn("#shopProductDetailCardImages не найден!");
+      return;
     }
-  }).mount(el);
-};
+
+    // Читаем переданные из PHP данные
+    const defaultColor = el.getAttribute("data-default-color") || "default";
+    const allImages = window.prdImagesByColor || { default: [] };
+    const productId = el.getAttribute("data-product-id");
+
+    window.states.shopPrdDetailCardImages = Vue.createApp({
+      setup() {
+        // Инициализируем слайды группой по умолчанию
+        const initialSlides = allImages[defaultColor] || allImages.default;
+
+        // Реактивное состояние слайдера
+        const appShopDetailCardSlider = Vue.ref({
+          slides: [...initialSlides],
+          select: {
+            slide: {
+              src: initialSlides.length > 0 ? initialSlides[0] : null,
+            },
+          },
+        });
+
+        // Текущий выбранный цвет (для активного класса)
+        const currentColor = Vue.ref(defaultColor);
+
+        // Состояние кнопки "избранное"
+        const appFavoriteBtn = Vue.ref({ status: { active: false } });
+        const FAVORITES_KEY = "favorite_products";
+
+        function getFavorites() {
+          try {
+            return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
+          } catch (e) {
+            return [];
+          }
+        }
+
+        // Добавление в список избранных (мобильный вид)
+        const addToWhtListMob = (itemCard) => {
+          appFavoriteBtn.value.status.active =
+            getFavorites().includes(productId);
+          window.states.headMainNav.addToWhtListMob({
+            ...itemCard,
+            productId: productId,
+          });
+        };
+
+        Vue.onMounted(() => {
+          // Инициализируем статус "избранное"
+          appFavoriteBtn.value.status.active =
+            getFavorites().includes(productId);
+
+          // Инициализация Swiper
+          // Тумбнейлы (мини-карточки)
+          const thumbSwiper = new Swiper(".cardImagesThumbSlider .swiper", {
+            slidesPerView: "auto",
+            watchSlidesProgress: true,
+          });
+
+          // Основной слайдер
+          const mainSwiper = new Swiper(
+            ".shopProductDetailCardImagesMain.swiper",
+            {
+              slidesPerView: 1,
+              thumbs: {
+                swiper: thumbSwiper,
+              },
+            }
+          );
+        });
+
+        // Выбор конкретного мини-изображения
+        const selectSlideImg = (slideItem) => {
+          appShopDetailCardSlider.value.select.slide.src = slideItem;
+        };
+
+        // Переключение галереи по цвету
+        const selectCartColor = (slug) => {
+          const newSlides = allImages[slug] || allImages.default;
+          // Обновляем реактивные данные
+          currentColor.value = slug;
+          appShopDetailCardSlider.value.slides = [...newSlides];
+          appShopDetailCardSlider.value.select.slide.src = newSlides[0] || null;
+
+          // Обновляем Swiper-инстансы вручную
+          const thumbContainer = document.querySelector(
+            ".cardImagesThumbSlider .swiper-wrapper"
+          );
+          const mainContainer = document.querySelector(
+            ".shopProductDetailCardImagesMain .swiper-wrapper"
+          );
+          if (thumbContainer && mainContainer) {
+            // Очищаем
+            thumbContainer.innerHTML = "";
+            mainContainer.innerHTML = "";
+
+            // Добавляем новые слайды
+            newSlides.forEach((url) => {
+              const thumbSlide = document.createElement("div");
+              thumbSlide.className = "swiper-slide cardImagesThumbItem";
+              thumbSlide.innerHTML = `<img src="${url}" alt="product thumb"/>`;
+              thumbContainer.appendChild(thumbSlide);
+
+              const mainSlide = document.createElement("div");
+              mainSlide.className = "swiper-slide cardImagesMainImg";
+              mainSlide.innerHTML = `<img src="${url}" alt="product image"/>`;
+              mainContainer.appendChild(mainSlide);
+            });
+
+            // Нужно обновить Swiper
+            if (window.states.shopPrdDetailCardImages.thumbSwiper) {
+              window.states.shopPrdDetailCardImages.thumbSwiper.update();
+              window.states.shopPrdDetailCardImages.mainSwiper.update();
+            }
+          }
+        };
+
+        return {
+          currentColor,
+          appShopDetailCardSlider,
+          appFavoriteBtn,
+          selectSlideImg,
+          selectCartColor,
+          addToWhtListMob,
+        };
+      },
+    }).mount(el);
+  };
 
   const cartView = () => {
     const cartView = document.getElementById("cartView");
