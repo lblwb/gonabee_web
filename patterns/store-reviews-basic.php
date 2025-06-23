@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: Store Reviews Basic
  * Slug: ktsportwear/store-reviews-basic
@@ -38,48 +39,48 @@ function render_star_svg($filled = true)
             </div>
 
             <div class="storeReviewsBody">
-                <div class="storeReviewsBodySlider" style="">
-                    <?php
-                    // Пример вывода
-                    foreach ($comments
-
-                             as $comment) {
-                        $rating = get_comment_meta($comment->comment_ID, 'rating', true);
-                        $product_title = get_the_title($comment->comment_post_ID);
-                        $product_link = get_permalink($comment->comment_post_ID);
-                        $review_link = $product_link . '#comment-' . $comment->comment_ID;
+                <div class="storeReviewsBodySlider swiper">
+                    <div class="swiper-wrapper">
+                        <?php
+                        // Пример вывода
+                        foreach ($comments as $comment) {
+                            $rating = get_comment_meta($comment->comment_ID, 'rating', true);
+                            $product_title = get_the_title($comment->comment_post_ID);
+                            $product_link = get_permalink($comment->comment_post_ID);
+                            $review_link = $product_link . '#comment-' . $comment->comment_ID;
                         ?>
-                        <div class="storeReviewBodySliderItem">
-                            <div class="reviewBodySliderItemHeading">
-                                <div class="sliderItemHeadingTitle">
-                                    <?php esc_html($comment->comment_author) ?>
-                                </div>
-                                <div class="sliderItemHeadingRate">
-                                    <?php // Вывод звёзд
-                                    echo '<div style="display:flex; flex-direction:row;">';
-                                    for ($i = 1; $i <= 5; $i++) {
-                                        echo render_star_svg($i <= $rating);
-                                    }
-                                    echo '</div>';
-                                    ?>
-                                </div>
+                            <div class="swiper-slide storeReviewBodySliderItem">
+                                <div class="reviewBodySliderItemHeading">
+                                    <div class="sliderItemHeadingTitle">
+                                        <?php echo esc_html($comment->comment_author) ?>
+                                    </div>
+                                    <div class="sliderItemHeadingRate">
+                                        <?php // Вывод звёзд
+                                        echo '<div style="display:flex; flex-direction:row;">';
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            echo render_star_svg($i <= $rating);
+                                        }
+                                        echo '</div>';
+                                        ?>
+                                    </div>
 
-                                <div class="sliderItemHeadingDesc">
-                                    <?php echo esc_html($comment->comment_content) ?>
-                                </div>
+                                    <div class="sliderItemHeadingDesc">
+                                        <?php echo esc_html($comment->comment_content) ?>
+                                    </div>
 
-                                <div class="sliderItemHeadingAction">
-                                    <a class="sliderItemHeadingActionBtn" href="<?php echo esc_html($review_link) ?>">
-                                        <span class="headingActionBtnTitle">
-                                                  Полный отзыв
-                                        </span>
-                                    </a>
+                                    <div class="sliderItemHeadingAction">
+                                        <a class="sliderItemHeadingActionBtn" href="<?php echo esc_html($review_link) ?>">
+                                            <span class="headingActionBtnTitle">
+                                                Полный отзыв
+                                            </span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <div class="storeReviewsSliderPaginate"></div>
                 </div>
-
             </div>
         </div>
     </div>
