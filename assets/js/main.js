@@ -529,13 +529,13 @@ const thumbnailProductSlider = async (
 	let thumbObserver = null;
 
 	// Утилита debounce
-	const debounce = (fn, delay) => {
-		let timer;
-		return (...args) => {
-			clearTimeout(timer);
-			timer = setTimeout(() => fn(...args), delay);
-		};
-	};
+	//const debounce = (fn, delay) => {
+	//let timer;
+	//return (...args) => {
+	//clearTimeout(timer);
+	//timer = setTimeout(() => fn(...args), delay);
+	//};
+	//};
 
 	// Ждём появления элементов в DOM внутри root
 	const waitFor = (selector, timeout = 5000) =>
@@ -556,15 +556,15 @@ const thumbnailProductSlider = async (
 		});
 
 	// «Тихая» синхронизация без коллбеков
-	const syncAll = debounce((idx) => {
-		if (isReloading || isSyncing) return;
-		isSyncing = true;
-		console.log('🔄 syncAll →', idx);
-		if (thumbnailSlider) thumbnailSlider.slideTo(idx, 0, false);
-		if (mainSlider) mainSlider.slideTo(idx, 0, false);
-		if (mobSlider) mobSlider.slideTo(idx, 0, false);
-		isSyncing = false;
-	}, 50);
+	//const syncAll = debounce((idx) => {
+	//if (isReloading || isSyncing) return;
+	//isSyncing = true;
+	//console.log('🔄 syncAll →', idx);
+	//if (thumbnailSlider) thumbnailSlider.slideTo(idx, 0, false);
+	//if (mainSlider) mainSlider.slideTo(idx, 0, false);
+	//if (mobSlider) mobSlider.slideTo(idx, 0, false);
+	//isSyncing = false;
+	//}, 50);
 
 	// Инициализация thumbnail-слайдера
 	const initThumbnail = async () => {
@@ -606,37 +606,46 @@ const thumbnailProductSlider = async (
 				prevEl: rootEl.querySelector('.cardImagesThumbSliderNavPrev'),
 			},
 
-			on: {
-				init() {
-					console.log('✅ Thumb init');
-				},
-				slideChange() {
-					if (!isReloading) syncAll(this.realIndex);
-				},
-			},
+			//on: {
+			//init() {
+			//console.log('✅ Thumb init');
+			//},
+			//slideChange() {
+			//if (!isReloading) syncAll(this.realIndex);
+			//},
+			//},
 		};
 
 		thumbnailSlider = new Swiper(container, config);
+
+		thumbnailSlider.on('slideChange', () => {
+			const idx = thumbnailSlider.realIndex; // реальный индекс без учёта клонов
+			// если главный слайдер уже инициализирован – листаем вместе с мини-
+			if (mainSlider) mainSlider.slideToLoop(idx, 0, false);
+			// если мобильный слайдер уже инициализирован – тоже листаем
+			if (mobSlider) mobSlider.slideToLoop(idx, 0, false);
+		});
+
 		thumbnailSlider.update();
 
 		// Наблюдаем за data-select на превью
-		thumbObserver = new MutationObserver((muts) => {
-			muts.forEach((m) => {
-				if (m.type === 'attributes' && m.attributeName === 'data-select') {
-					const idx = parseInt(
-						m.target.getAttribute('data-swiper-slide-index'),
-						10
-					);
-					if (!isNaN(idx)) syncAll(idx);
-				}
-			});
-		});
-		container.querySelectorAll('.swiper-slide').forEach((slide) => {
-			thumbObserver.observe(slide, {
-				attributes: true,
-				attributeFilter: ['data-select'],
-			});
-		});
+		//thumbObserver = new MutationObserver((muts) => {
+		//muts.forEach((m) => {
+		//if (m.type === 'attributes' && m.attributeName === 'data-select') {
+		//const idx = parseInt(
+		//m.target.getAttribute('data-swiper-slide-index'),
+		//10
+		//);
+		//if (!isNaN(idx)) syncAll(idx);
+		//}
+		//});
+		//});
+		//container.querySelectorAll('.swiper-slide').forEach((slide) => {
+		//thumbObserver.observe(slide, {
+		//attributes: true,
+		//attributeFilter: ['data-select'],
+		//});
+		//});
 
 		return thumbnailSlider;
 	};
@@ -679,14 +688,14 @@ const thumbnailProductSlider = async (
 						slideThumbActiveClass: '__Active',
 				  }
 				: undefined,
-			on: {
-				init() {
-					console.log('✅ Main init');
-				},
-				slideChange() {
-					if (!isReloading) syncAll(this.realIndex);
-				},
-			},
+			//on: {
+			//init() {
+			//console.log('✅ Main init');
+			//},
+			//slideChange() {
+			//if (!isReloading) syncAll(this.realIndex);
+			//},
+			//},
 		};
 
 		mainSlider = new Swiper(container, config);
@@ -733,14 +742,14 @@ const thumbnailProductSlider = async (
 				nextEl: container.querySelector('.mainMobSliderNavNext'),
 				prevEl: container.querySelector('.mainMobSliderNavPrev'),
 			},
-			on: {
-				init() {
-					console.log('✅ Mob init');
-				},
-				slideChange() {
-					if (!isReloading) syncAll(this.realIndex);
-				},
-			},
+			//on: {
+			//init() {
+			//console.log('✅ Mob init');
+			//},
+			//slideChange() {
+			//if (!isReloading) syncAll(this.realIndex);
+			//},
+			//},
 		};
 
 		mobSlider = new Swiper(container, config);
@@ -787,19 +796,26 @@ const thumbnailProductSlider = async (
 const shopProductDetailCardImages = () => {
 	const root = '#shopProductDetailCardImages';
 	if (!document.querySelector(root)) return console.warn(`${root} не найден`);
-	thumbnailProductSlider(root); // инициализируем только внутри карточки
+
+	thumbnailProductSlider(root); // Инициализация слайдеров
 
 	Vue.createApp({
 		setup() {
 			const el = document.querySelector(root);
 			const productId = el.getAttribute('data-product-id');
 			const slidesData = window.prdImagesSlides || { all: [], by_color: {} };
-
-			// Исправление: выбираем первый цвет, а не последний
 			const firstColor = Object.keys(slidesData.by_color)[0] || null;
 			const selectedColor = Vue.ref(firstColor);
 
-			// При смене цвета:
+			// Вызов перезагрузки после монтирования компонента
+			Vue.onMounted(async () => {
+				await Vue.nextTick(); // Ждём обновления DOM
+				if (window.reloadProductSliders) {
+					window.reloadProductSliders(); // Перезагружаем слайдеры
+					console.log('Sliders reloaded after component mount');
+				}
+			});
+
 			const selectSlideImgByColor = async (color) => {
 				selectedColor.value = color;
 				await Vue.nextTick();
@@ -905,13 +921,39 @@ const loadMoreBtn = async () => {
 	}
 };
 const storeReviewSlider = async () => {
-	console.log('test 111');
-	const slider = new Swiper('.storeReviewsBodySlider', {
+	const container = document.querySelector('.storeReviewsBodySlider');
+	if (!container) return;
+
+	const waitFor = (selector, timeout = 5000) =>
+		new Promise((resolve, reject) => {
+			const start = Date.now();
+			(function check() {
+				const elems = document.querySelectorAll(`${rootSelector} ${selector}`);
+				if (elems.length) {
+					resolve(elems);
+				} else if (Date.now() - start > timeout) {
+					reject(
+						new Error(`Elements ${selector} not found within ${timeout}ms`)
+					);
+				} else {
+					setTimeout(check, 50);
+				}
+			})();
+		});
+
+	try {
+		await waitFor('.storeReviewsBodySlider .swiper-slide');
+	} catch (e) {
+		console.warn('Thumbnail slides not found:', e);
+		return null;
+	}
+
+	const slider = new Swiper(container, {
 		spaceBetween: 10, // gap между слайдами
 		mousewheel: {
+			forceToAxis: true,
 			sensitivity: 1,
 		},
-		grabCursor: true,
 		// Отключаем навигацию и буллеты
 		pagination: false,
 		navigation: false,
@@ -2723,7 +2765,7 @@ const uiShopAppVibe = () => {
 					'toggles',
 				]);
 				const selectedSubcategory = Vue.ref([]);
-				const selectedCategories = Vue.ref([]);
+				// const selectedCategories = Vue.ref([]);
 				const promotionActive = Vue.ref(false);
 				const minPrice = Vue.ref(window.filterData.minPrice);
 				const maxPrice = Vue.ref(window.filterData.maxPrice);
