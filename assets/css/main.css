@@ -1461,6 +1461,7 @@ a.shopBgBtn:hover {
 }
 
 .catalogGenBannerBlock {
+	position: relative;
     cursor: pointer;
     min-height: 75vh;
     background-repeat: no-repeat;
@@ -1470,6 +1471,16 @@ a.shopBgBtn:hover {
     position: relative;
     text-decoration: none;
     color: #0f0f0f;
+		overflow: hidden;
+}
+.catalogGenBannerBlock img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: all .25s;
 }
 
 @media screen and (max-width: 560px) {
@@ -1483,9 +1494,9 @@ a.shopBgBtn:hover {
 	}
 }
 
-.catalogGenBannerBlock:focus,
-.catalogGenBannerBlock:hover {
-	transform: scale(1.01);
+.catalogGenBannerBlock:focus img,
+.catalogGenBannerBlock:hover img {
+	transform: scale(1.1);
 }
 
 .catalogGenBannerBlock .bannerBottomBtn {

@@ -19,8 +19,8 @@ $link_men = $cat_men ? get_term_link($cat_men) : '#';
 
 <div class="catalogGenBanner">
     <div class="catalogGenBannerWrapper">
-        <a href="<?php echo esc_url($link_women); ?>" class="catalogGenBannerBlock"
-            style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnGrl.png' ?>');">
+        <a href="<?php echo esc_url($link_women); ?>" class="catalogGenBannerBlock">
+            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnGrl.png'; ?>" alt="Для нее" class="catalogGenBannerImg" />
             <div class="catalogGenBannerBottom">
                 <div class="bannerBottomBtn">
                     <div class="bannerBottomBtnTitle">
@@ -29,8 +29,8 @@ $link_men = $cat_men ? get_term_link($cat_men) : '#';
                 </div>
             </div>
         </a>
-        <a href="<?php echo esc_url($link_men); ?>" class="catalogGenBannerBlock"
-            style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnMan.png' ?>');">
+        <a href="<?php echo esc_url($link_men); ?>" class="catalogGenBannerBlock">
+            <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnMan.png'; ?>" alt="Для него" class="catalogGenBannerImg" />
             <div class="catalogGenBannerBottom">
                 <div class="bannerBottomBtn">
                     <div class="bannerBottomBtnTitle">
