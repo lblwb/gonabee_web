@@ -16,8 +16,9 @@
         <div class="headerMainNav wp-block" id="headerMainNav" v-cloak
              data-nonce="<?php echo esc_attr(wp_create_nonce('toggle_favorite_nonce')); ?>"
              data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>"
-             data-count="<?php $wc_cart = WC()->cart;echo count($wc_cart->get_cart()) ?>"
-             data-user-auth="<?php echo is_user_logged_in();?>">
+             data-count="<?php $wc_cart = WC()->cart;
+             echo count($wc_cart->get_cart()) ?>"
+             data-user-auth="<?php echo is_user_logged_in(); ?>">
             <div class="headerMbBarNavLogo" :class="{__Hide: !appMainNav.mob.nav_menu.logo.show}">
                 <div class="headerMbBarNavLogoWrapper" style="display: flex; justify-content: center">
                     <a href="/" style="display: flex">
@@ -79,7 +80,7 @@
             </div>
             <!-- wp:group -->
             <div class="headerMainNavRt" style="display: flex; align-items: center; gap: 20px;">
-                <div class="headerMainNavItem searchBox navItemHideMb wp-block" @click="toggleSearch">
+                <div class="headerMainNavItem searchBox navItemHideMb wp-block" @click="toggleSearchFull">
                     <div class="headerMainNavItemWrap">
                         <div class="headerMainNavItemIcon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -187,6 +188,159 @@
                 </div>
             </div>
             <!-- /wp:group -->
+
+            <div class="modalFullSearch" v-if="appMainNav.navbar.nav_search.show" style="">
+                <div class="modalFullSearchWrapper">
+                    <div class="modalFullSearchTop">
+                        <div class="modalFullSearchTopInputBox" style="">
+                            <div class="modalFullSearchTopInputBoxWrapper gridWrap" style="">
+                                <div class="modalFullSearchTopInputBoxIcon">
+                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.0271 14.6173L20.3098 18.9L18.8956 20.3142L14.6129 16.0315C13.073 17.2635 11.1201 18.0005 8.99609 18.0005C4.02809 18.0005 -0.00390625 13.9685 -0.00390625 9.00049C-0.00390625 4.03249 4.02809 0.000488281 8.99609 0.000488281C13.9641 0.000488281 17.9961 4.03249 17.9961 9.00049C17.9961 11.1245 17.2591 13.0774 16.0271 14.6173ZM14.0208 13.8753C15.2436 12.6151 15.9961 10.8961 15.9961 9.00049C15.9961 5.13299 12.8636 2.00049 8.99609 2.00049C5.12859 2.00049 1.99609 5.13299 1.99609 9.00049C1.99609 12.868 5.12859 16.0005 8.99609 16.0005C10.8917 16.0005 12.6107 15.248 13.8709 14.0252L14.0208 13.8753Z"
+                                              fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="modalFullSearchTopInput" style="width: 100%;">
+                                    <input style="" v-model="appMainNav.mob.nav_search.context.queryText" @input="onInputSearchHandler"
+                                           placeholder="Начните поиск..." type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mobileSearchContentHeaderExit" @click="toggleSearchFull" style="position:absolute; top: 35px; right: 35px">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                        d="M8.82223 10L2.32812 3.5059L3.50663 2.32739L10.0007 8.82143L16.4948 2.32739L17.6733 3.5059L11.1792 10L17.6733 16.494L16.4948 17.6726L10.0007 11.1785L3.50663 17.6726L2.32812 16.494L8.82223 10Z"
+                                        fill="#F9F9F9"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="modalFullSearchBody" style="padding-top: 30px;">
+                        <div class="mobileSearchContentSearchCat gridWrap">
+                            <div class="searchCatList" v-if="appMainNav.mob.nav_search.cat.result.list" style="flex-flow: row  wrap; gap: 30px;">
+                                <div class="searchCatListItem" v-for="catItem in appMainNav.mob.nav_search.cat.result.list"
+                                     :key="catItem.name">
+                                    <a class="searchCatListItemCard" :href="catItem.link">
+                                        <div class="searchCatListItemCardWrapper" style="">
+                                            <div class="searchCatListItemCardImg" v-if="catItem.image">
+                                                <img :src="catItem.image" :alt="catItem.name">
+                                            </div>
+                                            <div class="searchCatListItemCardImg __Bord" v-else>
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAD6CAYAAAAIn20uAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMXSURBVHgB7dfBSsNAAEXR0YpCoSC4ciH4/1/lThC7anEhCM5o0W/I5Rx4Icn6EiZX499h7nFuP7cbsA2nueNlf+GukJ/n7uauB2zHavb+cn9eQT/MPQ3YtnXC+Al6xXw3YPtu1/HiMKBh77xMyU7QpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCmCJkXQpAiaFEGTImhSBE2KoEkRNCkr6K8BESvojwEN5xX064CG9928fM5dzR0GbNf6ML/tLg+n8Rv2zdztgG1Y/3/ryPwyd1wvvgEmbxUF78bXTgAAAABJRU5ErkJggg=="
+                                                     :alt="catItem.name"
+                                                     style="object-fit: cover;object-position: bottom; min-height: 16vh;max-width: 21.5vw;">
+                                            </div>
+                                            <div class="searchCatListItemCardHeading">
+                                                <div class="cardHeadingTitle"
+                                                     style="">
+                                                    {{catItem.name}}
+                                                </div>
+                                                <div class="cardHeadingSubTitle" v-if="catItem.parent_cat"
+                                                     style="">
+                                                    {{catItem.parent_cat.name}}
+                                                </div>
+                                                <div class="cardHeadingSubTitle" v-else>
+                                                    ——
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="searchCatList" v-else>—</div>
+                        </div>
+                        <div class="mobileMenuContentSearchSep" style="" v-if="appMainNav.mob.nav_search.cat.result.list && appMainNav.mob.nav_search.cat.result.list.length">
+                            <hr>
+                        </div>
+                        <div class="mobileMenuContentSearchResult gridWrap">
+                            <div class="searchResultHeading" style="">
+                                <div class="searchResultHeadingTitle" style="">
+                                    Результаты поиска ({{appMainNav.mob.nav_search.products.count}})
+                                </div>
+                            </div>
+                            <div class="searchResultList" v-if="appMainNav.mob.nav_search.products.result.list">
+                                <div class="searchResultListWrapper" style="">
+                                    <div class="searchResultListItem previewSliderItem"
+                                         v-for="productItem in appMainNav.mob.nav_search.products.result.list"
+                                         :key="productItem.name">
+                                        <div class="previewSliderItemBlock" style="position: relative;">
+                                            <div class="itemBlockHeading">
+                                                <div class="itemBlockHeadingWrapper"
+                                                     style="display: flex; justify-content: space-between;">
+                                                    <div class="previewSliderItemWhiteList"
+                                                         :class="{__Active: getSelectedWhtLst(productItem.ID)}"
+                                                         data-product-id="productItem.ID">
+                                                        <div class="whiteListBtn" style="background: #FFFFFF;"
+                                                             @click="addToWhtListMob({imageUrl:'', productId: productItem.ID})">
+                                                            <div class="whiteListBtnIcon"
+                                                                 v-if="getSelectedWhtLst(productItem.data.ID)">
+                                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect width="30" height="30" rx="15" fill="white"/>
+                                                                    <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0022 11.6831 22.054 14.0913 20.6511 15.662L14.9986 21.3233L9.34628 15.662C7.9434 14.0913 7.99584 11.6793 9.5036 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019ZM19.55 11.1134C18.5506 10.112 16.9371 10.0713 15.89 11.0112L15 11.8102L14.1094 11.0119C13.0594 10.0706 11.4487 10.1121 10.4464 11.1144C9.45325 12.1075 9.40339 13.6982 10.3187 14.7488L14.9986 19.4362L19.6788 14.7488C20.5944 13.6978 20.5447 12.1102 19.55 11.1134Z"
+                                                                          fill="#1F1F1F"/>
+                                                                </svg>
+                                                            </div>
+                                                            <div class="whiteListBtnIcon" v-else>
+                                                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                                                     xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect width="30" height="30" rx="15" fill="white"/>
+                                                                    <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0022 11.6831 22.054 14.0913 20.6511 15.662L14.9986 21.3233L9.34628 15.662C7.9434 14.0913 7.99584 11.6793 9.5036 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019Z"
+                                                                          fill="#CE1B19"/>
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="previewSliderItemImage">
+                                                <div class="previewSliderItemImageWrapper">
+                                                    <div class="previewSliderItemImageSubGallery swiper">
+                                                        <div class="itemImageSubGalleryWrap swiper-wrapper">
+                                                            <div class="itemImageSubGalleryItem swiper-slide"
+                                                                 v-for="galleryItem in productItem.gallery"
+                                                                 :data-color-id="productItem.colors.id"
+                                                                 :data-href="productItem.id"
+                                                                 @click="showProductNav"
+                                                                 :style="`background-image: url(${productItem.image}); text-decoration: none;`">
+                                                            </div>
+                                                        </div>
+                                                        <!--pag-->
+                                                        <div class="bottomPaginate"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="previewSliderItemBlockHeading">
+                                                <div class="itemBlockHeadingTitle">
+                                                    <a :href="productItem.link"
+                                                       style="">{{productItem.name}}</a>
+                                                </div>
+                                                <div class="itemBlockHeadingPrice" v-html="productItem.price"></div>
+                                                <!--     Colors            -->
+                                                <div class="itemBlockHeadingSelColor">
+                                                    <div class="colorBox" v-for="color in productItem.colors_list"
+                                                         :key="color.slug">
+                                                        <div class="color-circle"
+                                                             :title="color.name"
+                                                             @click="selectCartColorProduct(color.slug)"
+                                                             :style="{ backgroundColor: color.code }"
+                                                             :data-color-id="color.slug">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modalAuth" v-if="appMainNav.navbar.modals.account.step !== ''">
                 <div class="modalAuthWrapper">
                     <div class="modalAuthBlock" style=""
@@ -294,14 +448,19 @@
                                 <input type="password" v-model="appMainNav.navbar.modals.account.field.password"
                                        placeholder="********" style="">
                             </div>
-                            <div class="modalAuthBlockBodyCheckbox" style="display: flex;gap: 10px;align-items: center; margin-top: 16px">
-                                <div class="modalAuthBlockBodyCheckboxInput" style="" v-if="appMainNav.navbar.modals.account.field.email_checkbox">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <div class="modalAuthBlockBodyCheckbox"
+                                 style="display: flex;gap: 10px;align-items: center; margin-top: 16px">
+                                <div class="modalAuthBlockBodyCheckboxInput" style=""
+                                     v-if="appMainNav.navbar.modals.account.field.email_checkbox">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
                                         <rect width="20" height="20" rx="4" fill="#F0C224"/>
-                                        <path d="M8.66451 12.1139L14.7928 5.98566L15.7356 6.92846L8.66451 13.9995L4.42188 9.75691L5.36469 8.81411L8.66451 12.1139Z" fill="white"/>
+                                        <path d="M8.66451 12.1139L14.7928 5.98566L15.7356 6.92846L8.66451 13.9995L4.42188 9.75691L5.36469 8.81411L8.66451 12.1139Z"
+                                              fill="white"/>
                                     </svg>
                                 </div>
-                                <div class="modalAuthBlockBodyCheckboxLabel" style="font-family: 'Montserrat',sans-serif;font-style: normal;font-weight: 500;font-size: 14px;line-height: 145%;color: #1F1F1F;">
+                                <div class="modalAuthBlockBodyCheckboxLabel"
+                                     style="font-family: 'Montserrat',sans-serif;font-style: normal;font-weight: 500;font-size: 14px;line-height: 145%;color: #1F1F1F;">
                                     Я согласен получать скидки <br/>и специальные предложения по email рассылке
                                 </div>
                             </div>

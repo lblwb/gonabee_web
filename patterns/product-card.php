@@ -18,6 +18,60 @@ if (!$product || !$product->is_visible()) {
 }
 
 // Generate a nonce for AJAX
+// 1. Собираем все изображения в группы по цветам
+$slides_by_color = ['default' => []];
+
+// 1.1. Общая галерея WooCommerce
+$attachment_ids = $product->get_gallery_image_ids();
+if (!empty($attachment_ids)) {
+    foreach ($attachment_ids as $aid) {
+        $slides_by_color['default'][] = wp_get_attachment_image_url($aid, 'original');
+    }
+} elseif ($main_id = $product->get_image_id()) {
+    $slides_by_color['default'][] = wp_get_attachment_image_url($main_id, 'original');
+}
+
+// 1.2. Изображения по цветам из ACF
+$default_color_slug = '';
+if (have_rows('product_colors')) {
+    while (have_rows('product_colors')) {
+        the_row();
+        $rel = get_sub_field('color_rel');
+        $post = is_array($rel) ? $rel[0] : null;
+        if (!$post)
+            continue;
+
+        $slug = get_field('color_slug', $post->ID);
+        if (!$slug)
+            continue;
+        if (!$default_color_slug)
+            $default_color_slug = $slug;
+
+        $slides_by_color[$slug] = [];
+        $images = get_sub_field('color_images', $post->ID) ?: [];
+        foreach ($images as $img) {
+            if (is_array($img) && !empty($img['url'])) {
+                $slides_by_color[$slug][] = esc_url($img['url']);
+            } elseif (is_numeric($img)) {
+                $url = wp_get_attachment_image_url($img, 'original');
+                if ($url)
+                    $slides_by_color[$slug][] = esc_url($url);
+            } elseif (is_string($img)) {
+                $slides_by_color[$slug][] = esc_url($img);
+            }
+        }
+    }
+}
+if (!$default_color_slug) {
+    $default_color_slug = 'default';
+}
+
+// Передаём сгруппированные изображения в JS
+?>
+<script>
+    window.prdImagesByColor = <?php echo wp_json_encode($slides_by_color); ?>;
+</script>
+<?php
 $nonce = wp_create_nonce('toggle_favorite_nonce');
 
 $product_id = $product->get_id();
@@ -30,31 +84,10 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
     <div class="shopProductDetailBody">
         <div class="shopProductDetailCard">
             <div class="shopProductDetailCardWrapper gridWrap __mobGridUnset">
-                <?php
-                $slides = [];
-                $attachment_ids = $product->get_gallery_image_ids();
-
-                // Если есть изображения в галерее
-                if (!empty($attachment_ids)) {
-                    foreach ($attachment_ids as $attachment_id) {
-                        $thumb_url = wp_get_attachment_image_url($attachment_id, 'original');
-                        $slides[] = esc_url($thumb_url);
-                    }
-                } else {
-                    // Если галерея пуста — выводим только основное изображение
-                    $main_thumb_id = $product->get_image_id();
-                    if ($main_thumb_id) {
-                        $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
-                        $slides[] = esc_url($main_thumb_url);
-                    }
-                }
-                ?>
-                <script>
-                    window.prdImagesSlides = <?php echo json_encode($slides) ?>;
-                </script>
                 <!-- Images -->
                 <div class="shopProductDetailCardImages" id="shopProductDetailCardImages" v-cloak
                     data-product-id="<?php echo esc_attr($product->get_id()); ?>"
+                    data-default-color="<?php echo esc_attr($default_color_slug); ?>"
                     data-add-to-cart-nonce="<?php echo esc_attr(wp_create_nonce('add_to_cart_nonce')); ?>"
                     data-nonce="<?php echo esc_attr(wp_create_nonce('toggle_favorite_nonce')); ?>"
                     data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
@@ -63,8 +96,11 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
 
                             <div class="cardImagesThumbSliderNavBlock">
                                 <button class="cardImagesThumbSliderNavPrev cardImagesThumbSliderNavigation">
-                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.00143 3.02379L1.8766 7.14856L0.698096 5.97005L6.00143 0.666709L11.3047 5.97005L10.1262 7.14856L6.00143 3.02379Z" fill="#252525" />
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M6.00143 3.02379L1.8766 7.14856L0.698096 5.97005L6.00143 0.666709L11.3047 5.97005L10.1262 7.14856L6.00143 3.02379Z"
+                                            fill="#252525" />
                                     </svg>
                                 </button>
                             </div>
@@ -74,7 +110,9 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
 
                                 <div class="cardImagesThumbWrapper swiper-wrapper">
                                     <!-- Слайды -->
-                                    <div class="cardImagesThumbItem swiper-slide" v-for="slideItem in appShopDetailCardSlider.slides">
+                                    <div class="cardImagesThumbItem swiper-slide"
+                                        :data-select="appShopDetailCardSlider.select.slide.src == slideItem"
+                                        v-for="slideItem in appShopDetailCardSlider.slides">
                                         <img :src="slideItem" alt="product thumb" />
                                     </div>
                                 </div>
@@ -82,8 +120,11 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
 
                             <div class="cardImagesThumbSliderNavBlock">
                                 <button class="cardImagesThumbSliderNavNext cardImagesThumbSliderNavigation">
-                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M5.99857 4.97621L10.1234 0.851442L11.3019 2.02995L5.99857 7.33329L0.695312 2.02995L1.87382 0.851441L5.99857 4.97621Z" fill="#252525" />
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M5.99857 4.97621L10.1234 0.851442L11.3019 2.02995L5.99857 7.33329L0.695312 2.02995L1.87382 0.851441L5.99857 4.97621Z"
+                                            fill="#252525" />
                                     </svg>
                                 </button>
                             </div>
@@ -100,33 +141,13 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                 <div class="mainMobSlider swiper">
                                     <div class="mainMobSliderWrapper swiper-wrapper">
                                         <?php
-                                        $attachment_ids = $product->get_gallery_image_ids();
-
-                                        // Если есть изображения в галерее
-                                        if (!empty($attachment_ids)) {
-                                            foreach ($attachment_ids as $attachment_id) {
-                                                $thumb_url = wp_get_attachment_image_url($attachment_id, 'original');
-                                        ?>
-                                                <div class="mainMobSliderItemSlide swiper-slide">
-                                                    <img src="<?php echo esc_url($thumb_url); ?>"
-                                                        alt="product gallery image" />
-                                                </div>
-                                            <?php
-                                            }
-                                        } else {
-                                            // Если галерея пуста — выводим только основное изображение
-                                            $main_thumb_id = $product->get_image_id();
-                                            if ($main_thumb_id) {
-                                                $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
-                                            ?>
-                                                <div class="mainMobSliderItemSlide swiper-slide">
-                                                    <img src="<?php echo esc_url($main_thumb_url); ?>"
-                                                        alt="main product image" />
-                                                </div>
-                                        <?php
-                                            }
-                                        }
-                                        ?>
+                                        // Мобильный слайдер: показываем default-группу
+                                        $mobile_slides = $slides_by_color[$default_color_slug] ?: $slides_by_color['default'];
+                                        foreach ($mobile_slides as $url): ?>
+                                            <div class="mainMobSliderItemSlide swiper-slide">
+                                                <img src="<?php echo esc_url($url); ?>" alt="product gallery image" />
+                                            </div>
+                                        <?php endforeach; ?>
                                     </div>
                                     <div class="bottomPaginate"></div>
                                 </div>
@@ -165,7 +186,7 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                             <div class="mainMobTopWhtAdd">
                                                 <a @click="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
                                                     <div class="mainMobTopWhtAddBtn"
-                                                        v-if="appFavoriteBtn !== null && appFavoriteBtn.status.active">
+                                                        v-if="appFavoriteBtn !== null && !appFavoriteBtn.status.active">
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <rect width="40" height="40" rx="20" fill="white" />
@@ -178,9 +199,11 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
                                                             <rect width="40" height="40" rx="20" fill="white" />
-                                                            <path d="M19.9982 13.7738C21.9557 12.0167 24.9807 12.075 26.8662 13.9645C28.7518 15.8539 28.8166 18.8642 27.0629 20.8275L19.9973 27.9042L12.9319 20.8275C11.1783 18.8642 11.2438 15.8492 13.1285 13.9645C15.0154 12.0776 18.0351 12.0141 19.9982 13.7738ZM25.6866 15.1418C24.4373 13.89 22.4204 13.8392 21.1116 15.0141L19.999 16.0127L18.8858 15.0148C17.5732 13.8383 15.5599 13.8901 14.307 15.143C13.0656 16.3844 13.0033 18.3728 14.1473 19.686L19.9973 25.5453L25.8475 19.686C26.992 18.3723 26.9299 16.3877 25.6866 15.1418Z"
+                                                            <path
+                                                                d="M19.9982 13.7738C21.9557 12.0167 24.9807 12.075 26.8662 13.9645C28.7518 15.8539 28.8166 18.8642 27.0629 20.8275L19.9973 27.9042L12.9319 20.8275C11.1783 18.8642 11.2438 15.8492 13.1285 13.9645C15.0154 12.0776 18.0351 12.0141 19.9982 13.7738ZM25.6866 15.1418C24.4373 13.89 22.4204 13.8392 21.1116 15.0141L19.999 16.0127L18.8858 15.0148C17.5732 13.8383 15.5599 13.8901 14.307 15.143C13.0656 16.3844 13.0033 18.3728 14.1473 19.686L19.9973 25.5453L25.8475 19.686C26.992 18.3723 26.9299 16.3877 25.6866 15.1418Z"
                                                                 fill="#CE1B19" />
-                                                            <path d="M25.6866 15.1418C24.4373 13.89 22.4204 13.8392 21.1116 15.0141L19.999 16.0127L18.8858 15.0148C17.5732 13.8383 15.5599 13.8901 14.307 15.143C13.0656 16.3844 13.0033 18.3728 14.1473 19.686L19.9973 25.5453L25.8475 19.686C26.992 18.3723 26.9299 16.3877 25.6866 15.1418Z"
+                                                            <path
+                                                                d="M25.6866 15.1418C24.4373 13.89 22.4204 13.8392 21.1116 15.0141L19.999 16.0127L18.8858 15.0148C17.5732 13.8383 15.5599 13.8901 14.307 15.143C13.0656 16.3844 13.0033 18.3728 14.1473 19.686L19.9973 25.5453L25.8475 19.686C26.992 18.3723 26.9299 16.3877 25.6866 15.1418Z"
                                                                 fill="#CE1B19" />
                                                         </svg>
                                                     </div>
@@ -204,30 +227,46 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                             $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
                                         }
                                         ?>
-                                        <div class="previewSliderItemWhiteList" id="favBtnPrd"
+                                        <div class="previewSliderItemWhiteList"
                                             data-product-id="<?php echo esc_attr($product->get_id()); ?>"
                                             data-add-to-cart-nonce="<?php echo esc_attr(wp_create_nonce('add_to_cart_nonce')); ?>"
                                             data-nonce="<?php echo esc_attr(wp_create_nonce('toggle_favorite_nonce')); ?>"
                                             data-ajax-url="<?php echo esc_url(admin_url('admin-ajax.php')); ?>"
-                                            data-default-color=""
-                                            data-default-size="L"
+                                            data-default-color="" data-default-size="L"
                                             @click="addToWhtListMob({imageUrl:'<?php echo $main_thumb_url ?>'})">
-
-
                                             <div class="whiteListBtn" style="background: #FFFFFF;">
                                                 <div class="whiteListBtnIcon"
-                                                    v-if="getSelectedWhtLst(<?= esc_attr($product->get_id()); ?>)">
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                    v-if="appFavoriteBtn !== null && !appFavoriteBtn.status.active">
+                                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M7.99839 3.01902C9.56439 1.61333 11.9844 1.66 13.4928 3.17157C15.0013 4.68315 15.0531 7.09133 13.6501 8.662L7.99765 14.3233L2.34531 8.662C0.94242 7.09133 0.99486 4.67934 2.50263 3.17157C4.0121 1.6621 6.42785 1.61125 7.99839 3.01902ZM12.5491 4.1134C11.5497 3.11196 9.93612 3.07134 8.88905 4.01125L7.99899 4.81016L7.10845 4.01187C6.05837 3.07065 4.44776 3.11205 3.44543 4.11438C2.45227 5.10754 2.40241 6.6982 3.31767 7.7488L7.99765 12.4362L12.6778 7.7488C13.5934 6.6978 13.5437 5.11017 12.5491 4.1134Z"
-                                                            fill="#1F1F1F" />
+                                                        <g clip-path="url(#clip0_1365_42)">
+                                                            <mask id="mask0_1365_42" style="mask-type:luminance"
+                                                                maskUnits="userSpaceOnUse" x="0" y="0" width="30"
+                                                                height="30">
+                                                                <path d="M30 0H0V30H30V0Z" fill="white" />
+                                                            </mask>
+                                                            <g mask="url(#mask0_1365_42)">
+                                                                <path
+                                                                    d="M30 15C30 6.71573 23.2843 0 15 0C6.71573 0 0 6.71573 0 15C0 23.2843 6.71573 30 15 30C23.2843 30 30 23.2843 30 15Z"
+                                                                    fill="white" />
+                                                                <path
+                                                                    d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0023 11.6831 22.0541 14.0913 20.6511 15.662L14.9986 21.3233L9.34629 15.662C7.9434 14.0913 7.99584 11.6793 9.50361 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019ZM19.5501 11.1134C18.5507 10.112 16.9371 10.0713 15.89 11.0112L15 11.8102L14.1094 11.0119C13.0593 10.0706 11.4487 10.112 10.4464 11.1144C9.45325 12.1075 9.40339 13.6982 10.3186 14.7488L14.9986 19.4362L19.6788 14.7488C20.5944 13.6978 20.5447 12.1102 19.5501 11.1134Z"
+                                                                    fill="#1F1F1F" />
+                                                            </g>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_1365_42">
+                                                                <rect width="30" height="30" fill="white" />
+                                                            </clipPath>
+                                                        </defs>
                                                     </svg>
                                                 </div>
                                                 <div class="whiteListBtnIcon" v-else>
                                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <rect width="30" height="30" rx="15" fill="white" />
-                                                        <path d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0022 11.6831 22.054 14.0913 20.6511 15.662L14.9986 21.3233L9.34628 15.662C7.9434 14.0913 7.99584 11.6793 9.5036 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019Z"
+                                                        <path
+                                                            d="M14.9994 10.019C16.5654 8.61333 18.9854 8.66 20.4938 10.1716C22.0022 11.6831 22.054 14.0913 20.6511 15.662L14.9986 21.3233L9.34628 15.662C7.9434 14.0913 7.99584 11.6793 9.5036 10.1716C11.0131 8.6621 13.4288 8.61125 14.9994 10.019Z"
                                                             fill="#CE1B19" />
                                                     </svg>
                                                 </div>
@@ -239,7 +278,8 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                             </div>
 
                             <div class="swiper-wrapper">
-                                <div class="cardImagesMainImg swiper-slide" v-for="slideItem in appShopDetailCardSlider.slides">
+                                <div class="cardImagesMainImg swiper-slide"
+                                    v-for="slideItem in appShopDetailCardSlider.slides">
                                     <img :src="slideItem" alt="product thumb" />
                                 </div>
                             </div>
@@ -294,23 +334,24 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
 
                             custom_breadcrumbs() ?>
                         </div>
+
                         <?php
-                        // Берём всё поле repeater как массив
-                        $colors = get_field('product_colors');
-
-                        if ($colors && is_array($colors)):
-                            // Извлекаем первый элемент
-                            $first_color = $colors[0];
-                            // Вытащим из него нужные параметры
-                            $default_сolor_slug = $first_color['color_slug'];
-                            $default_сolor_code = $first_color['color_code'];
-                            $default_сolor_name = $first_color['color_name'];
-                        else:
-                            $default_сolor_slug = "";
-                        endif;
-
+                        $default_сolor_slug = "";
                         $default_size_slug = "size_l";
                         //
+                        while (have_rows('product_colors')):
+                            the_row();
+                            $color_rel = get_sub_field('color_rel');        // массив или null
+                            $color_post = is_array($color_rel) ? $color_rel[0] : null;
+                            $color_id = $color_post->ID;
+                            $color_name = get_the_title($color_id);
+                            $color_code = get_field('color_code', $color_id);
+                            $color_slug = get_field('color_slug', $color_id);
+                            //
+                            $default_сolor_slug = get_field('color_slug', $color_id);
+                            $default_сolor_code = get_field('color_code', $color_id);
+                            $default_сolor_name = $color_post->post_title;
+                        endwhile;
                         ?>
                         <div class="detailCardInfoHeading" id="singlePrdCard" v-cloak
                             data-product-id="<?php echo esc_attr($product_id); ?>"
@@ -343,42 +384,51 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="detailCardHeadingSeparate">
-                                <div class="detailCardInfoHeadingColor">
-                                    <?php if (have_rows('product_colors')): ?>
+                            <?php if (have_rows('product_colors')): ?>
+                                <div class="detailCardHeadingSeparate">
+                                    <div class="detailCardInfoHeadingColor">
+                                        <?php if (have_rows('product_colors')): ?>
 
-                                        <div class="infoHeadingColorHead">
-                                            <div class="infoHeadingColorHeadTitle" style="margin-bottom: 16px">
-                                                Цвет:
-                                            </div>
-                                        </div>
-
-                                        <div class="itemBlockHeadingSelColor" style="display: flex;gap: 10px;">
-                                            <?php while (have_rows('product_colors')):
-                                                the_row();
-                                                $color_name = get_sub_field('color_name');
-                                                $color_code = get_sub_field('color_code');
-                                                $color_slug = get_sub_field('color_slug');
-                                            ?>
-                                                <div class="colorBox"
-                                                    :class="{ __Active: appShop.cart.select.color === '<?php echo esc_js($color_slug); ?>' }"
-                                                    @click="selectCartColor('<?php echo $color_slug ?>')">
-                                                    <div class="color-circle"
-                                                        title="<?php echo esc_attr($color_name); ?>"
-                                                        data-color-id="<?php echo esc_attr($color_slug); ?>"
-                                                        style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
+                                            <div class="infoHeadingColorHead">
+                                                <div class="infoHeadingColorHeadTitle" style="margin-bottom: 16px">
+                                                    Цвет:
                                                 </div>
-                                            <?php endwhile; ?>
-                                        </div>
-                                    <?php endif; ?>
+                                            </div>
+
+                                            <?php if (have_rows('product_colors')): ?>
+                                                <div class="itemBlockHeadingSelColor">
+                                                    <?php while (have_rows('product_colors')):
+                                                        the_row();
+                                                        $color_rel = get_sub_field('color_rel');        // массив или null
+                                                        $color_post = is_array($color_rel) ? $color_rel[0] : null;
+                                                        $color_id = $color_post->ID;
+                                                        $color_name = get_the_title($color_id);
+                                                        $color_code = get_field('color_code', $color_id);
+                                                        $color_slug = get_field('color_slug', $color_id);
+                                                        $color_images = get_sub_field('color_images', $color_id);
+                                                        ?>
+                                                        <div class="colorBox"
+                                                            :class="{ __Active: appShop.cart.select.color === '<?php echo esc_js($color_slug); ?>' }"
+                                                            @click="selectCartColor('<?php echo $color_slug ?>')">
+                                                            <div class="color-circle" title="<?php echo esc_attr($color_name); ?>"
+                                                                data-color-images="<?php echo esc_attr(json_encode($color_images[0]['url'])); ?>"
+                                                                data-color-id="<?php echo esc_attr($color_slug); ?>"
+                                                                style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
+                                                        </div>
+                                                    <?php endwhile; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
-                            </div>
+                            <? endif; ?>
                             <div class="detailCardInfoHeadingAtr" style="">
                                 <div class="detailCardInfoHeadingSizes">
                                     <?php
                                     $sizes = wc_get_product_terms($product->get_id(), 'pa_sizes', array('fields' => 'names'));
                                     if (!empty($sizes)):
-                                    ?>
+                                        ?>
                                         <div class="size-selector">
                                             <div class="size-selector__header">
                                                 <span class="size-selector__title">Размер</span>
@@ -433,17 +483,17 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                                 </svg>
                                             </span>
                                         </button>
-                                        <div class="footerMainMob__content">
-                                            <ul>
-                                                <li><a href="#">....</a></li>
-                                            </ul>
+                                        <div class="footerMainMob__content"
+                                            style="max-height: 0px;margin-bottom: 20px;padding: 0;color: #444;">
+                                            <?php $cmps_care = get_field('cmps_care', $product->get_id());
+                                            echo wp_kses_post($cmps_care); ?>
                                         </div>
                                     </div>
 
                                     <div class="footerMainMob__section" style="border-bottom: none; margin-bottom: 0;">
-                                        <button class="footerMainMob__toggle detailCardHeadingLink detailCardHeadingLinkPrd"
-                                            data-index="0"
-                                            style="padding: 0;">
+                                        <button
+                                            class="footerMainMob__toggle detailCardHeadingLink detailCardHeadingLinkPrd"
+                                            data-index="0" style="padding: 0;">
                                             Доставка и оплата
                                             <span class="footer__icon">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -454,10 +504,10 @@ $ajax_url = esc_url(admin_url('admin-ajax.php'));
                                                 </svg>
                                             </span>
                                         </button>
-                                        <div class="footerMainMob__content">
-                                            <ul>
-                                                <li><a href="#">...</a></li>
-                                            </ul>
+                                        <div class="footerMainMob__content"
+                                            style="max-height: 0px;margin-bottom: 20px;padding: 0;color: #444;">
+                                            <?php $delivery_pay = get_field('delivery_pay', $product->get_id());
+                                            echo wp_kses_post($delivery_pay); ?>
                                         </div>
                                     </div>
                                 </div>

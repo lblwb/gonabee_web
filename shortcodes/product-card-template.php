@@ -72,7 +72,7 @@ $is_sale = get_post_meta($post_id, 'has_discount', true) === '1';
                 $main_thumb_url = "";
                 $main_thumb_id = $product->get_image_id();
                 if ($main_thumb_id) {
-                    $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
+                    $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'woocommerce_single');
                 }
                 ?>
                 <div class="previewSliderItemWhiteList" id="favBtnPrd"
@@ -114,7 +114,7 @@ $is_sale = get_post_meta($post_id, 'has_discount', true) === '1';
                             $gallery_images
                         );
                         foreach ($all_images as $attachment_id) :
-                            $image_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_thumbnail');
+                            $image_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_single');
                             $color_id = get_post_meta($attachment_id, '_color_id', true); // Например, мета-поле у картинки
                             if (!$color_id) $color_id = 'gray'; // fallback
                             $colors[$color_id] = true;
@@ -139,23 +139,22 @@ $is_sale = get_post_meta($post_id, 'has_discount', true) === '1';
             <div class="itemBlockHeadingPrice">
                 <?php echo wc_price($product->get_price()); ?>
             </div>
+
             <?php if (have_rows('product_colors')): ?>
                 <div class="itemBlockHeadingSelColor">
-                    <?php while (have_rows('product_colors')): the_row();
-                        $color_name = get_sub_field('color_name');
-                        $color_code = get_sub_field('color_code');
-                        $color_slug = get_sub_field('color_slug'); ?>
-                        <div class="colorBox"
-                            vibe-class="__Active:SparkVibe.getValueByPath('appShop.cart.select.color') === '<?php echo $color_slug ?>'">
-                            <div class="color-circle"
-                                title="<?php echo esc_attr($color_name); ?>"
-                                @click="selectCartColorProduct"
-                                data-color-id="<?php echo esc_attr($color_slug); ?>"
-                                style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
-                        </div>
+                <?php while (have_rows('product_colors')): the_row();
+                    $color_rel = get_sub_field('color_rel');
+                    $color_post = is_array($color_rel) ? $color_rel[0] : null;
+                    $color_id   = $color_post->ID;
+                    $color_name = get_the_title( $color_id );
+                    $color_code = get_field( 'color_code',  $color_id );
+                    $color_slug = get_field( 'color_slug',  $color_id ); ?>
+                    <div class="colorBox" vibe-class="__Active:SparkVibe.getValueByPath('appShop.cart.select.color') === '<?php echo $color_slug ?>'">
+                        <div class="color-circle" title="<?php echo esc_attr($color_name); ?>" @click="selectCartColorProduct" data-color-id="<?php echo esc_attr($color_slug); ?>" style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
+                    </div>
                     <?php endwhile; ?>
-                </div>
-            <?php endif; ?>
+                    </div>
+                <?php endif; ?>
 
             <?php if ($add_cart_btn) { ?>
 

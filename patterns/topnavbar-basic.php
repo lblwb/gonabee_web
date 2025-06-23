@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="headerMainTopBarItem wp-block">
+            <a href="/shop/?certificates" class="headerMainTopBarItem wp-block">
                 <div class="headerMainTopBarItemWrapper wp-block-group">
                     <div class="headerMainTopBarItemIcon">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,8 +50,8 @@
                         Подарочные сертификаты
                     </div>
                 </div>
-            </div>
-            <div class="headerMainTopBarItem wp-block">
+            </a>
+            <a href="/account/helper/" class="headerMainTopBarItem wp-block">
                 <div class="headerMainTopBarItemWrapper wp-block-group">
                     <div class="headerMainTopBarItemIcon">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
                         Помощь
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
     </div>

@@ -71,7 +71,7 @@ if ($loop->get_posts()) : ?>
                                                     );
 
                                                     foreach ($all_images as $attachment_id) :
-                                                        $image_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_thumbnail');
+                                                        $image_url = wp_get_attachment_image_url($attachment_id, 'woocommerce_single');
                                                         $color_id = get_post_meta($attachment_id, '_color_id', true); // Например, мета-поле у картинки
                                                         if (!$color_id) $color_id = 'gray'; // fallback
                                                         $colors[$color_id] = true;
@@ -99,7 +99,7 @@ if ($loop->get_posts()) : ?>
                                         $main_thumb_url = "";
                                         $main_thumb_id = $product->get_image_id();
                                         if ($main_thumb_id) {
-                                            $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'original');
+                                            $main_thumb_url = wp_get_attachment_image_url($main_thumb_id, 'woocommerce_single');
                                         }
                                         ?>
                                         <div class="previewSliderItemWhiteList" id="favBtnPrd"
@@ -140,15 +140,15 @@ if ($loop->get_posts()) : ?>
                                         <?php if (have_rows('product_colors')): ?>
                                             <div class="itemBlockHeadingSelColor">
                                                 <?php while (have_rows('product_colors')): the_row();
-                                                    $color_name = get_sub_field('color_name');
-                                                    $color_code = get_sub_field('color_code');
-                                                    $color_slug = get_sub_field('color_slug');
-                                                ?>
+                                                    $color_rel = get_sub_field('color_rel');        // массив или null
+                                                    $color_post = is_array($color_rel) ? $color_rel[0] : null;
+                                                    $color_id   = $color_post->ID;
+                                                    $color_name = get_the_title( $color_id );
+                                                    $color_code = get_field( 'color_code',  $color_id );
+                                                    $color_slug = get_field( 'color_slug',  $color_id );
+                                                    ?>
                                                     <div class="colorBox">
-                                                        <div class="color-circle"
-                                                            title="<?php echo esc_attr($color_name); ?>"
-                                                            data-color-id="<?php echo esc_attr($color_slug); ?>"
-                                                            style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
+                                                        <div class="color-circle" title="<?php echo esc_attr($color_name); ?>" data-color-id="<?php echo esc_attr($color_slug); ?>" style="background-color:<?php echo esc_attr($color_code); ?>;"></div>
                                                     </div>
                                                 <?php endwhile; ?>
                                             </div>

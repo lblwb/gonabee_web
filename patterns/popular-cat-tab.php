@@ -50,7 +50,7 @@ $filtered_categories = array_slice($filtered_categories, 0, 6);
 ?>
 
 <?php if (!empty($filtered_categories) && !is_wp_error($filtered_categories)) : ?>
-    <div x-data="{ popularCatSel: 'man' }" class="popularCat">
+    <div class="popularCat" id="popularCat" v-cloak>
         <div class="popularCatWrapper gridWrap">
             <div class="popularCatHeading">
                 <div class="blockHeadingTitle">
@@ -74,9 +74,10 @@ $filtered_categories = array_slice($filtered_categories, 0, 6);
 
 <!--                <input x-model="popularCatSel">-->
 
+
                 <div class="popularCatTabSel">
                     <?php foreach ($typeCat as $tc) : ?>
-                        <div x-show="popularCatSel === '<?php echo $tc['cat_slug']; ?>'" class="popularCatTabSelList">
+                        <div v-show="popularCatSel === '<?php echo $tc['cat_slug']; ?>'" class="popularCatTabSelList">
                             <?php
                             // Отображаем категории для выбранной вкладки
                             foreach ($tc['data'] as $category) :
