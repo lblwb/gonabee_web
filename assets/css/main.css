@@ -202,6 +202,16 @@ a.shopBgBtn:hover {
     flex: auto;
 }
 
+.headerMainTopBarItem{
+    color: #fff;
+    text-decoration: none;
+}
+
+.headerMainTopBarItem:hover,
+.headerMainTopBarItem:focus{
+    opacity: 0.8;
+}
+
 .headerMainTopBarItemWrapper {
     display: flex;
     align-items: center;
@@ -764,10 +774,10 @@ a.shopBgBtn:hover {
 .bodyListItemProductInfoCardImage {
     height: 100%;
     width: 100%;
-    max-width: 14vw;
-    max-height: 28vw;
-    min-width: 14vw;
-    min-height: 28vh;
+    max-width: 12vw;
+    max-height: 34vw;
+    min-width: 12vw;
+    min-height: 34vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -1435,6 +1445,8 @@ a.shopBgBtn:hover {
     background-position: center;
     flex: 1;
     position: relative;
+    text-decoration: none;
+    color: #0f0f0f;
 }
 
 @media screen and (max-width: 560px) {
@@ -2194,10 +2206,11 @@ a.shopBgBtn:hover {
 
 .shopCatalogBodyWrapper {
     display: flex;
-    /* flex-flow: row; */
     gap: 40px;
     margin-bottom: 120px;
     flex-flow: row;
+    max-width: 100%; /* Ограничиваем ширину контейнера */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
 }
 
 @media screen and (max-width: 768px) {
@@ -2217,8 +2230,7 @@ a.shopBgBtn:hover {
 }
 
 .shopCatalogSidebar {
-    flex: auto;
-    width: 100%;
+    flex: 0 0 21.8vw; /* Фиксированная ширина, без auto */
     max-width: 21.8vw;
     min-width: 21.8vw;
 }
@@ -2289,25 +2301,41 @@ a.shopBgBtn:hover {
     }
 }
 
+.shopCollection{
+    flex: 1; /* Занимает оставшееся пространство */
+    max-width: calc(100% - 21.8vw - 40px); /* Учитываем ширину sidebar и gap */
+}
+
+
+
 .shopCatalogCollection {
     display: flex;
     flex-flow: row wrap;
     gap: 12px;
-    flex: auto;
     width: 100%;
+    margin-bottom: 5vh;
+    box-sizing: border-box; /* Учитываем padding и border */
 }
 
 .previewSliderItem {
-    width: calc((100% / 3) - 10px);
+    width: calc((100% / 4) - 10px);
+    flex-shrink: 0; /* Предотвращаем сжатие карточек */
+    box-sizing: border-box;
 }
 
 .shopCatalogCollection .previewSliderItem {
     width: calc((100% / 4) - 10px);
+    flex-shrink: 0; /* Предотвращаем сжатие карточек */
 }
 
 @media screen and (max-width: 560px) {
+    .shopCollection{
+        flex: unset!important;
+        max-width: unset!important;
+    }
     .shopCatalogCollection .previewSliderItem {
         width: calc((100% / 2) - 10px);
+        flex-shrink: 0; /* Предотвращаем сжатие карточек */
     }
 
     .shopCatalogCollection {
@@ -3824,6 +3852,50 @@ li.quadmenu-item
     /*}*/
 }
 
+/* navbar - search */
+
+.modalFullSearch{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: #222222; z-index: 10010
+}
+
+.modalFullSearch .modalFullSearchWrapper{
+
+}
+
+.modalFullSearch .modalFullSearchTop{}
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox{
+    padding: 30px; border-bottom: solid 1px #F9F9F920
+}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox .modalFullSearchTopInputBoxWrapper{
+    display: flex; gap: 14px;
+}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox .modalFullSearchTopInputBoxIcon{
+    display: flex;
+    align-items: center;
+}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox  .modalFullSearchTopInput{}
+
+.modalFullSearch .modalFullSearchTop .modalFullSearchTopInputBox  .modalFullSearchTopInput input{
+    width: 100%; height: 100%; background: transparent; border: none;
+    font-family: 'Sofia Sans',sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 125%;
+    /* identical to box height, or 20px */
+    font-feature-settings: 'ss01' on;
+    color: #FFFFFF;
+    outline: none;
+}
+
 /* navbar - auth */
 .modalAuth {
     position: fixed;
@@ -4036,6 +4108,7 @@ li.quadmenu-item
 
 .pageWhlsSide {
     max-width: 31vh;
+    min-width: 31vh;
     width: 100%;
 }
 
@@ -5684,6 +5757,26 @@ br {
     text-decoration: none;
 }
 
+/**/
+.footerMainNavBlockForm{}
+.footerMainNavBlockFormWrap{display: flex; flex-flow: row; gap: 10px}
+.footerMainNavBlockFormInput{flex: 1; flex-grow: 1; width: 100%;}
+.footerMainNavBlockFormInput input{border: solid 1px #eee; border-radius: 100px; padding: 20px; background: transparent; width: 100%; color: #fff;}
+.footerMainNavBlockFormBtn button{
+    min-width: 170px; height: 100%; background: #fff; border:none; border-radius: 100px; font-family: 'Montserrat',sans-serif;font-weight: 500;font-size: 14px;line-height: 125%;letter-spacing: 0%;text-align: center;
+    cursor: pointer;
+}
+
+.footerMainNavBlockFormBtn button.__Disable{
+    opacity: 0.7;
+}
+
+.footerMainNavBlockFormBtn button:hover,
+.footerMainNavBlockFormBtn button:focus{
+    background: #f0c325;
+}
+/**/
+
 .footerMainMob {
     display: none;
 }
@@ -5851,6 +5944,13 @@ br {
     will-change: max-height;
     padding-top: 0;
     padding-bottom: 0;
+    font-family: 'Montserrat',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 145%;
+    /* or 20px */
+    color: #252525;
 }
 
 /* При открытии — применим внутренний отступ через JS, если надо */
@@ -6535,6 +6635,7 @@ label.filter-item input[type='radio']:checked {
     border-bottom: solid 1px #e7e7e7;
 }
 
+
 /*.noUi-handle-upper{*/
 /*    right: 0px!important;*/
 /*    left: -15px!important;*/
@@ -6597,6 +6698,11 @@ label.filter-item input[type='radio']:checked {
 .widgetMenuHeading {
     margin-bottom: 20px;
     color: #ffffff;
+}
+
+.widgetMenuHeading a{
+    text-decoration: none;
+    outline: none;
 }
 
 .widgetMenuHeading .widgetMenuHeadingWrapper {
@@ -6755,6 +6861,8 @@ br {
     #appMainFilter .filter-section {
         padding-bottom: 0 !important;
         padding-top: 16px;
+        overflow: auto;
+        max-height: 90vh;
     }
 }
 
