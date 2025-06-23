@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: Catalog Gender Home
  * Slug: ktsportwear/catalog-gen-home
@@ -19,7 +20,7 @@ $link_men = $cat_men ? get_term_link($cat_men) : '#';
 <div class="catalogGenBanner">
     <div class="catalogGenBannerWrapper">
         <a href="<?php echo esc_url($link_women); ?>" class="catalogGenBannerBlock"
-             style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnGrl.png' ?>');">
+            style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnGrl.png' ?>');">
             <div class="catalogGenBannerBottom">
                 <div class="bannerBottomBtn">
                     <div class="bannerBottomBtnTitle">
@@ -29,7 +30,7 @@ $link_men = $cat_men ? get_term_link($cat_men) : '#';
             </div>
         </a>
         <a href="<?php echo esc_url($link_men); ?>" class="catalogGenBannerBlock"
-             style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnMan.png' ?>');">
+            style="background-image: url('<?php echo get_stylesheet_directory_uri() . '/assets/images/catalog/banner/catalogBtnMan.png' ?>');">
             <div class="catalogGenBannerBottom">
                 <div class="bannerBottomBtn">
                     <div class="bannerBottomBtnTitle">

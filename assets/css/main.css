@@ -1461,17 +1461,6 @@ a.shopBgBtn:hover {
 }
 
 .catalogGenBannerBlock {
-<<<<<<< HEAD
-	cursor: pointer;
-	min-height: 75vh;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-	flex: 1;
-	position: relative;
-	text-decoration: none;
-	color: #0f0f0f;
-=======
     cursor: pointer;
     min-height: 75vh;
     background-repeat: no-repeat;
@@ -1481,7 +1470,6 @@ a.shopBgBtn:hover {
     position: relative;
     text-decoration: none;
     color: #0f0f0f;
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 
 @media screen and (max-width: 560px) {
@@ -2240,21 +2228,12 @@ a.shopBgBtn:hover {
 }
 
 .shopCatalogBodyWrapper {
-<<<<<<< HEAD
-	display: flex;
-	gap: 40px;
-	margin-bottom: 120px;
-	flex-flow: row;
-	max-width: 100%; /* Ограничиваем ширину контейнера */
-	box-sizing: border-box; /* Учитываем padding и border в ширине */
-=======
     display: flex;
     gap: 40px;
     margin-bottom: 120px;
     flex-flow: row;
     max-width: 100%; /* Ограничиваем ширину контейнера */
     box-sizing: border-box; /* Учитываем padding и border в ширине */
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 
 @media screen and (max-width: 768px) {
@@ -2274,15 +2253,9 @@ a.shopBgBtn:hover {
 }
 
 .shopCatalogSidebar {
-<<<<<<< HEAD
-	flex: 0 0 21.8vw; /* Фиксированная ширина, без auto */
-	max-width: 21.8vw;
-	min-width: 21.8vw;
-=======
     flex: 0 0 21.8vw; /* Фиксированная ширина, без auto */
     max-width: 21.8vw;
     min-width: 21.8vw;
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 
 @media screen and (max-width: 968px) {
@@ -2364,36 +2337,6 @@ a.shopBgBtn:hover {
 
 
 .shopCatalogCollection {
-<<<<<<< HEAD
-	display: flex;
-	flex-flow: row wrap;
-	gap: 12px;
-	width: 100%;
-	margin-bottom: 5vh;
-	box-sizing: border-box; /* Учитываем padding и border */
-}
-
-.previewSliderItem {
-	width: calc((100% / 4) - 10px);
-	flex-shrink: 0; /* Предотвращаем сжатие карточек */
-	box-sizing: border-box;
-}
-
-.shopCatalogCollection .previewSliderItem {
-	width: calc((100% / 4) - 10px);
-	flex-shrink: 0; /* Предотвращаем сжатие карточек */
-}
-
-@media screen and (max-width: 560px) {
-	.shopCollection {
-		flex: unset !important;
-		max-width: unset !important;
-	}
-	.shopCatalogCollection .previewSliderItem {
-		width: calc((100% / 2) - 10px);
-		flex-shrink: 0; /* Предотвращаем сжатие карточек */
-	}
-=======
     display: flex;
     flex-flow: row wrap;
     gap: 12px;
@@ -2422,7 +2365,6 @@ a.shopBgBtn:hover {
         width: calc((100% / 2) - 10px);
         flex-shrink: 0; /* Предотвращаем сжатие карточек */
     }
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 
 	.shopCatalogCollection {
 	}
@@ -4255,15 +4197,9 @@ hr {
 }
 
 .pageWhlsSide {
-<<<<<<< HEAD
-	max-width: 31vh;
-	min-width: 31vh;
-	width: 100%;
-=======
     max-width: 31vh;
     min-width: 31vh;
     width: 100%;
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 
 .pageWhlsMobHeading {
@@ -5914,50 +5850,6 @@ br {
 }
 
 /**/
-<<<<<<< HEAD
-.footerMainNavBlockForm {
-}
-.footerMainNavBlockFormWrap {
-	display: flex;
-	flex-flow: row;
-	gap: 10px;
-}
-.footerMainNavBlockFormInput {
-	flex: 1;
-	flex-grow: 1;
-	width: 100%;
-}
-.footerMainNavBlockFormInput input {
-	border: solid 1px #eee;
-	border-radius: 100px;
-	padding: 20px;
-	background: transparent;
-	width: 100%;
-	color: #fff;
-}
-.footerMainNavBlockFormBtn button {
-	min-width: 170px;
-	height: 100%;
-	background: #fff;
-	border: none;
-	border-radius: 100px;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 125%;
-	letter-spacing: 0%;
-	text-align: center;
-	cursor: pointer;
-}
-
-.footerMainNavBlockFormBtn button.__Disable {
-	opacity: 0.7;
-}
-
-.footerMainNavBlockFormBtn button:hover,
-.footerMainNavBlockFormBtn button:focus {
-	background: #f0c325;
-=======
 .footerMainNavBlockForm{}
 .footerMainNavBlockFormWrap{display: flex; flex-flow: row; gap: 10px}
 .footerMainNavBlockFormInput{flex: 1; flex-grow: 1; width: 100%;}
@@ -5974,7 +5866,6 @@ br {
 .footerMainNavBlockFormBtn button:hover,
 .footerMainNavBlockFormBtn button:focus{
     background: #f0c325;
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 /**/
 
@@ -6139,21 +6030,6 @@ br {
 }
 
 .footerMainMob__content {
-<<<<<<< HEAD
-	overflow: hidden;
-	max-height: 0;
-	transition: max-height 0.35s ease;
-	will-change: max-height;
-	padding-top: 0;
-	padding-bottom: 0;
-	font-family: 'Montserrat', sans-serif;
-	font-style: normal;
-	font-weight: 500;
-	font-size: 14px;
-	line-height: 145%;
-	/* or 20px */
-	color: #252525;
-=======
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.35s ease;
@@ -6167,7 +6043,6 @@ br {
     line-height: 145%;
     /* or 20px */
     color: #252525;
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 
 /* При открытии — применим внутренний отступ через JS, если надо */
@@ -7080,21 +6955,12 @@ br {
 /* MobFilter */
 
 @media screen and (max-width: 768px) {
-<<<<<<< HEAD
-	#appMainFilter .filter-section {
-		padding-bottom: 0 !important;
-		padding-top: 16px;
-		overflow: auto;
-		max-height: 90vh;
-	}
-=======
     #appMainFilter .filter-section {
         padding-bottom: 0 !important;
         padding-top: 16px;
         overflow: auto;
         max-height: 90vh;
     }
->>>>>>> 23a027f890c82544c99c192893d59d5a3de9665c
 }
 
 @media screen and (max-width: 768px) {
