@@ -2632,139 +2632,97 @@ const uiShopAppVibe = () => {
     }).mount(el);
   };
 
+  // Инициализация галереи на странице товара
   const shopProductDetailCardImages = () => {
     const el = document.getElementById("shopProductDetailCardImages");
     if (!el) {
-      console.warn("#shopProductDetailCardImages не найден!");
+      console.warn("#shopProductDetailCardImages not found!");
       return;
     }
 
     // Читаем переданные из PHP данные
     const defaultColor = el.getAttribute("data-default-color") || "default";
     const allImages = window.prdImagesByColor || { default: [] };
-    const productId = el.getAttribute("data-product-id");
 
-    window.states.shopPrdDetailCardImages = Vue.createApp({
+    createApp({
       setup() {
-        // Инициализируем слайды группой по умолчанию
-        const initialSlides = allImages[defaultColor] || allImages.default;
+        const currentColor = ref(defaultColor);
+        let thumbSwiper = null;
+        let mainSwiper = null;
 
-        // Реактивное состояние слайдера
-        const appShopDetailCardSlider = Vue.ref({
-          slides: [...initialSlides],
-          select: {
-            slide: {
-              src: initialSlides.length > 0 ? initialSlides[0] : null,
-            },
-          },
-        });
+        // Функция очистки и замены слайдов
+        const replaceSlides = (swiperInstance, urls) => {
+          // 1) удаляем все старые
+          const count = swiperInstance.slides.length;
+          swiperInstance.removeSlide([...Array(count).keys()]);
 
-        // Текущий выбранный цвет (для активного класса)
-        const currentColor = Vue.ref(defaultColor);
-
-        // Состояние кнопки "избранное"
-        const appFavoriteBtn = Vue.ref({ status: { active: false } });
-        const FAVORITES_KEY = "favorite_products";
-
-        function getFavorites() {
-          try {
-            return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-          } catch (e) {
-            return [];
-          }
-        }
-
-        // Добавление в список избранных (мобильный вид)
-        const addToWhtListMob = (itemCard) => {
-          appFavoriteBtn.value.status.active =
-            getFavorites().includes(productId);
-          window.states.headMainNav.addToWhtListMob({
-            ...itemCard,
-            productId: productId,
-          });
-        };
-
-        Vue.onMounted(() => {
-          // Инициализируем статус "избранное"
-          appFavoriteBtn.value.status.active =
-            getFavorites().includes(productId);
-
-          // Инициализация Swiper
-          // Тумбнейлы (мини-карточки)
-          const thumbSwiper = new Swiper(".cardImagesThumbSlider .swiper", {
-            slidesPerView: "auto",
-            watchSlidesProgress: true,
-          });
-
-          // Основной слайдер
-          const mainSwiper = new Swiper(
-            ".shopProductDetailCardImagesMain.swiper",
-            {
-              slidesPerView: 1,
-              thumbs: {
-                swiper: thumbSwiper,
-              },
-            }
+          // 2) добавляем новые
+          const slidesMarkup = urls.map(
+            (url) =>
+              `<div class="swiper-slide"><img src="${url}" alt="Product image" /></div>`
           );
-        });
+          swiperInstance.appendSlide(slidesMarkup);
 
-        // Выбор конкретного мини-изображения
-        const selectSlideImg = (slideItem) => {
-          appShopDetailCardSlider.value.select.slide.src = slideItem;
+          // 3) обновляем Swiper
+          swiperInstance.update();
         };
 
-        // Переключение галереи по цвету
+        // При выборе цвета — загружаем только её изображения
         const selectCartColor = (slug) => {
-          const newSlides = allImages[slug] || allImages.default;
-          // Обновляем реактивные данные
           currentColor.value = slug;
-          appShopDetailCardSlider.value.slides = [...newSlides];
-          appShopDetailCardSlider.value.select.slide.src = newSlides[0] || null;
+          const urls = allImages[slug] || allImages.default || [];
 
-          // Обновляем Swiper-инстансы вручную
-          const thumbContainer = document.querySelector(
-            ".cardImagesThumbSlider .swiper-wrapper"
-          );
-          const mainContainer = document.querySelector(
-            ".shopProductDetailCardImagesMain .swiper-wrapper"
-          );
-          if (thumbContainer && mainContainer) {
-            // Очищаем
-            thumbContainer.innerHTML = "";
-            mainContainer.innerHTML = "";
+          if (!thumbSwiper || !mainSwiper) return;
+          replaceSlides(thumbSwiper, urls);
+          replaceSlides(mainSwiper, urls);
 
-            // Добавляем новые слайды
-            newSlides.forEach((url) => {
-              const thumbSlide = document.createElement("div");
-              thumbSlide.className = "swiper-slide cardImagesThumbItem";
-              thumbSlide.innerHTML = `<img src="${url}" alt="product thumb"/>`;
-              thumbContainer.appendChild(thumbSlide);
-
-              const mainSlide = document.createElement("div");
-              mainSlide.className = "swiper-slide cardImagesMainImg";
-              mainSlide.innerHTML = `<img src="${url}" alt="product image"/>`;
-              mainContainer.appendChild(mainSlide);
-            });
-
-            // Нужно обновить Swiper
-            if (window.states.shopPrdDetailCardImages.thumbSwiper) {
-              window.states.shopPrdDetailCardImages.thumbSwiper.update();
-              window.states.shopPrdDetailCardImages.mainSwiper.update();
-            }
-          }
+          // Показываем первый слайд новой вариации
+          thumbSwiper.slideToLoop(0);
+          mainSwiper.slideToLoop(0);
         };
 
-        return {
-          currentColor,
-          appShopDetailCardSlider,
-          appFavoriteBtn,
-          selectSlideImg,
-          selectCartColor,
-          addToWhtListMob,
-        };
+        onMounted(() => {
+          // Находим контейнеры Swiper
+          const thumbContainer = el.querySelector(
+            ".cardImagesThumbSlider .swiper"
+          );
+          const mainContainer = el.querySelector(
+            ".shopProductDetailCardImagesMain.swiper"
+          );
+
+          // Инициализируем Swiper-ы
+          thumbSwiper = new Swiper(thumbContainer, {
+            direction: "vertical",
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            watchSlidesProgress: true,
+            navigation: {
+              nextEl: ".cardImagesThumbSliderNavNext",
+              prevEl: ".cardImagesThumbSliderNavPrev",
+            },
+          });
+
+          mainSwiper = new Swiper(mainContainer, {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            thumbs: { swiper: thumbSwiper },
+          });
+
+          // Сразу подгружаем дефолтные слайды
+          selectCartColor(currentColor.value);
+        });
+
+        return { selectCartColor };
       },
     }).mount(el);
   };
+
+  // Запускаем на DOMContentLoaded
+  document.addEventListener("DOMContentLoaded", () => {
+    shopProductDetailCardImages();
+  });
 
   const cartView = () => {
     const cartView = document.getElementById("cartView");
