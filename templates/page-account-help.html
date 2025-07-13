@@ -1,0 +1,63 @@
+<!-- wp:template-part {"slug":"header"} /-->
+<div class="pageAccount">
+
+    <div class="pageAccountWrapper gridWrap">
+        <div class="pageAccountBody">
+            <div class="pageAccountBodyWrapper">
+                <div class="pageAccountBodyNav">
+                    [account_side_nav]
+                </div>
+                <div class="pageAccountBodyContent">
+                    <div class="pageAccountBodyBlock">
+                        <div class="accountBodyBlockHeading">
+                            <div class="accountBodyBlockHeadingTitle">
+                                Помощь
+                            </div>
+                        </div>
+                        <div class="help-section" v-cloak>
+                            <input type="search"
+                                   class="help-search"
+                                   placeholder="Введите ваш вопрос..."
+                                   v-model="search.input">
+
+                            <div class="help-categories">
+                                <button
+                                        class="help-category"
+                                        :class="{active: search.category === cat.term_id}"
+                                        v-for="cat in categories"
+                                        :key="cat.term_id"
+                                        @click="search.category = cat.term_id">
+                                    {{ cat.name }}
+                                </button>
+                                <button
+                                        class="help-category"
+                                        :class="{active: search.category === 0}"
+                                        @click="search.category = 0">Все
+                                </button>
+                            </div>
+
+                            <div class="help-faq">
+                                <p v-if="loading">Загрузка...</p>
+                                <template v-else>
+                                    <details v-for="(item, index) in faqItems" :key="index">
+                                        <summary>{{ item.question }}</summary>
+                                        <div v-html="item.answer"></div>
+                                    </details>
+                                    <p v-if="faqItems.length === 0">Ничего не найдено.</p>
+                                </template>
+                            </div>
+
+                            <div class="help-feedback">
+                                <p>Не нашли ответ?</p>
+                                <a href="/contact_form" class="help-link">Свяжитесь с нами</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- wp:template-part {"slug":"footer"} /-->

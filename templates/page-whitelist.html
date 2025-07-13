@@ -1,0 +1,77 @@
+<!-- wp:template-part {"slug":"header"} /-->
+<div class="pageWhls" style="">
+	<div class="pageWhlsMobHeading">
+		<div class="pageWhlsMobHeadingWrapper">
+			<div class="pageWhlsMobHeadingRow">
+				<a
+					href="#"
+					onclick="try{window.navigation.back()}catch (e) {window.navigation.navigate('')}"
+				>
+					<svg
+						width="21"
+						height="21"
+						viewBox="0 0 21 21"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M9.47759 10.4995L13.8086 6.16838L12.5712 4.93095L7.00265 10.4995L12.5712 16.0679L13.8086 14.8304L9.47759 10.4995Z"
+							fill="#F9F9F9"
+						/>
+					</svg>
+				</a>
+			</div>
+			<div class="pageWhlsMobHeadingRow">
+				<div class="pageWhlsMobHeadingTitle">Избранное</div>
+			</div>
+			<div class="pageWhlsMobHeadingRow">
+				<a href="">
+					<svg
+						width="21"
+						height="21"
+						viewBox="0 0 21 21"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M7.4375 6.125C7.4375 5.1585 6.654 4.375 5.6875 4.375C4.721 4.375 3.9375 5.1585 3.9375 6.125C3.9375 7.0915 4.721 7.875 5.6875 7.875C6.654 7.875 7.4375 7.0915 7.4375 6.125ZM9.1875 6.125C9.1875 8.058 7.6205 9.625 5.6875 9.625C3.7545 9.625 2.1875 8.058 2.1875 6.125C2.1875 4.192 3.7545 2.625 5.6875 2.625C7.6205 2.625 9.1875 4.192 9.1875 6.125ZM18.375 3.5H11.375V5.25H18.375V3.5ZM18.375 9.625H11.375V11.375H18.375V9.625ZM18.375 15.75H11.375V17.5H18.375V15.75ZM5.6875 16.625C4.721 16.625 3.9375 15.8415 3.9375 14.875C3.9375 13.9085 4.721 13.125 5.6875 13.125C6.654 13.125 7.4375 13.9085 7.4375 14.875C7.4375 15.8415 6.654 16.625 5.6875 16.625ZM5.6875 18.375C7.6205 18.375 9.1875 16.808 9.1875 14.875C9.1875 12.942 7.6205 11.375 5.6875 11.375C3.7545 11.375 2.1875 12.942 2.1875 14.875C2.1875 16.808 3.7545 18.375 5.6875 18.375ZM5.6875 7C6.17074 7 6.5625 6.60824 6.5625 6.125C6.5625 5.64176 6.17074 5.25 5.6875 5.25C5.20426 5.25 4.8125 5.64176 4.8125 6.125C4.8125 6.60824 5.20426 7 5.6875 7Z"
+							fill="#F9F9F9"
+						/>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="pageWhlsWrapper gridWrap" style="">
+		<div class="pageWhlsHeading" style="">
+			<div class="pageWhlsHeadingTitle">Избранное <sup style="">(0)</sup></div>
+		</div>
+
+		<div class="pageWhlsBodyWrapper">
+			<div class="pageWhlsSide">
+				<div class="pageWhlsSideBlock">
+					<div class="sideBlockHeading">
+						<div class="sideBlockHeadingTitle">Мои списки</div>
+					</div>
+					<div class="sideBlockBody">
+						<div class="sideBlockBodyList">
+							<div class="sideBlockBodyListItem">
+								<!-- wp:shortcode -->
+								[favorites_categories]
+								<!-- /wp:shortcode -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="pageWhlsContent" style="width: 100%">
+				<!-- wp:shortcode -->
+				[favorites_items]
+				<!-- /wp:shortcode -->
+			</div>
+		</div>
+
+		<!-- wp:post-content /-->
+	</div>
+</div>
+<!-- wp:template-part {"slug":"footer"} /-->
