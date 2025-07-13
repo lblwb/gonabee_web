@@ -240,7 +240,7 @@ function render_category_products_shortcode($atts)
         'post_status' => 'publish',
         'paged' => intval($atts['paged']),
 //        'posts_per_page' => 12,
-        'posts_per_page' => 1,
+        'posts_per_page' => 12,
         'meta_query' => [
             [
                 'key' => '_stock_status',
@@ -400,28 +400,25 @@ function ajax_load_more_category_products()
     wp_die();
 }
 
-function render_load_more_products_shortcode($atts)
-{
-    $atts = shortcode_atts(array(
+function render_load_more_products_shortcode($atts) {
+    // Define default attributes
+    $atts = shortcode_atts([
         'paged' => 1,
         'term_id' => null,
-    ), $atts);
+    ], $atts);
 
+    // Set term_id from queried object if not provided
     if (!$atts['term_id']) {
         $term = get_queried_object();
-        $atts['term_id'] = $term->term_id ?? 0;
+        $atts['term_id'] = isset($term->term_id) ? $term->term_id : 0;
     }
 
-    // Получаем глобальный запрос WordPress
     global $wp_query;
-
-    // Инициализируем meta_query и tax_query из глобального запроса, если они есть
     $meta_query = $wp_query->query_vars['meta_query'] ?? [];
     $tax_query = $wp_query->query_vars['tax_query'] ?? [];
 
-    // Добавляем фильтр по категории, если term_id передан, но аккуратно — чтобы не дублировать фильтр по product_cat
+    // Add product category filter if term_id is provided
     if ($atts['term_id']) {
-        // Проверим, есть ли уже фильтр по product_cat в tax_query
         $has_product_cat_filter = false;
         foreach ($tax_query as $tax_filter) {
             if (isset($tax_filter['taxonomy']) && $tax_filter['taxonomy'] === 'product_cat') {
@@ -431,31 +428,82 @@ function render_load_more_products_shortcode($atts)
         }
 
         if (!$has_product_cat_filter) {
-            $tax_query[] = array(
+            $tax_query[] = [
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
                 'terms' => intval($atts['term_id']),
-            );
-        }
-    }
-
-    if (!empty($_GET['subcategory'])) {
-        $raw_subcats = explode(',', $_GET['subcategory']);
-        $subcats = array_map('sanitize_text_field', $raw_subcats);
-
-        if (!empty($subcats)) {
-            $tax_query[] = [
-                'taxonomy' => 'product_cat',
-                'field' => 'slug',
-                'terms' => $subcats,
-                'operator' => 'IN' // или 'IN', в зависимости от логики фильтра
             ];
         }
     }
 
+    // Handle subcategory filter
+    if (!empty($_GET['subcategory'])) {
+        $subcats = array_map('sanitize_text_field', explode(',', $_GET['subcategory']));
+        if ($subcats) {
+            $tax_query[] = [
+                'taxonomy' => 'product_cat',
+                'field' => 'slug',
+                'terms' => array_filter($subcats),
+                'operator' => 'IN',
+            ];
+        }
+    }
 
+    // Handle collection filter
+    if (!empty($_GET['collection'])) {
+        $tax_query[] = [
+            'taxonomy' => 'prd_collection',
+            'field' => 'slug',
+            'terms' => array_map('sanitize_text_field', explode(',', $_GET['collection'])),
+            'operator' => 'AND',
+        ];
+    }
 
-    $args = array(
+    // Handle price filters
+    if (!empty($_GET['min_price'])) {
+        $meta_query[] = [
+            'key' => '_price',
+            'value' => (float) $_GET['min_price'],
+            'compare' => '>=',
+            'type' => 'NUMERIC',
+        ];
+    }
+
+    if (!empty($_GET['max_price'])) {
+        $meta_query[] = [
+            'key' => '_price',
+            'value' => (float) $_GET['max_price'],
+            'compare' => '<=',
+            'type' => 'NUMERIC',
+        ];
+    }
+
+    // Handle size filter
+    if (!empty($_GET['size'])) {
+        $sizes = array_map('sanitize_title', array_filter(array_map('trim', explode(',', sanitize_text_field($_GET['size'])))));
+        if ($sizes) {
+            $tax_query[] = [
+                'taxonomy' => 'pa_sizes',
+                'field' => 'slug',
+                'terms' => $sizes,
+                'operator' => 'AND',
+            ];
+        }
+    }
+
+    // Handle occupation filter
+    if (!empty($_GET['occupation'])) {
+        foreach (array_map('sanitize_text_field', explode(',', $_GET['occupation'])) as $occupation) {
+            $meta_query[] = [
+                'key' => 'occupation',
+                'value' => '"' . $occupation . '"',
+                'compare' => 'LIKE',
+            ];
+        }
+    }
+
+    // Setup WP_Query arguments
+    $args = [
         'post_type' => 'product',
         'post_status' => 'publish',
         'paged' => intval($atts['paged']),
@@ -464,102 +512,68 @@ function render_load_more_products_shortcode($atts)
             [
                 'key' => '_stock_status',
                 'value' => 'instock',
-                'compare' => '='
-            ]
+                'compare' => '=',
+            ],
         ],
-        // 'meta_query'     => array(
-        //     array(
-        //         'key'     => '_stock_status',
-        //         'value'   => 'instock',
-        //     ),
-        // ),
-    );
+    ];
 
-    // Передаём meta_query и tax_query из глобального запроса
-    if (!empty($meta_query)) {
-        $args['meta_query'] = $meta_query;
+    if ($meta_query) {
+        $args['meta_query'] = array_merge($args['meta_query'], $meta_query);
     }
 
-
-
-    if (!empty($tax_query)) {
+    if ($tax_query) {
         $args['tax_query'] = $tax_query;
     }
 
-    $products_query = new WP_Query($args);
+    $selected_colors = [];
 
+    $products_query = new WP_Query($args);
+    error_log('Query args: ' . print_r($args, true));
+    error_log('Found posts: ' . $products_query->found_posts);
+    error_log('Max num pages: ' . $products_query->max_num_pages);
 
     ob_start();
-
-
-
-    //    var_dump($products);
-
-    // 🔽 Получаем цветовые фильтры из GET
-    $selected_colors = [];
-    if (!empty($_GET['color_ex'])) {
-        $selected_colors = array_filter(array_map('sanitize_title', explode(',', $_GET['color_ex'])));
-    }
-
     $has_products = false;
-
-    //    var_dump($products);
-
-
-    // 🔍 Фильтрация по цветам после выборки
-
     if ($products_query->have_posts()) {
         while ($products_query->have_posts()) {
             $products_query->the_post();
-
-
             $post_id = get_the_ID();
-
-            // 🔍 Получаем все цвета товара
             $product_colors = [];
             if (have_rows('product_colors', $post_id)) {
                 while (have_rows('product_colors', $post_id)) {
                     the_row();
                     $color_rel = get_sub_field('color_rel');
-                    $color_post = is_array($color_rel) ? $color_rel[0] ?? null : $color_rel;
+                    $color_post = is_array($color_rel) ? ($color_rel[0] ?? null) : $color_rel;
                     if ($color_post && is_object($color_post)) {
                         $color_slug = get_field('color_slug', $color_post->ID);
-                        if (!empty($color_slug)) {
+                        if ($color_slug) {
                             $product_colors[] = sanitize_title($color_slug);
                         }
                     }
                 }
             }
+            error_log('Product ID: ' . $post_id . ', Colors: ' . print_r($product_colors, true));
+            error_log('Selected colors: ' . print_r($selected_colors, true));
 
-            // 🧠 Фильтрация — если заданы цвета, то проверяем наличие пересечений
-            if (!empty($selected_colors)) {
-                $intersect = array_intersect($selected_colors, $product_colors);
-                if (empty($intersect)) {
-                    continue; // пропускаем товар, если ни одного совпадения
-                }
+            if ($selected_colors && !array_intersect($selected_colors, $product_colors)) {
+                error_log('Product ID: ' . $post_id . ' skipped due to color filter');
+                continue;
             }
-
-            // ✅ Если дошли сюда — товар удовлетворяет фильтру
             $has_products = true;
-
-            //var_dump($products)
-
         }
 
-        if (!$has_products) {
-            return '';
+        wp_reset_postdata();
+        wp_reset_query();
+
+        if ($has_products) {
+            error_log('Loading template for page: ' . $atts['paged']);
+            get_template_part('shortcodes/load-more-template', null, $atts);
         }
-    } else {
-        echo '';
     }
 
-    get_template_part('shortcodes/load-more-template', null, $atts); // передаем аттрибуты, если нужно
-
-    wp_reset_postdata();
-
     $output = ob_get_clean();
-
-    return $output;
+    error_log('Shortcode output length: ' . strlen($output));
+    return $has_products ? $output : '';
 }
 
 add_shortcode('load_more_products', 'render_load_more_products_shortcode');
@@ -675,7 +689,7 @@ function enqueue_load_more_script()
                     setTimeout(() => {
                         // favBtnPrd();
                         swipperInit().then();
-                        favBtnPrdSync().then();
+                        // favBtnPrdSync().then();
                         subGalleryProductCard().then();
                     }, 1800);
                 });
